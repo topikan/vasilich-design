@@ -14,105 +14,120 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-left" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-flip" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 9.6-3.6M13.5 8a5.5 5.5 0 0 1-9.6 3.6M12.5 1.8v2.9H9.6M3.5 14.2v-2.9h2.9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 16 16"><path d="m3.5 3.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-clip" viewBox="0 0 16 16"><path d="M13 7.5 8 12.5a3.2 3.2 0 0 1-4.5-4.5l5.4-5.4a2.1 2.1 0 0 1 3 3L6.6 10.9a1.1 1.1 0 0 1-1.5-1.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
-  <symbol id="logo" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#E2873A" stroke-width="2.2"/><rect class="eye" x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><rect class="eye" x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="#EEE7DC" stroke-width="2.2" stroke-linecap="round"/></symbol>
 </svg>
 
 <!-- 1. HEADER -->
 <header class="hdr" id="top">
   <div class="wrap">
-    <a href="#top" class="logo" aria-label="VASILICH DESIGN — на главную"><svg><use href="#logo"/></svg><b>VASILICH<span>DESIGN</span></b></a>
-    <nav class="nav" aria-label="Основная навигация">
-      <a href="#services">Услуги</a><a href="#directions">Направления</a><a href="#works">Работы</a><a href="#about">О студии</a><a href="#flow">Этапы</a>
+    <a href="#top" class="logo" aria-label="VASILICH DESIGN">
+      <svg viewBox="0 0 40 40" class="logo__mark"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#E2873A" stroke-width="2.2"/><g class="logo__eyes"><rect class="eye" x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><rect class="eye" x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/></g><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="#EEE7DC" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <b>VASILICH<span>DESIGN</span></b>
+    </a>
+    <nav class="nav" aria-label="Навигация">
+      <a href="#services" data-i18n="nav1">Услуги</a><a href="#directions" data-i18n="nav2">Направления</a><a href="#works" data-i18n="nav3">Работы</a><a href="#about" data-i18n="nav4">О студии</a><a href="#flow" data-i18n="nav5">Этапы</a>
     </nav>
     <div class="hdr-right">
-      <div class="lang" role="group" aria-label="Язык"><button aria-pressed="true">RU</button><button aria-pressed="false">EN</button></div>
-      <a href="#contact" class="btn">Обсудить проект<svg><use href="#i-arrow"/></svg></a>
-      <button class="burger" aria-label="Меню"><svg width="18" height="12" viewBox="0 0 18 12"><path d="M0 1h18M0 6h18M0 11h12" stroke="#EEE7DC" stroke-width="1.5"/></svg></button>
+      <div class="lang" role="group" aria-label="Язык / Language"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="en" aria-pressed="false">EN</button></div>
+      <a href="#contact" class="btn btn--sm hdr-cta"><span data-i18n="cta">Обсудить проект</span><svg><use href="#i-arrow"/></svg></a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     </div>
   </div>
 </header>
 
+<div class="mnav" id="mnav" aria-hidden="true">
+  <nav class="mnav__links">
+    <a href="#services" data-i18n="nav1">Услуги</a><a href="#directions" data-i18n="nav2">Направления</a><a href="#works" data-i18n="nav3">Работы</a><a href="#about" data-i18n="nav4">О студии</a><a href="#flow" data-i18n="nav5">Этапы</a><a href="#contact" data-i18n="nav6">Контакты</a>
+  </nav>
+  <div class="mnav__foot">
+    <div class="lang lang--lg" role="group" aria-label="Язык / Language"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="en" aria-pressed="false">EN</button></div>
+    <a href="#contact" class="btn"><span data-i18n="cta">Обсудить проект</span><svg><use href="#i-arrow"/></svg></a>
+  </div>
+</div>
+
 <main>
 <!-- 2. HERO -->
-<section class="hero">
-  <img class="hero__img" src="assets/hero.jpg" alt="Робот в мастерской студии, закатный свет из окна">
-  <p class="hero__meta caption">CGI · Product · Animation · Interactive 3D</p>
+<section class="hero" id="hero">
+  <div class="hero__media" id="heroMedia">
+    <img class="hero__img hero__img--base" src="assets/hero.jpg" alt="Робот в мастерской студии">
+    <img class="hero__img hero__img--lit" src="assets/hero.jpg" alt="" aria-hidden="true">
+  </div>
   <div class="hero__body wrap">
     <h1 class="display"><span class="ln"><span>VASILICH</span></span><span class="ln"><span>DESIGN</span></span></h1>
-    <div class="hero__row">
-      <p class="lead">Студия 3D-визуализации. Строим сцены, ставим свет и делаем кадры, анимацию и интерактивные модели, которые показывают продукт лучше фотографии.</p>
-      <div class="hero__cta">
-        <a href="#works" class="btn">Смотреть работы<svg><use href="#i-arrow"/></svg></a>
-        <a href="#services" class="btn btn--ghost">Услуги</a>
-      </div>
+    <p class="lead" data-i18n="heroLead">Студия 3D-визуализации. Строим сцены, ставим свет и делаем кадры, анимацию и интерактивные модели, которые показывают продукт лучше фотографии.</p>
+    <div class="hero__cta">
+      <a href="#works" class="btn"><span data-i18n="heroBtn">Смотреть работы</span><svg><use href="#i-arrow"/></svg></a>
+      <a href="#services" class="btn btn--ghost" data-i18n="nav1">Услуги</a>
     </div>
   </div>
+  <p class="hero__hint caption"><span class="hero__hint-dot"></span><span data-i18n="heroHint">Ведите курсором — мы ставим свет</span></p>
 </section>
 
 <!-- 3. SERVICES -->
 <section class="sec" id="services">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="h1">Что мы делаем</h2>
-      <p>Четыре услуги — от одного кадра до модели, которую клиент крутит в браузере. Наведите на карточку, чтобы увидеть подробности.</p>
+      <h2 class="h1" data-i18n="svcTitle">Что мы делаем</h2>
+      <p data-i18n="svcLead">Четыре услуги — от одного кадра до модели, которую клиент крутит в браузере. Наведите на карточку или нажмите на неё.</p>
     </div>
-    <div class="svc">
-      <article class="card rv" tabindex="0">
+    <div class="svc" id="svc">
+      <article class="card rv" tabindex="0" aria-pressed="false">
         <div class="card__in">
           <div class="card__face card__front"><img src="assets/svc-cgi.jpg" alt="Ретро-гаджеты на подиумах"><div class="card__title"><h3 class="h3">CGI</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
-          <div class="card__face card__back"><h3 class="h3">CGI</h3><p>Сцены целиком: окружение, свет, материалы и атмосфера. Для рекламных кампаний, презентаций и арт-проектов.</p><ul><li>Интерьеры и окружение</li><li>Концепт-сцены</li><li>Кадры для кампаний</li></ul></div>
+          <div class="card__face card__back"><h3 class="h3">CGI</h3><p data-i18n="s1">Сцены целиком: окружение, свет, материалы и атмосфера. Для рекламных кампаний, презентаций и арт-проектов.</p><ul><li data-i18n="s1a">Интерьеры и окружение</li><li data-i18n="s1b">Концепт-сцены</li><li data-i18n="s1c">Кадры для кампаний</li></ul><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
-      <article class="card rv rv-d1" tabindex="0">
+      <article class="card rv rv-d1" tabindex="0" aria-pressed="false">
         <div class="card__in">
           <div class="card__face card__front"><img src="assets/svc-product.jpg" alt="Кресло в студийном свете"><div class="card__title"><h3 class="h3">Product Visualization</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
-          <div class="card__face card__back"><h3 class="h3">Product Visualization</h3><p>Рендеры товара вместо фотосъёмки: студийный свет, точные материалы, любой ракурс и любое количество вариантов.</p><ul><li>Каталог и маркетплейсы</li><li>Рекламные кадры</li><li>Упаковка и детали</li></ul></div>
+          <div class="card__face card__back"><h3 class="h3">Product Visualization</h3><p data-i18n="s2">Рендеры товара вместо фотосъёмки: студийный свет, точные материалы, любой ракурс и любое количество вариантов.</p><ul><li data-i18n="s2a">Каталог и маркетплейсы</li><li data-i18n="s2b">Рекламные кадры</li><li data-i18n="s2c">Упаковка и детали</li></ul><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
-      <article class="card rv rv-d2" tabindex="0">
+      <article class="card rv rv-d2" tabindex="0" aria-pressed="false">
         <div class="card__in">
           <div class="card__face card__front"><video src="assets/svc-animation.mp4" poster="assets/svc-animation.jpg" muted loop playsinline autoplay></video><div class="card__title"><h3 class="h3">Animation</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
-          <div class="card__face card__back"><h3 class="h3">Animation</h3><p>Рекламные ролики и художественная анимация: работа с камерой, движением и ритмом монтажа.</p><ul><li>Ролики для соцсетей</li><li>Продуктовые анимации</li><li>Видеофоны для сайтов</li></ul></div>
+          <div class="card__face card__back"><h3 class="h3">Animation</h3><p data-i18n="s3">Рекламные ролики и художественная анимация: работа с камерой, движением и ритмом монтажа.</p><ul><li data-i18n="s3a">Ролики для соцсетей</li><li data-i18n="s3b">Продуктовые анимации</li><li data-i18n="s3c">Видеофоны для сайтов</li></ul><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
-      <article class="card rv rv-d3" tabindex="0">
+      <article class="card rv rv-d3" tabindex="0" aria-pressed="false">
         <div class="card__in">
           <div class="card__face card__front"><img src="assets/svc-interactive.jpg" alt="Светящийся модуль на подиуме"><div class="card__title"><h3 class="h3">Interactive 3D</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
-          <div class="card__face card__back"><h3 class="h3">Interactive 3D</h3><p>Модели, которые вращают, раскрывают и настраивают прямо в браузере — на сайте, в презентации или на выставке.</p><ul><li>Веб-конфигураторы</li><li>3D на сайте</li><li>Интерактивные презентации</li></ul></div>
+          <div class="card__face card__back"><h3 class="h3">Interactive 3D</h3><p data-i18n="s4">Модели, которые вращают, раскрывают и настраивают прямо в браузере — на сайте, в презентации или на выставке.</p><ul><li data-i18n="s4a">Веб-конфигураторы</li><li data-i18n="s4b">3D на сайте</li><li data-i18n="s4c">Интерактивные презентации</li></ul><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
     </div>
-    <p class="svc-note caption">На телефоне карточка переворачивается по касанию, а ряд листается свайпом.</p>
+    <div class="svc-dots" id="svcDots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
 <!-- 4. INTERACTIVE CUBE -->
-<section class="cube" id="cube" aria-label="Интерактивный куб">
+<section class="cube" id="cube">
   <img class="cube__bg" src="assets/cube-bg.jpg" alt="">
-  <div class="cube__stage" id="cubeStage" aria-label="3D-модель. Левая кнопка мыши — вперёд, правая — назад"></div>
-  <p class="cube__loading" id="cubeLoading">Загружаем модель…</p>
+  <div class="cube__stage" id="cubeStage" role="button" tabindex="0" aria-label="3D-модель"></div>
+  <p class="cube__loading" id="cubeLoading" data-i18n="cubeLoad">Загружаем модель…</p>
   <div class="cube__ui wrap">
     <div class="cube__intro rv">
-      <h2 class="h1">Покрутите куб</h2>
-      <p>Это живая 3D-модель — так же работают наши интерактивные проекты. Пройдите три этапа анимации.</p>
+      <h2 class="h1" data-i18n="cubeTitle">Покрутите куб</h2>
+      <p data-i18n="cubeLead">Это живая 3D-модель — так работают наши интерактивные проекты. Пройдите три этапа, и в конце вас ждёт бонус.</p>
       <div class="hint">
-        <div class="hint__key hint__mouse"><span class="mouse mouse--l"><i></i></span>Вперёд</div>
-        <div class="hint__key hint__mouse"><span class="mouse mouse--r"><i></i></span>Назад</div>
-        <div class="hint__key hint__touch">Касание справа — вперёд, слева — назад</div>
+        <div class="hint__key hint__mouse"><span class="mouse mouse--l"><i></i></span><span data-i18n="fwd">Вперёд</span></div>
+        <div class="hint__key hint__mouse"><span class="mouse mouse--r"><i></i></span><span data-i18n="back">Назад</span></div>
+        <div class="hint__key hint__touch" data-i18n="touchHint">Касание справа — вперёд, слева — назад</div>
       </div>
     </div>
-    <div class="seg" role="tablist" aria-label="Этапы анимации">
-      <button class="is-active" data-seg="0"><b>Этап 1</b><span>кадры 1–30</span></button>
-      <button data-seg="1"><b>Этап 2</b><span>кадры 31–60</span></button>
-      <button data-seg="2"><b>Этап 3</b><span>кадры 61–90</span></button>
+    <div class="seg" role="group" aria-label="Этапы">
+      <button data-seg="0"><b data-i18n="st1">Этап 1</b><span data-i18n="fr1">кадры 1–30</span></button>
+      <button data-seg="1"><b data-i18n="st2">Этап 2</b><span data-i18n="fr2">кадры 31–60</span></button>
+      <button data-seg="2"><b data-i18n="st3">Этап 3</b><span data-i18n="fr3">кадры 61–90</span></button>
     </div>
-    <aside class="offer rv">
+    <aside class="offer" id="offer" aria-live="polite">
       <div class="offer__num">−10%</div>
-      <p>Скидка на первый проект для тех, кто дошёл до третьего этапа. Упомяните куб в заявке.</p>
-      <a href="#contact" class="btn">Получить скидку<svg><use href="#i-arrow"/></svg></a>
+      <p data-i18n="offer">Вы прошли все три этапа. Дарим скидку на первый проект — упомяните куб в заявке.</p>
+      <a href="#contact" class="btn"><span data-i18n="offerBtn">Получить скидку</span><svg><use href="#i-arrow"/></svg></a>
     </aside>
   </div>
 </section>
@@ -122,35 +137,35 @@
   <video class="dirs__video" src="assets/packs.mp4" poster="assets/packs.jpg" muted loop playsinline autoplay></video>
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="h1">Три направления — одна студия</h2>
-      <p>Можно заказать отдельный кадр, а можно отдать нам направление целиком: от идеи до готовых файлов.</p>
+      <h2 class="h1" data-i18n="dirTitle">Три направления — одна студия</h2>
+      <p data-i18n="dirLead">Можно заказать отдельный кадр, а можно отдать нам направление целиком: от идеи до готовых файлов.</p>
     </div>
     <div class="dirs__grid">
       <a href="#works" data-filter="cgi" class="dir dir--cgi rv">
-        <div class="dir__media"><img src="assets/bust.jpg" alt="Бюст на каменных постаментах в луче света"></div>
-        <div class="dir__name"><small>Направление</small>FULL CGI</div>
-        <p>Сцены целиком: окружение, атмосфера, работа со светом и материалами. Кадр, в котором веришь каждой поверхности.</p>
-        <div class="dir__tags"><span class="tag">Окружение</span><span class="tag">Свет</span><span class="tag">Материалы</span><span class="tag">Атмосфера</span></div>
-        <span class="link">Проекты CGI</span>
+        <div class="dir__media"><img src="assets/bust.jpg" alt="Бюст в луче света"></div>
+        <div class="dir__name"><small data-i18n="dirLbl">Направление</small>FULL CGI</div>
+        <p data-i18n="d1">Сцены целиком: окружение, атмосфера, работа со светом и материалами. Кадр, в котором веришь каждой поверхности.</p>
+        <div class="dir__tags"><span class="tag" data-i18n="t1">Окружение</span><span class="tag" data-i18n="t2">Свет</span><span class="tag" data-i18n="t3">Материалы</span></div>
+        <span class="link" data-i18n="d1l">Проекты CGI</span>
       </a>
       <a href="#works" data-filter="product" class="dir dir--product rv rv-d1">
         <div class="dir__frame"><video src="assets/svc-animation.mp4" poster="assets/svc-animation.jpg" muted loop playsinline autoplay></video></div>
         <div>
-          <div class="dir__name"><small>Направление</small>FULL PRODUCT</div>
-          <p>Предметная визуализация, рекламные рендеры и продуктовые анимации.</p>
-          <div class="dir__tags"><span class="tag">Рендеры</span><span class="tag">Анимация</span><span class="tag">Каталог</span></div>
-          <span class="link">Проекты Product</span>
+          <div class="dir__name"><small data-i18n="dirLbl">Направление</small>FULL PRODUCT</div>
+          <p data-i18n="d2">Предметная визуализация, рекламные рендеры и продуктовые анимации.</p>
+          <div class="dir__tags"><span class="tag" data-i18n="t4">Рендеры</span><span class="tag" data-i18n="t5">Анимация</span><span class="tag" data-i18n="t6">Каталог</span></div>
+          <span class="link" data-i18n="d2l">Проекты Product</span>
         </div>
       </a>
-      <a href="#works" data-filter="interactive" class="dir dir--inter rv rv-d2">
-        <div class="orbit"><span class="orbit__dot"></span><img src="assets/svc-interactive.jpg" alt="Интерактивный модуль"><span class="caption">потяните, чтобы повернуть</span></div>
+      <div class="dir dir--inter rv rv-d2">
+        <div class="orbit" id="orbit"><span class="orbit__ring"></span><p class="orbit__hint caption" data-i18n="drag">Потяните, чтобы повернуть</p></div>
         <div>
-          <div class="dir__name"><small>Направление</small>FULL INTERACTIVE</div>
-          <p>Интерактивные 3D-модели, веб-конфигураторы и презентации.</p>
-          <div class="dir__tags"><span class="tag">WebGL</span><span class="tag">Конфигураторы</span><span class="tag">AR-превью</span></div>
-          <span class="link">Проекты Interactive</span>
+          <div class="dir__name"><small data-i18n="dirLbl">Направление</small>FULL INTERACTIVE</div>
+          <p data-i18n="d3">Интерактивные 3D-модели, веб-конфигураторы и презентации.</p>
+          <div class="dir__tags"><span class="tag">WebGL</span><span class="tag" data-i18n="t7">Конфигураторы</span><span class="tag" data-i18n="t8">AR-превью</span></div>
+          <a href="#works" data-filter="interactive" class="link" data-i18n="d3l">Проекты Interactive</a>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
@@ -159,9 +174,9 @@
 <section class="sec" id="works">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="h1">Работы</h2>
-      <div class="filters" role="group" aria-label="Фильтр по направлениям">
-        <button class="chip" aria-pressed="true" data-f="all">Все</button>
+      <h2 class="h1" data-i18n="worksTitle">Работы</h2>
+      <div class="filters" role="group">
+        <button class="chip" aria-pressed="true" data-f="all" data-i18n="all">Все</button>
         <button class="chip" aria-pressed="false" data-f="cgi">CGI</button>
         <button class="chip" aria-pressed="false" data-f="product">Product</button>
         <button class="chip" aria-pressed="false" data-f="animation">Animation</button>
@@ -175,60 +190,64 @@
 <!-- 7. ABOUT -->
 <section class="about sec" id="about">
   <div class="about__box rv">
-    <img class="about__img" src="assets/about.jpg" alt="Робот сидит у окна, на стене тени листьев">
+    <img class="about__img" src="assets/about.jpg" alt="Робот у окна">
     <div class="about__text">
-      <h2 class="h1">Режиссура,<br>а не просто рендер</h2>
-      <p>VASILICH DESIGN — студия, где 3D начинается с вопроса «что должен почувствовать зритель». Сначала мы придумываем кадр: точку зрения, свет, ритм. Потом строим под него сцену.</p>
-      <p>Поэтому наши работы похожи на кино, а не на каталог: у каждой сцены есть история, у каждого объекта — характер.</p>
+      <h2 class="h1" data-i18n="aboutTitle">Режиссура,<br>а не просто рендер</h2>
+      <p data-i18n="ab1">VASILICH DESIGN — студия, где 3D начинается с вопроса «что должен почувствовать зритель». Сначала мы придумываем кадр: точку зрения, свет, ритм. Потом строим под него сцену.</p>
+      <p data-i18n="ab2">Поэтому наши работы похожи на кино, а не на каталог: у каждой сцены есть история, у каждого объекта — характер.</p>
       <div class="skills">
-        <div><span>Постановка</span>Режиссура и композиция кадра</div>
-        <div><span>Свет</span>Кинематографичное освещение</div>
-        <div><span>Материалы</span>Фотореалистичные поверхности</div>
-        <div><span>Движение</span>Анимация камеры и объектов</div>
-        <div><span>Веб</span>Интерактивные модели для сайтов</div>
-        <div><span>Персонажи</span>Маскоты и роботы</div>
+        <div><span data-i18n="k1">Постановка</span><b data-i18n="k1v">Режиссура и композиция кадра</b></div>
+        <div><span data-i18n="k2">Свет</span><b data-i18n="k2v">Кинематографичное освещение</b></div>
+        <div><span data-i18n="k3">Материалы</span><b data-i18n="k3v">Фотореалистичные поверхности</b></div>
+        <div><span data-i18n="k4">Движение</span><b data-i18n="k4v">Анимация камеры и объектов</b></div>
+        <div><span data-i18n="k5">Веб</span><b data-i18n="k5v">Интерактивные модели для сайтов</b></div>
+        <div><span data-i18n="k6">Персонажи</span><b data-i18n="k6v">Маскоты и роботы</b></div>
       </div>
     </div>
-    <div class="about__quote"><b>Знакомьтесь, это Василич</b>Наш робот — лицо студии. Он живёт в каждом проекте, а его экран стал нашим логотипом.</div>
+    <div class="about__quote"><b data-i18n="qT">Знакомьтесь, это Василич</b><span data-i18n="qB">Наш робот — лицо студии. Он живёт в каждом проекте, а его экран стал нашим логотипом.</span></div>
   </div>
 </section>
 
-<!-- 8. WORKFLOW -->
+<!-- 8. WORKFLOW (slider) -->
 <section class="sec flow" id="flow">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="h1">Как идёт работа</h2>
-      <p>Семь этапов от первого сообщения до готовых файлов. Нажмите на этап, чтобы узнать, что на нём происходит.</p>
+      <h2 class="h1" data-i18n="flowTitle">Как идёт работа</h2>
+      <div class="flow__nav">
+        <span class="flow__count" id="flowCount">01 / 07</span>
+        <button class="icon-btn" id="flowPrev" aria-label="Назад"><svg><use href="#i-left"/></svg></button>
+        <button class="icon-btn" id="flowNext" aria-label="Вперёд"><svg><use href="#i-right"/></svg></button>
+      </div>
     </div>
-    <div class="flow__track rv" id="flowTrack"><span class="flow__progress" id="flowProgress"></span></div>
-    <div class="flow__detail rv" id="flowDetail" aria-live="polite"></div>
+    <div class="flow__bar rv" id="flowBar"></div>
+    <div class="flow__view rv" id="flowView" tabindex="0"><div class="flow__track" id="flowTrack"></div></div>
   </div>
 </section>
 
 <!-- 9. CONTACT -->
-<section id="contact">
+<section id="contact" class="contact">
   <div class="contact__band">
     <img src="assets/contact.jpg" alt="Чемоданчик с экраном «Обсудим кейс»">
-    <div class="wrap"><h2 class="h1 rv">Давайте<br>обсудим кейс</h2></div>
+    <div class="wrap"><h2 class="h1 rv" data-i18n="ctTitle">Давайте<br>обсудим кейс</h2></div>
   </div>
   <div class="wrap contact__grid">
     <div class="rv">
-      <p class="lead">Расскажите о задаче — даже если есть только идея. Ответим, предложим подход и оценим объём работы.</p>
+      <p class="lead" data-i18n="ctLead">Расскажите о задаче — даже если есть только идея. Ответим, предложим подход и оценим объём работы.</p>
       <div class="socials">
         <a class="social" href="#contact">Telegram<span>@vasilich_design</span></a>
         <a class="social" href="#contact">WhatsApp<span>+7 900 000-00-00</span></a>
         <a class="social" href="#contact">Behance<span>vasilichdesign</span></a>
-        <a class="social" href="#contact">Почта<span>hello@vasilich.design</span></a>
+        <a class="social" href="#contact"><em data-i18n="mail">Почта</em><span>hello@vasilich.design</span></a>
       </div>
     </div>
     <form class="form rv rv-d1" id="form" novalidate>
-      <div class="field"><label for="f-name">Имя</label><input class="input" id="f-name" placeholder="Как к вам обращаться" required></div>
-      <div class="field"><label for="f-contact">Контакт для связи</label><input class="input" id="f-contact" placeholder="Telegram, телефон или почта" required><span class="err" id="f-contact-err" hidden>Оставьте контакт, чтобы мы могли ответить</span></div>
-      <div class="field field--full"><label for="f-task">Задача</label><textarea class="input" id="f-task" placeholder="Что нужно сделать, для чего и к какому сроку"></textarea></div>
-      <label class="drop" id="drop"><span class="drop__icon"><svg><use href="#i-clip"/></svg></span><span><b>Прикрепите ТЗ или референсы</b><br><span class="caption">Перетащите файлы сюда или нажмите. PDF, изображения, архивы до 50 МБ</span></span><input type="file" multiple id="f-files"></label>
+      <div class="field"><label for="f-name" data-i18n="fName">Имя</label><input class="input" id="f-name" data-i18n-ph="fNamePh" placeholder="Как к вам обращаться"></div>
+      <div class="field"><label for="f-contact" data-i18n="fCont">Контакт для связи</label><input class="input" id="f-contact" data-i18n-ph="fContPh" placeholder="Telegram, телефон или почта"><span class="err" id="f-contact-err" hidden data-i18n="fErr">Оставьте контакт, чтобы мы могли ответить</span></div>
+      <div class="field field--full"><label for="f-task" data-i18n="fTask">Задача</label><textarea class="input" id="f-task" data-i18n-ph="fTaskPh" placeholder="Что нужно сделать, для чего и к какому сроку"></textarea></div>
+      <label class="drop" id="drop"><span class="drop__icon"><svg><use href="#i-clip"/></svg></span><span><b data-i18n="fDrop">Прикрепите ТЗ или референсы</b><br><span class="caption" data-i18n="fDropS">Перетащите файлы сюда или нажмите. PDF, изображения, архивы до 50 МБ</span></span><input type="file" multiple id="f-files"></label>
       <div class="files" id="files"></div>
-      <div class="form__foot"><span class="caption">Нажимая кнопку, вы соглашаетесь на обработку данных</span><button class="btn" type="submit">Отправить заявку<svg><use href="#i-arrow"/></svg></button></div>
-      <div class="form__done"><h3 class="h3">Заявка отправлена</h3><p class="muted" style="margin-top:8px">Так выглядит состояние после отправки. В макете форма никуда не уходит.</p></div>
+      <div class="form__foot"><span class="caption" data-i18n="fAgree">Нажимая кнопку, вы соглашаетесь на обработку данных</span><button class="btn" type="submit"><span data-i18n="fSend">Отправить заявку</span><svg><use href="#i-arrow"/></svg></button></div>
+      <div class="form__done"><h3 class="h3" data-i18n="fDone">Заявка отправлена</h3><p class="muted" style="margin-top:8px" data-i18n="fDoneS">Так выглядит состояние после отправки. В макете форма никуда не уходит.</p></div>
     </form>
   </div>
 </section>
@@ -238,159 +257,324 @@
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr__grid">
-      <div><a href="#top" class="logo"><svg><use href="#logo"/></svg><b>VASILICH<span>DESIGN</span></b></a><p class="muted small" style="margin-top:20px;max-width:22em">Студия 3D-визуализации: CGI, предметная визуализация, анимация и интерактивное 3D.</p></div>
-      <div><h4>Навигация</h4><ul><li><a href="#services">Услуги</a></li><li><a href="#directions">Направления</a></li><li><a href="#works">Работы</a></li><li><a href="#about">О студии</a></li><li><a href="#flow">Этапы</a></li></ul></div>
-      <div><h4>Контакты</h4><ul><li>hello@vasilich.design</li><li>+7 900 000-00-00</li><li><a href="#contact">Оставить заявку</a></li></ul></div>
-      <div><h4>Соцсети</h4><ul><li><a href="#contact">Telegram</a></li><li><a href="#contact">Behance</a></li><li><a href="#contact">Instagram</a></li><li><a href="#contact">YouTube</a></li></ul></div>
+      <div><a href="#top" class="logo"><svg viewBox="0 0 40 40" class="logo__mark"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#E2873A" stroke-width="2.2"/><rect x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><rect x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="#EEE7DC" stroke-width="2.2" stroke-linecap="round"/></svg><b>VASILICH<span>DESIGN</span></b></a><p class="muted small" style="margin-top:18px;max-width:22em" data-i18n="ftrAbout">Студия 3D-визуализации: CGI, предметная визуализация, анимация и интерактивное 3D.</p></div>
+      <div><h4 data-i18n="ftrNav">Навигация</h4><ul><li><a href="#services" data-i18n="nav1">Услуги</a></li><li><a href="#directions" data-i18n="nav2">Направления</a></li><li><a href="#works" data-i18n="nav3">Работы</a></li><li><a href="#about" data-i18n="nav4">О студии</a></li><li><a href="#flow" data-i18n="nav5">Этапы</a></li></ul></div>
+      <div><h4 data-i18n="nav6">Контакты</h4><ul><li>hello@vasilich.design</li><li>+7 900 000-00-00</li><li><a href="#contact" data-i18n="ftrReq">Оставить заявку</a></li></ul></div>
+      <div><h4 data-i18n="ftrSoc">Соцсети</h4><ul><li><a href="#contact">Telegram</a></li><li><a href="#contact">Behance</a></li><li><a href="#contact">Instagram</a></li><li><a href="#contact">YouTube</a></li></ul></div>
     </div>
     <div class="ftr__big" aria-hidden="true">VASILICH</div>
-    <div class="ftr__bottom"><span>© 2026 VASILICH DESIGN. Все права защищены.</span><span>DESIGNED BY VASILICH DESIGN</span><a href="spec.html" class="link">Дизайн-система макета</a></div>
+    <div class="ftr__bottom"><span data-i18n="copy">© 2026 VASILICH DESIGN. Все права защищены.</span><span>DESIGNED BY VASILICH DESIGN</span><a href="spec.html" class="link" data-i18n="specLink">Дизайн-система макета</a></div>
   </div>
 </footer>
 
-<!-- Project overlay -->
 <div class="proj" id="proj" role="dialog" aria-modal="true" aria-labelledby="projTitle">
   <div class="proj__sheet">
-    <div class="proj__top"><a href="#top" class="logo"><svg><use href="#logo"/></svg></a><span class="caption" id="projCount"></span><button class="icon-btn" id="projClose" aria-label="Закрыть проект"><svg><use href="#i-close"/></svg></button></div>
+    <div class="proj__top"><span class="caption" id="projCount"></span><button class="icon-btn" id="projClose" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button></div>
     <div class="proj__head">
       <div><p class="caption" id="projCat"></p><h2 class="h1" id="projTitle" style="margin-top:10px"></h2></div>
-      <div class="proj__facts"><div><h4>Задача</h4><p id="projTask"></p></div><div><h4>Результат</h4><p id="projResult"></p></div><div><h4>Направление</h4><p id="projDir"></p></div><div><h4>Формат</h4><p id="projFmt"></p></div></div>
+      <div class="proj__facts"><div><h4 data-i18n="pTask">Задача</h4><p id="projTask"></p></div><div><h4 data-i18n="pRes">Результат</h4><p id="projResult"></p></div><div><h4 data-i18n="pDir">Направление</h4><p id="projDir"></p></div><div><h4 data-i18n="pFmt">Формат</h4><p id="projFmt"></p></div></div>
     </div>
     <div class="proj__media" id="projMedia"></div>
-    <div class="proj__next" id="projNext"><div><p class="caption">Следующий проект</p><div class="h2" id="projNextTitle"></div></div><span class="work__open"><svg><use href="#i-arrow"/></svg></span></div>
+    <div class="proj__next" id="projNext"><div><p class="caption" data-i18n="pNext">Следующий проект</p><div class="h2" id="projNextTitle"></div></div><span class="work__open"><svg><use href="#i-arrow"/></svg></span></div>
   </div>
 </div>
 
 <script>
-/* ---------- data ---------- */
+/* ================= i18n ================= */
+const EN={
+ nav1:'Services',nav2:'Directions',nav3:'Work',nav4:'Studio',nav5:'Process',nav6:'Contact',cta:'Start a project',
+ heroLead:'A 3D visualization studio. We build scenes, set the light and make stills, animation and interactive models that show a product better than a photo shoot.',
+ heroBtn:'See the work',heroHint:'Move your cursor — we set the light',
+ svcTitle:'What we do',svcLead:'Four services — from a single still to a model your client spins in the browser. Hover or tap a card.',
+ s1:'Complete scenes: environment, light, materials and atmosphere. For ad campaigns, presentations and art projects.',s1a:'Interiors and environments',s1b:'Concept scenes',s1c:'Campaign stills',
+ s2:'Product renders instead of a photo shoot: studio light, accurate materials, any angle and any number of variants.',s2a:'Catalogs and marketplaces',s2b:'Advertising stills',s2c:'Packaging and details',
+ s3:'Commercials and art animation: camera work, motion and editing rhythm.',s3a:'Social media clips',s3b:'Product animation',s3c:'Website video loops',
+ s4:'Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show.',s4a:'Web configurators',s4b:'3D on websites',s4c:'Interactive presentations',
+ cubeLoad:'Loading the model…',cubeTitle:'Play with the cube',cubeLead:'This is a live 3D model — this is how our interactive projects work. Go through all three stages to get a bonus.',
+ fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Stage 1',st2:'Stage 2',st3:'Stage 3',fr1:'frames 1–30',fr2:'frames 31–60',fr3:'frames 61–90',
+ offer:'You went through all three stages. Here is a discount on your first project — mention the cube in your request.',offerBtn:'Claim the discount',
+ dirTitle:'Three directions — one studio',dirLead:'Order a single still, or hand us the whole direction: from the idea to the final files.',dirLbl:'Direction',
+ d1:'Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable.',t1:'Environment',t2:'Light',t3:'Materials',d1l:'CGI projects',
+ d2:'Product visualization, advertising renders and product animation.',t4:'Renders',t5:'Animation',t6:'Catalog',d2l:'Product projects',
+ d3:'Interactive 3D models, web configurators and presentations.',t7:'Configurators',t8:'AR preview',d3l:'Interactive projects',drag:'Drag to rotate',
+ worksTitle:'Work',all:'All',
+ aboutTitle:'Directing,<br>not just rendering',ab1:'VASILICH DESIGN is a studio where 3D starts with the question “what should the viewer feel”. First we invent the shot: point of view, light, rhythm. Then we build the scene for it.',ab2:'That is why our work looks like cinema, not a catalog: every scene has a story, every object has a character.',
+ k1:'Staging',k1v:'Shot direction and composition',k2:'Light',k2v:'Cinematic lighting',k3:'Materials',k3v:'Photoreal surfaces',k4:'Motion',k4v:'Camera and object animation',k5:'Web',k5v:'Interactive models for websites',k6:'Characters',k6v:'Mascots and robots',
+ qT:'Meet Vasilich',qB:'Our robot is the face of the studio. He lives in every project, and his screen became our logo.',
+ flowTitle:'How we work',out:'Outcome',
+ ctTitle:'Let’s discuss<br>your case',ctLead:'Tell us about the task — even if it is just an idea. We will reply, suggest an approach and estimate the scope.',mail:'Email',
+ fName:'Name',fNamePh:'What should we call you',fCont:'Contact',fContPh:'Telegram, phone or email',fErr:'Leave a contact so we can reply',fTask:'Task',fTaskPh:'What needs to be done, why and by when',
+ fDrop:'Attach a brief or references',fDropS:'Drop files here or click. PDF, images, archives up to 50 MB',fAgree:'By clicking the button you agree to data processing',fSend:'Send request',fDone:'Request sent',fDoneS:'This is the state after sending. In the mockup the form goes nowhere.',
+ ftrAbout:'3D visualization studio: CGI, product visualization, animation and interactive 3D.',ftrNav:'Navigation',ftrReq:'Send a request',ftrSoc:'Social',copy:'© 2026 VASILICH DESIGN. All rights reserved.',specLink:'Design system',
+ pTask:'Task',pRes:'Result',pDir:'Direction',pFmt:'Format',pNext:'Next project'
+};
+const RU={out:'На выходе'};let LANG='ru';
+document.querySelectorAll('[data-i18n]').forEach(el=>{RU[el.dataset.i18n]??=el.innerHTML});
+document.querySelectorAll('[data-i18n-ph]').forEach(el=>{RU[el.dataset.i18nPh]??=el.placeholder});
+const t=k=>(LANG==='en'?EN:RU)[k]??RU[k]??k;
+const L=(ru,en)=>({ru,en}),tr=o=>o[LANG]||o.ru;
+function setLang(l){
+  LANG=l;document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.innerHTML=t(el.dataset.i18n)});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=t(el.dataset.i18nPh)});
+  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+  renderWorks();buildFlow();
+  try{localStorage.setItem('vd-lang',l)}catch(e){}
+}
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+/* ================= data ================= */
 const WORKS=[
- {id:'workshop',t:'Мастерская Василича',c:'cgi',cl:'CGI',img:'hero.jpg',size:'wide',task:'Собрать сцену-визитку студии с персонажем и узнаваемым светом.',res:'Главный кадр сайта и серия деталей для соцсетей.',fmt:'Статичные кадры 4K',media:['hero.jpg','about.jpg']},
- {id:'gadgets',t:'Ретро-гаджеты',c:'cgi',cl:'CGI',img:'svc-cgi.jpg',size:'tall',task:'Набор предметных иконок в едином стиле для визуального языка бренда.',res:'Четыре объекта и общая сцена-витрина.',fmt:'Кадры 1:1',media:['svc-cgi.jpg']},
- {id:'chair',t:'Кресло',c:'product',cl:'Product',img:'svc-product.jpg',task:'Показать фактуру кожи и дерева без фотосъёмки.',res:'Рендер для каталога и рекламный кадр с драматичным светом.',fmt:'Рендеры 1:1 и 4:5',media:['svc-product.jpg']},
- {id:'perfume',t:'Аромат у воды',c:'animation',cl:'Animation',img:'svc-animation.jpg',video:'svc-animation.mp4',task:'Рекламный ролик флакона для запуска нового аромата.',res:'7-секундная анимация и стоп-кадры для баннеров.',fmt:'Видео 1:1, 30 fps',media:['v:svc-animation.mp4']},
- {id:'module',t:'Светящийся модуль',c:'interactive',cl:'Interactive',img:'svc-interactive.jpg',task:'Модель устройства, которую можно рассмотреть со всех сторон на сайте.',res:'Лёгкая веб-модель и рендеры для презентации.',fmt:'WebGL + рендеры',media:['svc-interactive.jpg','cube-bg.jpg']},
- {id:'bust',t:'Бюст в луче',c:'cgi',cl:'CGI',img:'bust.jpg',size:'full',pos:'80% 40%',task:'Арт-сцена о работе со светом и камнем.',res:'Широкоформатный кадр для обложек.',fmt:'Кадр 1920×800',media:['bust.jpg']},
- {id:'case',t:'Кейс',c:'product',cl:'Product',img:'contact.jpg',size:'strip',pos:'right center',task:'Предмет-метафора для призыва к действию.',res:'Баннер для блока контактов.',fmt:'Кадр 1920×400',media:['contact.jpg']}
+ {t:L('Мастерская Василича','Vasilich’s workshop'),c:'cgi',img:'hero.jpg',size:'wide',task:L('Собрать сцену-визитку студии с персонажем и узнаваемым светом.','Build a studio signature scene with a character and recognizable light.'),res:L('Главный кадр сайта и серия деталей для соцсетей.','The site’s key visual and a series of details for social media.'),fmt:L('Кадры 4K','4K stills'),media:['hero.jpg','about.jpg']},
+ {t:L('Ретро-гаджеты','Retro gadgets'),c:'cgi',img:'svc-cgi.jpg',size:'tall',task:L('Набор предметов в едином стиле для визуального языка бренда.','A set of objects in one style for a brand’s visual language.'),res:L('Четыре объекта и общая сцена-витрина.','Four objects and a shared showcase scene.'),fmt:L('Кадры 1:1','1:1 stills'),media:['svc-cgi.jpg']},
+ {t:L('Кресло','Lounge chair'),c:'product',img:'svc-product.jpg',task:L('Показать фактуру кожи и дерева без фотосъёмки.','Show leather and wood texture without a photo shoot.'),res:L('Рендер для каталога и рекламный кадр.','A catalog render and an advertising still.'),fmt:L('Рендеры 1:1 и 4:5','1:1 and 4:5 renders'),media:['svc-product.jpg']},
+ {t:L('Аромат у воды','Scent by the water'),c:'animation',img:'svc-animation.jpg',video:'svc-animation.mp4',task:L('Рекламный ролик флакона к запуску аромата.','A commercial for a fragrance launch.'),res:L('7-секундная анимация и кадры для баннеров.','A 7-second animation and stills for banners.'),fmt:L('Видео 1:1, 30 fps','1:1 video, 30 fps'),media:['v:svc-animation.mp4']},
+ {t:L('Светящийся модуль','Glowing module'),c:'interactive',img:'svc-interactive.jpg',task:L('Модель устройства, которую можно рассмотреть со всех сторон.','A device model you can inspect from every side.'),res:L('Лёгкая веб-модель и рендеры для презентации.','A light web model and presentation renders.'),fmt:L('WebGL + рендеры','WebGL + renders'),media:['svc-interactive.jpg','cube-bg.jpg']},
+ {t:L('Бюст в луче','Bust in the beam'),c:'cgi',img:'bust.jpg',size:'full',pos:'80% 40%',task:L('Арт-сцена о работе со светом и камнем.','An art scene about light and stone.'),res:L('Широкоформатный кадр для обложек.','A widescreen still for covers.'),fmt:L('Кадр 1920×800','1920×800 still'),media:['bust.jpg']},
+ {t:L('Кейс','The case'),c:'product',img:'contact.jpg',size:'strip',pos:'right center',task:L('Предмет-метафора для призыва к действию.','An object metaphor for a call to action.'),res:L('Баннер для блока контактов.','A banner for the contact block.'),fmt:L('Кадр 1920×400','1920×400 still'),media:['contact.jpg']}
 ];
+const CL={cgi:'CGI',product:'Product',animation:'Animation',interactive:'Interactive'};
 const STEPS=[
- ['Обсуждение задачи','Созваниваемся или переписываемся: цель, аудитория, где будет жить результат, сроки и бюджет.','Понимание задачи'],
- ['Разработка концепции','Предлагаем идею кадра или ролика: настроение, точку зрения, ключевые сцены.','Концепция'],
- ['Референсы и ТЗ','Собираем мудборд, фиксируем ракурсы, материалы и форматы. Это ТЗ, по которому сверяем результат.','Утверждённое ТЗ'],
- ['3D-сцена и материалы','Моделируем объекты и окружение, настраиваем поверхности. Показываем черновые превью.','Сцена и превью'],
- ['Свет и визуализация','Ставим свет как на съёмочной площадке и рендерим финальные кадры.','Финальные рендеры'],
- ['Анимация или интерактив','Анимируем камеру и объекты или готовим модель для браузера.','Ролик или веб-модель'],
- ['Доработка и передача','Вносим правки, готовим файлы под все площадки и передаём исходники.','Готовые файлы']
+ [L('Обсуждение задачи','Briefing'),L('Созваниваемся или переписываемся: цель, аудитория, где будет жить результат, сроки и бюджет.','A call or a chat: the goal, the audience, where the result will live, timing and budget.'),L('Понимание задачи','A clear task')],
+ [L('Разработка концепции','Concept'),L('Предлагаем идею кадра или ролика: настроение, точку зрения, ключевые сцены.','We propose the idea of the shot or film: mood, point of view, key scenes.'),L('Концепция','Concept')],
+ [L('Референсы и ТЗ','References and brief'),L('Собираем мудборд, фиксируем ракурсы, материалы и форматы. По этому ТЗ сверяем результат.','We build a moodboard and fix angles, materials and formats. The result is checked against this brief.'),L('Утверждённое ТЗ','Approved brief')],
+ [L('3D-сцена и материалы','3D scene and materials'),L('Моделируем объекты и окружение, настраиваем поверхности. Показываем черновые превью.','We model objects and the environment, set up surfaces and show draft previews.'),L('Сцена и превью','Scene and previews')],
+ [L('Свет и визуализация','Light and rendering'),L('Ставим свет как на съёмочной площадке и рендерим финальные кадры.','We light the scene like a film set and render the final frames.'),L('Финальные рендеры','Final renders')],
+ [L('Анимация или интерактив','Animation or interactive'),L('Анимируем камеру и объекты или готовим модель для браузера.','We animate the camera and objects or prepare the model for the browser.'),L('Ролик или веб-модель','Film or web model')],
+ [L('Доработка и передача','Polish and delivery'),L('Вносим правки, готовим файлы под все площадки и передаём исходники.','We apply revisions, prepare files for every platform and hand over the sources.'),L('Готовые файлы','Final files')]
 ];
 const A='assets/';
-/* ---------- portfolio ---------- */
-const grid=document.getElementById('worksGrid');
-grid.innerHTML=WORKS.map((w,i)=>`<button class="work ${w.size?'work--'+w.size:''} rv" data-c="${w.c}" data-i="${i}" aria-label="Открыть проект ${w.t}">
- ${w.video?`<video src="${A+w.video}" poster="${A+w.img}" muted loop playsinline autoplay></video>`:`<img src="${A+w.img}" alt="" style="object-position:${w.pos||'center'}">`}
- <span class="work__cap"><span><b>${w.t}</b><span class="caption">${w.cl}</span></span><span class="work__open"><svg><use href="#i-arrow"/></svg></span></span></button>`).join('');
-function filterWorks(f){
-  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.f===f));
-  grid.querySelectorAll('.work').forEach(w=>w.classList.toggle('is-hidden',f!=='all'&&w.dataset.c!==f));
+
+/* ================= header / burger ================= */
+const hdr=document.querySelector('.hdr'),burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+addEventListener('scroll',()=>hdr.classList.toggle('is-scrolled',scrollY>40),{passive:true});
+function menu(open){burger.setAttribute('aria-expanded',open);mnav.classList.toggle('is-open',open);mnav.setAttribute('aria-hidden',!open);document.body.classList.toggle('no-scroll',open);hdr.classList.toggle('menu-open',open)}
+burger.addEventListener('click',()=>menu(burger.getAttribute('aria-expanded')!=='true'));
+mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();menu(false);const el=document.querySelector(a.getAttribute('href'));requestAnimationFrame(()=>el&&el.scrollIntoView({behavior:'smooth'}))}));
+addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+matchMedia('(min-width:861px)').addEventListener('change',e=>{if(e.matches)menu(false)});
+const eyes=document.querySelector('.hdr .logo__eyes');
+addEventListener('pointermove',e=>{const r=eyes.getBoundingClientRect();const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),d=Math.hypot(dx,dy)||1;eyes.style.transform=`translate(${dx/d*1.6}px,${dy/d*1.3}px)`},{passive:true});
+
+/* ================= hero: light follows cursor ================= */
+const hero=document.getElementById('hero'),hm=document.getElementById('heroMedia'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let hx=.7,hy=.4,tx=.7,ty=.4,heroUser=false,heroT=0,heroVis=true;
+hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;heroUser=true});
+hero.addEventListener('pointerleave',()=>{heroUser=false});
+new IntersectionObserver(es=>{heroVis=es[0].isIntersecting}).observe(hero);
+(function heroLoop(){
+  requestAnimationFrame(heroLoop);if(!heroVis)return;
+  heroT+=.006;if(!heroUser){tx=.64+Math.sin(heroT)*.17;ty=.42+Math.sin(heroT*1.7)*.12}
+  hx+=(tx-hx)*.08;hy+=(ty-hy)*.08;
+  hm.style.setProperty('--lx',(hx*100).toFixed(2)+'%');hm.style.setProperty('--ly',(hy*100).toFixed(2)+'%');
+  if(!reduce)hm.style.transform=`scale(1.05) translate(${((.5-hx)*16).toFixed(1)}px,${((.5-hy)*10).toFixed(1)}px)`;
+})();
+
+/* ================= services: flip ================= */
+const cards=[...document.querySelectorAll('.card')],canHover=matchMedia('(hover:hover) and (pointer:fine)');
+function flip(card,on){cards.forEach(c=>{const v=c===card?on:false;c.classList.toggle('is-flipped',v);c.setAttribute('aria-pressed',v)})}
+cards.forEach(c=>{
+  c.addEventListener('click',()=>{if(!canHover.matches)flip(c,!c.classList.contains('is-flipped'))});
+  c.addEventListener('mouseenter',()=>{if(canHover.matches)flip(c,true)});
+  c.addEventListener('mouseleave',()=>{if(canHover.matches)flip(c,false)});
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip(c,!c.classList.contains('is-flipped'))}});
+});
+const svc=document.getElementById('svc'),dots=[...document.querySelectorAll('#svcDots i')];let lastSL=0;
+svc.addEventListener('scroll',()=>{if(Math.abs(svc.scrollLeft-lastSL)>12){flip(null,false);lastSL=svc.scrollLeft}const i=Math.round(svc.scrollLeft/(cards[0].offsetWidth+14));dots.forEach((d,j)=>d.classList.toggle('on',j===i))},{passive:true});
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('.card'))flip(null,false)});
+
+/* ================= portfolio ================= */
+const grid=document.getElementById('worksGrid');let curF='all';
+function renderWorks(){
+  grid.innerHTML=WORKS.map((w,i)=>`<button class="work ${w.size?'work--'+w.size:''} ${curF!=='all'&&w.c!==curF?'is-hidden':''}" data-c="${w.c}" data-i="${i}">
+   ${w.video?`<video src="${A+w.video}" poster="${A+w.img}" muted loop playsinline autoplay></video>`:`<img src="${A+w.img}" alt="" loading="lazy" style="object-position:${w.pos||'center'}">`}
+   <span class="work__cap"><span><b>${tr(w.t)}</b><span class="caption">${CL[w.c]}</span></span><span class="work__open"><svg><use href="#i-arrow"/></svg></span></span></button>`).join('');
 }
+function filterWorks(f){curF=f;document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.f===f));grid.querySelectorAll('.work').forEach(w=>w.classList.toggle('is-hidden',f!=='all'&&w.dataset.c!==f))}
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>filterWorks(c.dataset.f));
-document.querySelectorAll('.dir[data-filter]').forEach(d=>d.addEventListener('click',()=>filterWorks(d.dataset.filter)));
-/* overlay */
+document.querySelectorAll('[data-filter]').forEach(d=>d.addEventListener('click',()=>filterWorks(d.dataset.filter)));
 const proj=document.getElementById('proj');let cur=0,lastFocus;
 function openProj(i){
   cur=i;const w=WORKS[i],n=WORKS[(i+1)%WORKS.length];
-  projTitle.textContent=w.t;projCat.textContent=w.cl;projTask.textContent=w.task;projResult.textContent=w.res;projDir.textContent=w.cl;projFmt.textContent=w.fmt;
-  projCount.textContent=(i+1)+' / '+WORKS.length;projNextTitle.textContent=n.t;
-  projMedia.innerHTML=w.media.map(m=>m.startsWith('v:')?`<video src="${A+m.slice(2)}" muted loop playsinline autoplay controls></video>`:`<img src="${A+m}" alt="${w.t}">`).join('');
-  if(!proj.classList.contains('is-open')){lastFocus=document.activeElement;proj.classList.add('is-open');document.body.style.overflow='hidden';}
+  projTitle.textContent=tr(w.t);projCat.textContent=CL[w.c];projTask.textContent=tr(w.task);projResult.textContent=tr(w.res);projDir.textContent=CL[w.c];projFmt.textContent=tr(w.fmt);
+  projCount.textContent=(i+1)+' / '+WORKS.length;projNextTitle.textContent=tr(n.t);
+  projMedia.innerHTML=w.media.map(m=>m.startsWith('v:')?`<video src="${A+m.slice(2)}" muted loop playsinline autoplay controls></video>`:`<img src="${A+m}" alt="">`).join('');
+  if(!proj.classList.contains('is-open')){lastFocus=document.activeElement;proj.classList.add('is-open');document.body.classList.add('no-scroll')}
   proj.scrollTop=0;projClose.focus();
 }
-function closeProj(){proj.classList.remove('is-open');document.body.style.overflow='';lastFocus&&lastFocus.focus();}
+function closeProj(){proj.classList.remove('is-open');document.body.classList.remove('no-scroll');lastFocus&&lastFocus.focus()}
 grid.addEventListener('click',e=>{const b=e.target.closest('.work');if(b)openProj(+b.dataset.i)});
 projClose.onclick=closeProj;projNext.onclick=()=>openProj((cur+1)%WORKS.length);
 proj.addEventListener('click',e=>{if(e.target===proj)closeProj()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&proj.classList.contains('is-open'))closeProj()});
-/* ---------- workflow ---------- */
-const track=document.getElementById('flowTrack');
-STEPS.forEach((s,i)=>{const b=document.createElement('button');b.className='step';b.innerHTML=`<span class="step__dot">${String(i+1).padStart(2,'0')}</span><h4>${s[0]}</h4>`;b.onclick=()=>setStep(i);track.appendChild(b)});
-function setStep(i){
-  track.querySelectorAll('.step').forEach((b,j)=>{b.classList.toggle('is-active',j===i);b.classList.toggle('is-done',j<i)});
-  flowProgress.style.width=`calc(${i*100/STEPS.length}% + 27px)`;
-  const s=STEPS[i];flowDetail.innerHTML=`<div class="flow__num">${String(i+1).padStart(2,'0')}</div><div><h3 class="h2">${s[0]}</h3><p>${s[1]}</p></div><div class="flow__out">На выходе<b>${s[2]}</b></div>`;
+
+/* ================= workflow slider ================= */
+const fTrack=document.getElementById('flowTrack'),fBar=document.getElementById('flowBar'),fView=document.getElementById('flowView');let fi=0;
+function buildFlow(){
+  fBar.innerHTML=STEPS.map((s,i)=>`<button class="fb" data-i="${i}"><span>${String(i+1).padStart(2,'0')}</span><em>${tr(s[0])}</em><i></i></button>`).join('');
+  fTrack.innerHTML=STEPS.map((s,i)=>`<article class="fs" data-i="${i}"><div class="fs__num">${String(i+1).padStart(2,'0')}</div><h3 class="h2">${tr(s[0])}</h3><p>${tr(s[1])}</p><div class="fs__out">${t('out')}<b>${tr(s[2])}</b></div></article>`).join('');
+  fBar.querySelectorAll('.fb').forEach(b=>b.onclick=()=>goFlow(+b.dataset.i));
+  fTrack.querySelectorAll('.fs').forEach(s=>s.onclick=()=>{if(!dragged)goFlow(+s.dataset.i)});
+  goFlow(fi,true);
 }
-setStep(0);
-/* ---------- services: tap to flip ---------- */
-document.querySelectorAll('.card').forEach(c=>{c.addEventListener('click',()=>{if(matchMedia('(hover:none)').matches)c.classList.toggle('is-flipped')});c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.classList.toggle('is-flipped')}})});
-/* ---------- header, lang, reveal ---------- */
-const hdr=document.querySelector('.hdr');addEventListener('scroll',()=>hdr.classList.toggle('is-scrolled',scrollY>40),{passive:true});
-document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>document.querySelectorAll('.lang button').forEach(x=>x.setAttribute('aria-pressed',x===b)));
+function goFlow(i,instant){
+  fi=Math.max(0,Math.min(STEPS.length-1,i));
+  const slide=fTrack.children[fi];if(!slide)return;
+  fTrack.style.transition=instant?'none':'';
+  const max=Math.max(0,fTrack.scrollWidth-fView.clientWidth);
+  fTrack.style.transform=`translateX(${-Math.min(slide.offsetLeft,max)}px)`;
+  [...fTrack.children].forEach((s,j)=>s.classList.toggle('is-active',j===fi));
+  fBar.querySelectorAll('.fb').forEach((b,j)=>{b.classList.toggle('is-active',j===fi);b.classList.toggle('is-done',j<fi)});
+  document.getElementById('flowCount').textContent=String(fi+1).padStart(2,'0')+' / '+String(STEPS.length).padStart(2,'0');
+  flowPrev.disabled=fi===0;flowNext.disabled=fi===STEPS.length-1;
+}
+flowPrev.onclick=()=>goFlow(fi-1);flowNext.onclick=()=>goFlow(fi+1);
+let fx0=null,dragged=false;
+fView.addEventListener('pointerdown',e=>{fx0=e.clientX;dragged=false});
+fView.addEventListener('pointermove',e=>{if(fx0!==null&&Math.abs(e.clientX-fx0)>8)dragged=true});
+fView.addEventListener('pointerup',e=>{if(fx0===null)return;const d=e.clientX-fx0;fx0=null;if(Math.abs(d)>40)goFlow(fi+(d<0?1:-1));setTimeout(()=>dragged=false,0)});
+fView.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goFlow(fi+1);if(e.key==='ArrowLeft')goFlow(fi-1)});
+addEventListener('resize',()=>goFlow(fi,true));
+
+/* ================= reveal ================= */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-/* ---------- form ---------- */
+
+/* ================= form ================= */
 const form=document.getElementById('form'),fc=document.getElementById('f-contact');
 form.addEventListener('submit',e=>{e.preventDefault();if(!fc.value.trim()){fc.classList.add('is-error');document.getElementById('f-contact-err').hidden=false;fc.focus();return}form.classList.add('is-sent')});
 fc.addEventListener('input',()=>{fc.classList.remove('is-error');document.getElementById('f-contact-err').hidden=true});
-const drop=document.getElementById('drop'),fi=document.getElementById('f-files'),fl=document.getElementById('files');
-const showFiles=list=>{fl.innerHTML=[...list].map(f=>`<span class="tag">${f.name}</span>`).join('')};
-fi.onchange=()=>showFiles(fi.files);
-['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('is-over')}));
-['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('is-over')}));
+const drop=document.getElementById('drop'),fIn=document.getElementById('f-files'),fl=document.getElementById('files');
+const showFiles=list=>{fl.innerHTML=[...list].map(f=>`<span class="tag">${f.name.replace(/[<>&]/g,'')}</span>`).join('')};
+fIn.onchange=()=>showFiles(fIn.files);
+['dragenter','dragover'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.add('is-over')}));
+['dragleave','drop'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.remove('is-over')}));
 drop.addEventListener('drop',e=>showFiles(e.dataTransfer.files));
+
+let saved='ru';try{saved=localStorage.getItem('vd-lang')||'ru'}catch(e){}
+setLang(saved);
 </script>
 
 <script type="module">
-/* ---------- interactive cube (three.js) ---------- */
+/* ================= 3D: cube block + interactive plate ================= */
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-const stage=document.getElementById('cubeStage'),loading=document.getElementById('cubeLoading');
-const segBtns=[...document.querySelectorAll('.seg button')];
-// Segment bounds in seconds. The .glb timeline runs ~0–10 s; TZ says frames 1–30/31–60/61–90 — adjust here once the author confirms.
-const SEGS=[[0,3.75],[3.75,7.5],[7.5,10]];
-const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.45;renderer.outputColorSpace=THREE.SRGBColorSpace;
-stage.appendChild(renderer.domElement);
-const scene=new THREE.Scene();scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),.04).texture;
-const cam=new THREE.PerspectiveCamera(30,1,.01,1000);
-const key=new THREE.DirectionalLight(0xffb070,2.4);key.position.set(3,4,2);scene.add(key);
-const rim=new THREE.DirectionalLight(0xffe2c0,1.2);rim.position.set(-3,2,-3);scene.add(rim);
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
+import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 
-let mixer,actions=[],root,t=0,target=0,seg=-1,busy=false;
-function setT(v){actions.forEach(a=>{a.time=Math.min(v,a.getClip().duration)});mixer.update(0)}
-function size(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();if(root)frame()}
-function frame(){
-  const box=new THREE.Box3().setFromObject(root),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());
-  const r=Math.max(s.x,s.y,s.z);const wide=stage.clientWidth>860;
-  const dist=r/(2*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)))*(wide?3.1:2.4);
-  cam.position.set(c.x+dist*.55,c.y+dist*.42,c.z+dist*.75);cam.lookAt(c);
-  const W=stage.clientWidth,H=stage.clientHeight;cam.setViewOffset(W,H,wide?-W*.1:0,wide?-H*.17:-H*.06,W,H);
+// Segment bounds in seconds of the .glb timeline (~0–10 s). TZ: frames 1–30 / 31–60 / 61–90 — adjust once confirmed.
+const SEGS=[[0,3.75],[3.75,7.5],[7.5,10]];
+
+function brushed(){
+  const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
+  g.fillStyle='#808080';g.fillRect(0,0,512,512);
+  for(let i=0;i<2600;i++){const y=Math.random()*512,v=95+Math.random()*70|0;g.strokeStyle=`rgba(${v},${v},${v},${.05+Math.random()*.14})`;g.lineWidth=Math.random()*1.4;g.beginPath();g.moveTo(0,y);g.lineTo(512,y+Math.random()*2-1);g.stroke()}
+  for(let i=0;i<40;i++){g.fillStyle=`rgba(30,30,30,${Math.random()*.1})`;g.beginPath();g.arc(Math.random()*512,Math.random()*512,Math.random()*60,0,7);g.fill()}
+  const tx=new THREE.CanvasTexture(c);tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.set(2,2);return tx;
 }
-new GLTFLoader().load('assets/cube.glb',g=>{
-  root=g.scene;scene.add(root);mixer=new THREE.AnimationMixer(root);
-  actions=g.animations.map(a=>{const ac=mixer.clipAction(a);ac.play();ac.paused=true;return ac});
-  setT(0);loading.remove();size();
-},undefined,()=>{loading.textContent='Модель не загрузилась — в макете показан фон блока'});
-function setActive(i){segBtns.forEach((b,j)=>{b.classList.toggle('is-active',j===i);b.style.setProperty('--p',j<i?'100%':'0%')})}
-function go(dir){
-  if(!mixer||busy)return;
-  if(dir>0&&seg<SEGS.length-1){seg++;target=SEGS[seg][1]}
-  else if(dir<0&&seg>=0){target=SEGS[seg][0];seg--}
-  else return;
-  busy=true;setActive(Math.max(seg,0));
+const rough=brushed();
+const MAT={
+  body:new THREE.MeshPhysicalMaterial({color:0x2e2a26,metalness:.85,roughness:.45,roughnessMap:rough,clearcoat:.35,clearcoatRoughness:.4}),
+  trim:new THREE.MeshPhysicalMaterial({color:0x9a7450,metalness:1,roughness:.3,roughnessMap:rough}),
+  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xff7a26,emissiveIntensity:3.2}),
+  glass:new THREE.MeshPhysicalMaterial({color:0x060505,metalness:0,roughness:.08,clearcoat:1})
+};
+function restyle(root){
+  root.traverse(o=>{
+    if(!o.isMesh)return;o.castShadow=true;o.receiveShadow=true;
+    const n=(o.material&&o.material.name)||'';
+    if(/^Material\.00[23]/.test(n))o.material=MAT.glow;
+    else if(n==='Material.001')o.material=MAT.glass;
+    else if(n.endsWith('.001'))o.material=MAT.trim;
+    else o.material=MAT.body;
+  });
 }
-stage.addEventListener('pointerup',e=>{
-  if(e.pointerType==='mouse'){if(e.button===0)go(1);else if(e.button===2)go(-1)}
-  else{const r=stage.getBoundingClientRect();go(e.clientX-r.left>r.width/2?1:-1)}
-});
-stage.addEventListener('contextmenu',e=>e.preventDefault());
-segBtns.forEach((b,i)=>b.onclick=()=>{if(!mixer)return;seg=i;target=SEGS[i][1];t=SEGS[i][0];busy=true;setActive(i)});
-addEventListener('resize',size);
-const clock=new THREE.Clock();let mx=0,my=0;
-stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
-(function loop(){
-  requestAnimationFrame(loop);const dt=Math.min(clock.getDelta(),.05);
-  if(mixer&&busy){const d=target-t,step=dt*Math.sign(d);if(Math.abs(d)<=Math.abs(step)){t=target;busy=false}else t+=step;setT(t);
-    const i=Math.max(seg,0),[a,b]=SEGS[i];segBtns[i].style.setProperty('--p',Math.max(0,Math.min(1,(t-a)/(b-a)))*100+'%')}
-  if(root){root.rotation.y+=((mx*.35)-root.rotation.y)*.05;root.rotation.x+=((my*.12)-root.rotation.x)*.05}
-  renderer.render(scene,cam);
+const gltfP=new Promise((res,rej)=>new GLTFLoader().load('assets/cube.glb',res,undefined,rej));
+function makeRenderer(el){
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.95;r.outputColorSpace=THREE.SRGBColorSpace;
+  r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;r.setClearColor(0x000000,0);
+  el.appendChild(r.domElement);return r;
+}
+function lights(scene,r){
+  scene.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),.04).texture;
+  const key=new THREE.SpotLight(0xffa860,80,0,.55,.6,1.4);key.position.set(2.5,4.5,3);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.bias=-.0005;scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffd2a0,2.4);rim.position.set(-4,2.5,-3);scene.add(rim);
+  const fill=new THREE.DirectionalLight(0x8a7666,.7);fill.position.set(-2,1,4);scene.add(fill);
+  return key;
+}
+function fit(root){const box=new THREE.Box3().setFromObject(root),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());root.position.sub(c);root.position.y+=s.y/2;return Math.max(s.x,s.y,s.z)}
+
+/* ---- main cube ---- */
+(async()=>{
+  const stage=document.getElementById('cubeStage'),loading=document.getElementById('cubeLoading'),offer=document.getElementById('offer');
+  const segBtns=[...document.querySelectorAll('.seg button')];
+  const r=makeRenderer(stage),scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(28,1,.01,1000);
+  const key=lights(scene,r);
+  const composer=new EffectComposer(r);composer.addPass(new RenderPass(scene,cam));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.5,.5,.85));composer.addPass(new OutputPass());
+  let g;try{g=await gltfP}catch(e){loading.textContent='—';return}
+  const root=g.scene;restyle(root);const pivot=new THREE.Group();pivot.add(root);scene.add(pivot);
+  const size=fit(root);
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(size*6,size*6),new THREE.ShadowMaterial({opacity:.55}));shadow.rotation.x=-Math.PI/2;shadow.receiveShadow=true;scene.add(shadow);
+  key.target=pivot;
+  const mixer=new THREE.AnimationMixer(root);
+  const actions=g.animations.map(a=>{const ac=mixer.clipAction(a);ac.play();ac.paused=true;return ac});
+  const setT=v=>{actions.forEach(a=>{a.time=Math.min(v,a.getClip().duration)});mixer.update(0)};setT(0);
+  loading.remove();
+  function resize(){
+    const W=stage.clientWidth,H=stage.clientHeight;r.setSize(W,H,false);composer.setSize(W,H);cam.aspect=W/H;
+    const wide=W>860,dist=size/(2*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)))*(wide?1.75:1.8);
+    cam.position.set(dist*.62,size*.5+dist*.32,dist*.78);cam.lookAt(0,size*.45,0);
+    cam.setViewOffset(W,H,wide?-W*.05:0,wide?-H*.03:0,W,H);cam.updateProjectionMatrix();
+  }
+  resize();addEventListener('resize',resize);
+  let t=0,target=0,seg=-1,act=-1,busy=false;
+  const prog=(i,p)=>segBtns[i].style.setProperty('--p',(p*100).toFixed(1)+'%');
+  function mark(){segBtns.forEach((b,j)=>{b.classList.toggle('is-active',j===act);if(j<act)prog(j,1);else if(j>act)prog(j,0)})}
+  function forward(i){if(busy)return;act=i;seg=i;if(t<SEGS[i][0]||t>SEGS[i][1])t=SEGS[i][0];target=SEGS[i][1];busy=true;mark();offer.classList.remove('is-on')}
+  function backward(){if(busy||seg<0)return;act=seg;target=SEGS[seg][0];seg--;busy=true;mark();offer.classList.remove('is-on')}
+  const go=d=>{if(d>0){if(seg<2)forward(seg+1)}else backward()};
+  stage.addEventListener('pointerup',e=>{
+    if(e.pointerType==='mouse'){if(e.button===0)go(1);else if(e.button===2)go(-1)}
+    else{const b=stage.getBoundingClientRect();go(e.clientX-b.left>b.width/2?1:-1)}
+  });
+  stage.addEventListener('contextmenu',e=>e.preventDefault());
+  stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter')go(1);if(e.key==='ArrowLeft')go(-1)});
+  segBtns.forEach((b,i)=>b.onclick=()=>{if(busy)return;t=SEGS[i][0];setT(t);forward(i)});
+  let mx=0,my=0;stage.addEventListener('pointermove',e=>{const b=stage.getBoundingClientRect();mx=(e.clientX-b.left)/b.width-.5;my=(e.clientY-b.top)/b.height-.5});
+  let visible=false;new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
+  const clock=new THREE.Clock();
+  (function loop(){
+    requestAnimationFrame(loop);const dt=Math.min(clock.getDelta(),.1);if(!visible)return;
+    if(busy){
+      const d=target-t,step=dt*Math.sign(d);
+      if(Math.abs(d)<=Math.abs(step)){t=target;busy=false;if(seg===2&&t>=SEGS[2][1]-1e-3)offer.classList.add('is-on')}else t+=step;
+      setT(t);const [a,b]=SEGS[act];prog(act,Math.max(0,Math.min(1,(t-a)/(b-a))));
+    }
+    pivot.rotation.y+=((mx*.5-.2)-pivot.rotation.y)*.05;pivot.rotation.x+=((my*.1)-pivot.rotation.x)*.05;
+    composer.render();
+  })();
+})();
+
+/* ---- FULL INTERACTIVE plate: drag to rotate ---- */
+(async()=>{
+  const el=document.getElementById('orbit');
+  const r=makeRenderer(el),scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.01,1000);lights(scene,r);
+  let g;try{g=await gltfP}catch(e){return}
+  const root=g.scene.clone(true);restyle(root);scene.add(root);const size=fit(root);root.position.y-=size*.45;
+  const ctr=new OrbitControls(cam,r.domElement);ctr.enableZoom=false;ctr.enablePan=false;ctr.enableDamping=true;ctr.autoRotate=true;ctr.autoRotateSpeed=1.4;ctr.minPolarAngle=.6;ctr.maxPolarAngle=1.65;
+  cam.position.set(size*1.6,size*.9,size*2);ctr.target.set(0,0,0);ctr.update();
+  ctr.addEventListener('start',()=>{ctr.autoRotate=false;el.classList.add('is-used')});
+  ctr.addEventListener('end',()=>{clearTimeout(el._t);el._t=setTimeout(()=>ctr.autoRotate=true,2500)});
+  function resize(){const W=el.clientWidth,H=el.clientHeight;r.setSize(W,H,false);cam.aspect=W/H;cam.updateProjectionMatrix()}
+  resize();addEventListener('resize',resize);
+  let visible=false;new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(el);
+  (function loop(){requestAnimationFrame(loop);if(!visible)return;ctr.update();r.render(scene,cam)})();
 })();
 </script>
 </body>
