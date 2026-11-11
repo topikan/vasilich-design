@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VASILICH DESIGN — дизайн-система макета</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.sp-top{border-bottom:1px solid var(--graphite-700)}
+.sp-top .wrap{display:flex;justify-content:space-between;align-items:center;height:84px}
+.sp{padding:72px 0;border-bottom:1px solid var(--graphite-700)}
+.sp > .wrap > .h2{margin-bottom:12px}
+.sp > .wrap > .muted{max-width:40em;margin-bottom:40px}
+.g{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.box{border:1px solid var(--graphite-700);border-radius:var(--r-m);padding:28px;background:var(--graphite-800)}
+.box h4{font-weight:500;font-size:var(--t-small);color:var(--sand-500);margin-bottom:18px}
+.sw{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--graphite-700)}
+.sw i{display:block;height:120px}
+.sw div{padding:14px 16px;font-size:var(--t-small);background:var(--graphite-800)}
+.sw b{display:block;font-weight:500}
+.sw code,.ts code{font-family:inherit}
+.sw code{color:var(--sand-500);font-size:var(--t-micro)}
+.logo-big{display:grid;place-items:center;min-height:300px}
+.logo-big .logo svg{width:96px;height:96px}
+.logo-big .logo{gap:28px}
+.logo-big .logo b{font-size:40px}
+.logo-big .logo b span{font-size:22px;margin-top:10px}
+.marks{display:flex;align-items:flex-end;gap:28px}
+.marks svg{flex:none}
+.ts{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--graphite-700)}
+.ts code{font-size:var(--t-micro);color:var(--sand-500)}
+.font-card .big{font-family:var(--f-display);font-weight:300;font-size:5rem;line-height:1;letter-spacing:-.04em}
+.font-card .big2{font-size:4.2rem;line-height:1}
+.state{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.state .caption{margin-top:4px}
+.mini-card{aspect-ratio:3/4.4;border-radius:var(--r-l);overflow:hidden;position:relative;border:1px solid var(--graphite-700)}
+.mini-card img{width:100%;height:100%;object-fit:cover}
+.mini-card.mid img{transform:perspective(900px) rotateY(70deg) scale(.9);filter:brightness(.6)}
+.cube-st{position:relative;border-radius:var(--r-m);overflow:hidden;aspect-ratio:16/10;border:1px solid var(--graphite-700)}
+.cube-st img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.cube-st .seg{position:absolute;left:18px;right:18px;bottom:16px;gap:8px}
+.cube-st .seg span{flex:1;border-top:2px solid var(--graphite-500);font-size:var(--t-micro);padding-top:8px;color:var(--sand-500)}
+.cube-st .seg span.on{border-color:var(--amber-500);color:var(--sand-100)}
+.cube-st .seg span.half{border-image:linear-gradient(90deg,var(--amber-500) 50%,var(--graphite-500) 50%) 1}
+.cube-st .lbl{position:absolute;top:14px;left:16px;font-size:var(--t-small);background:rgba(18,17,16,.8);padding:4px 10px;border-radius:99px}
+.mt{width:100%;border-collapse:collapse;font-size:.9375rem}
+.mt th{text-align:left;font-weight:500;color:var(--sand-500);font-size:var(--t-small);padding:12px 16px 12px 0;border-bottom:1px solid var(--graphite-500)}
+.mt td{padding:16px 16px 16px 0;border-bottom:1px solid var(--graphite-700);vertical-align:top;color:var(--sand-300)}
+.mt td:first-child{color:var(--sand-100)}
+.demo{width:72px;height:44px;border-radius:10px;background:var(--graphite-700);position:relative;overflow:hidden}
+.demo i{position:absolute;inset:8px;border-radius:6px;background:var(--amber-500)}
+.d-rise i{animation:dRise 2.4s var(--ease) infinite}
+.d-flip i{animation:dFlip 2.4s var(--ease) infinite}
+.d-fade i{animation:dFade 2.4s var(--ease) infinite}
+.d-hover i{animation:dHover 2.4s var(--ease) infinite}
+@keyframes dRise{0%,20%{transform:translateY(110%)}60%,100%{transform:none}}
+@keyframes dFlip{0%,20%{transform:perspective(200px) rotateY(0)}60%,100%{transform:perspective(200px) rotateY(180deg);background:var(--sand-300)}}
+@keyframes dFade{0%,20%{opacity:0;transform:translateY(10px)}60%,100%{opacity:1;transform:none}}
+@keyframes dHover{0%,30%{transform:none}50%,80%{transform:translate(3px,-3px);background:var(--amber-300)}}
+.dev{display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap}
+.frame{border:1.5px solid var(--graphite-500);border-radius:18px;padding:10px;background:var(--graphite-900)}
+.frame .scr{display:flex;flex-direction:column;gap:6px}
+.frame .scr i{display:block;border-radius:6px;background:var(--graphite-700)}
+.frame .scr i.a{background:var(--amber-500);opacity:.8}
+.frame .scr .row{display:flex;gap:6px}
+.frame .scr .row i{flex:1}
+@media (max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}.g6{grid-template-columns:repeat(2,1fr)}.ts{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="logo" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#E2873A" stroke-width="2.2"/><rect class="eye" x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><rect class="eye" x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="#EEE7DC" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="logo-mono" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="currentColor"/><rect x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="currentColor"/><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="sp-top"><div class="wrap"><a href="index.html" class="logo"><svg><use href="#logo"/></svg><b>VASILICH<span>DESIGN</span></b></a><a href="index.html" class="link">Вернуться к макету сайта</a></div></header>
+
+<section class="sp"><div class="wrap">
+  <h1 class="h1" style="margin-bottom:16px">Дизайн-система</h1>
+  <p class="lead">Всё, из чего собран макет: логотип, цвета, шрифты, элементы интерфейса, состояния интерактива, анимации и адаптив.</p>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Логотип</h2>
+  <p class="muted">Знак — экран робота Василича: скруглённый квадрат, два глаза и улыбка. Тот же радиус скругления повторяется в номерах этапов и иконках формы. Глаза изредка моргают — единственная «живая» деталь в шапке.</p>
+  <div class="g g2">
+    <div class="box logo-big"><span class="logo"><svg><use href="#logo"/></svg><b>VASILICH<span>DESIGN</span></b></span></div>
+    <div class="box" style="display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+      <div><h4>Знак отдельно: 96 · 48 · 32 · 16 px</h4><div class="marks"><svg width="96" height="96"><use href="#logo"/></svg><svg width="48" height="48"><use href="#logo"/></svg><svg width="32" height="32"><use href="#logo"/></svg><svg width="16" height="16"><use href="#logo"/></svg></div></div>
+      <div><h4>Монохромные версии</h4><div class="marks"><span style="color:var(--sand-100)"><svg width="56" height="56"><use href="#logo-mono"/></svg></span><span style="color:var(--amber-500)"><svg width="56" height="56"><use href="#logo-mono"/></svg></span><span style="background:var(--sand-100);color:var(--graphite-900);border-radius:12px;padding:8px;display:inline-flex"><svg width="56" height="56"><use href="#logo-mono"/></svg></span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Цвета</h2>
+  <p class="muted">Графитовая основа и бежевый — из ТЗ. Янтарный взят из света на рендерах: им отмечены только действия и активные состояния, чтобы интерфейс и картинки светились одним цветом.</p>
+  <div class="g g6">
+    <div class="sw"><i style="background:#121110"></i><div><b>Графит 900</b><code>#121110 · фон</code></div></div>
+    <div class="sw"><i style="background:#1A1816"></i><div><b>Графит 800</b><code>#1A1816 · плашки</code></div></div>
+    <div class="sw"><i style="background:#26231F"></i><div><b>Графит 700</b><code>#26231F · линии, поля</code></div></div>
+    <div class="sw"><i style="background:#EEE7DC"></i><div><b>Песок 100</b><code>#EEE7DC · текст</code></div></div>
+    <div class="sw"><i style="background:#C9B89D"></i><div><b>Бежевый 300</b><code>#C9B89D · акцент</code></div></div>
+    <div class="sw"><i style="background:#E2873A"></i><div><b>Янтарь 500</b><code>#E2873A · действия</code></div></div>
+  </div>
+  <div class="g g6" style="margin-top:18px">
+    <div class="sw"><i style="background:#4A443D;height:56px"></i><div><b>Графит 500</b><code>#4A443D · рамки</code></div></div>
+    <div class="sw"><i style="background:#8F8579;height:56px"></i><div><b>Песок 500</b><code>#8F8579 · подписи</code></div></div>
+    <div class="sw"><i style="background:#F2B278;height:56px"></i><div><b>Янтарь 300</b><code>#F2B278 · hover</code></div></div>
+    <div class="sw"><i style="background:#E06A55;height:56px"></i><div><b>Ошибка</b><code>#E06A55</code></div></div>
+  </div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Шрифты</h2>
+  <p class="muted">Оба бесплатные, из Google Fonts, с полной кириллицей.</p>
+  <div class="g g2" style="margin-bottom:40px">
+    <div class="box font-card"><h4>Заголовки — Unbounded, 300 / 400 / 500</h4><div class="big">Аа Vv</div><p class="muted" style="margin-top:16px">Широкий геометрический гротеск со скруглёнными формами — вторит экрану робота и объёмным предметам на рендерах. В крупных размерах — светлое начертание и плотный трекинг.</p></div>
+    <div class="box font-card"><h4>Текст — Golos Text, 400 / 500</h4><div class="big2" style="font-family:var(--f-text)">Аа Vv</div><p class="muted" style="margin-top:16px">Нейтральный гротеск, сделанный под кириллицу. Хорошо читается мелко и на тёмном фоне.</p></div>
+  </div>
+  <div class="ts"><code>Мега · Unbounded 300<br>152 / 92%</code><div class="display" style="font-size:clamp(3rem,8vw,7rem)">VASILICH</div></div>
+  <div class="ts"><code>H1 · Unbounded 300<br>67 / 102%</code><div class="h1">Покрутите куб</div></div>
+  <div class="ts"><code>H2 · Unbounded 400<br>44 / 108%</code><div class="h2">Обсуждение задачи</div></div>
+  <div class="ts"><code>H3 · Unbounded 400<br>22 / 120%</code><div class="h3">Product Visualization</div></div>
+  <div class="ts"><code>Лид · Golos 400<br>19 / 155%</code><p class="lead">Расскажите о задаче — даже если есть только идея.</p></div>
+  <div class="ts"><code>Текст · Golos 400<br>16 / 160%</code><p style="max-width:36em">Моделируем объекты и окружение, настраиваем поверхности. Показываем черновые превью.</p></div>
+  <div class="ts"><code>Кнопка · Golos 500<br>15</code><div><span class="btn">Смотреть работы<svg><use href="#i-arrow"/></svg></span></div></div>
+  <div class="ts"><code>Подпись · Golos 400<br>12</code><p class="caption">кадры 31–60</p></div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Элементы интерфейса</h2>
+  <p class="muted">Каждый элемент в обычном состоянии, при наведении, нажатии и когда он недоступен.</p>
+  <div class="g g4">
+    <div class="box state"><h4>Кнопка</h4><span class="btn">Обсудить проект<svg><use href="#i-arrow"/></svg></span><span class="caption">обычная</span><span class="btn is-hover">Обсудить проект<svg><use href="#i-arrow"/></svg></span><span class="caption">наведение: светлее, стрелка уходит вверх-вправо</span><span class="btn is-active">Обсудить проект<svg><use href="#i-arrow"/></svg></span><span class="caption">нажатие: сжатие до 97%</span><span class="btn is-disabled">Обсудить проект</span><span class="caption">недоступна</span></div>
+    <div class="box state"><h4>Вторичная кнопка и ссылка</h4><span class="btn btn--ghost">Услуги</span><span class="caption">обычная</span><span class="btn btn--ghost is-hover">Услуги</span><span class="caption">наведение</span><span class="link" style="margin-top:16px">Проекты CGI</span><span class="caption">ссылка</span><span class="link is-hover">Проекты CGI</span><span class="caption">наведение: линия дорастает до конца</span></div>
+    <div class="box state" style="align-items:stretch"><h4>Поля формы</h4><input class="input" placeholder="Как к вам обращаться"><span class="caption">пустое</span><input class="input is-focus" value="Анна"><span class="caption">в фокусе</span><input class="input is-error" value=""><span class="err">Оставьте контакт, чтобы мы могли ответить</span></div>
+    <div class="box state"><h4>Фильтры и теги</h4><div class="filters"><span class="chip" aria-pressed="true">Все</span><span class="chip">CGI</span><span class="chip">Product</span></div><span class="caption">выбранный и обычные</span><div class="dir__tags" style="margin-top:12px"><span class="tag">Свет</span><span class="tag">Материалы</span></div><span class="caption">теги направлений</span></div>
+  </div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Карточки услуг: переворот</h2>
+  <p class="muted">Карточка поворачивается вокруг вертикальной оси за 0,9 с. На компьютере — при наведении, на телефоне и планшете — по касанию, с клавиатуры — по Enter.</p>
+  <div class="g g4">
+    <div class="state"><div class="mini-card" style="width:100%"><img src="assets/svc-product.jpg" alt=""></div><span class="caption">1. Лицевая сторона: рендер и название</span></div>
+    <div class="state"><div class="mini-card mid" style="width:100%;background:var(--graphite-900)"><img src="assets/svc-product.jpg" alt=""></div><span class="caption">2. Середина поворота, 0,45 с</span></div>
+    <div class="state"><div class="mini-card" style="width:100%;background:var(--graphite-800);padding:26px;display:flex;flex-direction:column"><h3 class="h3" style="color:var(--amber-300);margin-bottom:14px">Product Visualization</h3><p class="small" style="color:var(--sand-300)">Рендеры товара вместо фотосъёмки: студийный свет, точные материалы, любой ракурс.</p><p class="small muted" style="margin-top:auto">Каталог и маркетплейсы<br>Рекламные кадры<br>Упаковка и детали</p></div><span class="caption">3. Обратная сторона: описание и возможности</span></div>
+    <div class="box"><h4>Адаптив карточек</h4><p class="small" style="color:var(--sand-300)">Компьютер: 4 в ряд.<br><br>Планшет: тот же ряд, листается горизонтально, видно 2,5 карточки — понятно, что есть продолжение.<br><br>Телефон: одна карточка на 78% ширины, свайп. Сетка 2×2 не используется ни на одном экране.</p></div>
+  </div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Интерактивный куб: состояния</h2>
+  <p class="muted">Модель стоит на подиуме из фона блока. Шкала этапов под ней заполняется вместе с анимацией. Предложение со скидкой справа и не перекрывает куб.</p>
+  <div class="g g4">
+    <div class="state"><div class="cube-st"><img src="assets/cube-bg.jpg" alt=""><span class="lbl">Старт</span><div class="seg"><span>Этап 1</span><span>Этап 2</span><span>Этап 3</span></div></div><span class="caption">Куб собран, подсказка «ЛКМ — вперёд»</span></div>
+    <div class="state"><div class="cube-st"><img src="assets/cube-bg.jpg" alt=""><span class="lbl">Кадры 1–30</span><div class="seg"><span class="half on">Этап 1</span><span>Этап 2</span><span>Этап 3</span></div></div><span class="caption">Проигрывается первый сегмент, шкала заполняется</span></div>
+    <div class="state"><div class="cube-st"><img src="assets/cube-bg.jpg" alt=""><span class="lbl">Кадры 31–60</span><div class="seg"><span class="on">Этап 1</span><span class="on">Этап 2</span><span>Этап 3</span></div></div><span class="caption">ПКМ проигрывает текущий сегмент в обратную сторону</span></div>
+    <div class="state"><div class="cube-st"><img src="assets/cube-bg.jpg" alt=""><span class="lbl">Кадры 61–90</span><div class="seg"><span class="on">Этап 1</span><span class="on">Этап 2</span><span class="on">Этап 3</span></div></div><span class="caption">Финал: подсвечивается плашка «−10%»</span></div>
+  </div>
+  <div class="g g3" style="margin-top:18px">
+    <div class="box"><h4>Мышь</h4><p class="small" style="color:var(--sand-300)">ЛКМ — следующий сегмент, ПКМ — назад. Контекстное меню браузера над моделью отключено. При движении курсора модель слегка поворачивается за ним.</p></div>
+    <div class="box"><h4>Касание</h4><p class="small" style="color:var(--sand-300)">Касание правой половины — вперёд, левой — назад. Свайп влево и вправо работает так же. Вертикальная прокрутка страницы не блокируется.</p></div>
+    <div class="box"><h4>Шкала этапов</h4><p class="small" style="color:var(--sand-300)">Нажатие на этап сразу проигрывает его сегмент — запасной способ управления для клавиатуры и для тех, кто не догадался кликнуть по модели.</p></div>
+  </div>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Анимации и переходы</h2>
+  <p class="muted">Одно движение на весь сайт — плавный подъём с затуханием, кривая cubic-bezier(.2, .7, .1, 1). Всё остальное — ответ на действие пользователя. При системной настройке «уменьшить движение» анимации отключаются.</p>
+  <table class="mt">
+    <tr><th></th><th>Элемент</th><th>Что происходит</th><th>Длительность</th></tr>
+    <tr><td><span class="demo d-rise"><i></i></span></td><td>Hero при загрузке</td><td>Рендер проявляется из темноты с лёгким приближением; строки названия поднимаются из-под маски одна за другой; текст и кнопки появляются последними</td><td>2,4 с / 1,1 с / 1 с</td></tr>
+    <tr><td><span class="demo d-flip"><i></i></span></td><td>Карточки услуг</td><td>Поворот на 180° вокруг вертикальной оси</td><td>0,9 с</td></tr>
+    <tr><td><span class="demo d-rise"><i></i></span></td><td>Сегменты куба</td><td>Анимация модели проигрывается до границы сегмента, шкала заполняется синхронно</td><td>по длине сегмента</td></tr>
+    <tr><td><span class="demo d-fade"><i></i></span></td><td>Появление при прокрутке</td><td>Блоки поднимаются на 28 px и проявляются один раз; соседние карточки — с шагом 80 мс</td><td>0,9 с</td></tr>
+    <tr><td><span class="demo d-hover"><i></i></span></td><td>Кнопки и ссылки</td><td>Кнопка светлеет, стрелка сдвигается вверх-вправо; у ссылки дорастает подчёркивание</td><td>0,25–0,35 с</td></tr>
+    <tr><td><span class="demo d-fade"><i></i></span></td><td>Проект портфолио</td><td>Затемнение фона, лист проекта выезжает снизу — как на Behance; закрытие по крестику, Esc или клику мимо</td><td>0,35 / 0,6 с</td></tr>
+    <tr><td><span class="demo d-fade"><i></i></span></td><td>Шапка</td><td>После 40 px прокрутки получает полупрозрачный фон с размытием</td><td>0,3 с</td></tr>
+  </table>
+</div></section>
+
+<section class="sp"><div class="wrap">
+  <h2 class="h2">Адаптив</h2>
+  <p class="muted">Основная версия — компьютер от 1440 px. Переломы: 1180 px (планшет) и 860 px (телефон). Откройте макет и сузьте окно браузера, чтобы увидеть перестройку вживую.</p>
+  <div class="g g3">
+    <div class="box"><h4>Компьютер · 1440+</h4><div class="dev"><div class="frame" style="width:100%"><div class="scr"><i style="height:70px"></i><div class="row"><i style="height:54px"></i><i style="height:54px"></i><i style="height:54px"></i><i style="height:54px"></i></div><i style="height:60px" class="a"></i><div class="row"><i style="height:70px;flex:1.3"></i><i style="height:70px"></i><i style="height:70px"></i></div></div></div></div><p class="small" style="color:var(--sand-300);margin-top:18px">Hero на весь экран, текст слева от робота. 4 карточки в ряд. Куб по центру, скидка справа. Направления 3 колонки, CGI шире.</p></div>
+    <div class="box"><h4>Планшет · 861–1180</h4><div class="dev"><div class="frame" style="width:72%"><div class="scr"><i style="height:64px"></i><div class="row"><i style="height:54px"></i><i style="height:54px"></i><i style="height:54px;flex:.5"></i></div><i style="height:60px" class="a"></i><i style="height:44px"></i><div class="row"><i style="height:50px"></i><i style="height:50px"></i></div></div></div></div><p class="small" style="color:var(--sand-300);margin-top:18px">Карточки услуг листаются горизонтально. Скидка поднимается в правый верхний угол блока куба. FULL CGI во всю ширину, Product и Interactive в два столбца. Этапы листаются.</p></div>
+    <div class="box"><h4>Телефон · до 860</h4><div class="dev"><div class="frame" style="width:44%"><div class="scr"><i style="height:90px"></i><div class="row"><i style="height:70px"></i><i style="height:70px;flex:.25"></i></div><i style="height:70px" class="a"></i><i style="height:38px"></i><i style="height:50px"></i><i style="height:50px"></i></div></div></div><p class="small" style="color:var(--sand-300);margin-top:18px">Меню в бургере. Текст Hero под роботом. Куб: заголовок, модель, шкала и скидка друг под другом, управление касанием. Всё остальное — в одну колонку, подписи работ видны сразу.</p></div>
+  </div>
+</div></section>
+
+<footer class="ftr" style="margin-top:0"><div class="wrap"><div class="ftr__bottom"><span>© 2026 VASILICH DESIGN</span><span>DESIGNED BY VASILICH DESIGN</span><a href="index.html" class="link">Макет сайта</a></div></div></footer>
+</body>
+</html>
