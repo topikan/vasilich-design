@@ -491,3 +491,12 @@ textarea.input{min-height:130px;resize:vertical}
 @media (max-width:860px){.works{grid-auto-rows:58vw}.work,.work--tall,.work--wide,.work--full{grid-row:span 1}.work--wide,.work--full{grid-auto-rows:auto}}
 .offer{grid-column:1;grid-row:1;align-self:end;max-width:22em}
 @media (max-width:1180px){.offer{grid-column:1}}
+/* v4 fixes */
+.cube__intro{grid-column:1/3;grid-row:1}
+.offer{grid-column:1;grid-row:1}
+.packs__film{aspect-ratio:3/1}
+.packs__film video{object-position:center 5%}
+.packs__film::after{display:none}
+.ftr__big{text-align:center;font-size:clamp(3rem,13.5vw,15rem)}
+@media (max-width:860px){.packs__film{aspect-ratio:2.2/1}}
+.cube__intro p{max-width:30em}
