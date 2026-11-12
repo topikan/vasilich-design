@@ -500,3 +500,51 @@ textarea.input{min-height:130px;resize:vertical}
 .ftr__big{text-align:center;font-size:clamp(3rem,13.5vw,15rem)}
 @media (max-width:860px){.packs__film{aspect-ratio:2.2/1}}
 .cube__intro p{max-width:30em}
+/* v5: phone — each block fits one screen */
+.svc{overflow-y:hidden;overscroll-behavior-x:contain}
+@media (max-width:860px){
+  :root{--sec:52px}
+  .sec-head{margin-bottom:20px}
+  .sec-head > p{font-size:.8125rem}
+  /* cube: one screen, model behind the UI */
+  .cube{display:block;height:calc(100svh - 60px);min-height:540px;max-height:780px}
+  .cube__ui{display:grid;grid-template-columns:1fr;grid-template-rows:auto 1fr auto;height:100%;padding:72px var(--gut) 18px;gap:12px}
+  .cube__stage{position:absolute;inset:0;height:auto;order:0}
+  .cube__intro{grid-column:1;grid-row:1;padding:0;order:0}
+  .cube__intro .h1{font-size:1.75rem}
+  .cube__intro p{margin-top:8px;font-size:.8125rem}
+  .hint{margin-top:12px;display:inline-flex;gap:8px}
+  .hint__touch{padding:6px 10px;font-size:var(--t-micro)}
+  .light-btn{margin:0 0 0 8px;padding:5px 10px 5px 5px;font-size:var(--t-micro);vertical-align:top}
+  .cube__intro .hint+.light-btn{margin-top:12px}
+  .seg{grid-column:1;grid-row:3;padding:0;order:0}
+  .offer{grid-column:1;grid-row:2;align-self:end;margin:0;order:0;padding:16px}
+  .offer__num{font-size:2.4rem}
+  .offer p{margin:6px 0 10px;font-size:var(--t-micro)}
+  .cube::before{background:linear-gradient(180deg,rgba(12,11,10,.85) 0%,rgba(12,11,10,0) 34%,rgba(12,11,10,0) 78%,rgba(12,11,10,.75) 100%)}
+  .cube__bg{display:none}
+  /* packages: horizontal swipe */
+  .packs__grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;margin:12px calc(-1*var(--gut)) 0;padding:0 var(--gut);scroll-padding-left:var(--gut);gap:10px}
+  .packs__grid::-webkit-scrollbar{display:none}
+  .packs__grid .pack,.packs__grid .pack:first-child{grid-column:auto;scroll-snap-align:start;padding:20px}
+  .pack p{margin:10px 0 12px}
+  /* works: 3 rows of 2 */
+  .works{grid-auto-rows:40vw}
+  .work,.work--tall,.work--wide,.work--full,.work--strip{grid-column:span 1;grid-row:span 1}
+  /* about: compact */
+  .about__img{height:46vw}
+  .about__text{padding-top:20px}
+  .about__text .h1{margin-bottom:12px}
+  .about__text p{font-size:.8125rem}
+  .skills{grid-template-columns:1fr 1fr;gap:0 16px;margin-top:16px}
+  .skills div{padding:8px 0;font-size:.75rem}
+  .about__quote{display:none}
+  /* process */
+  .fs{min-height:0}
+  .fs p{font-size:.875rem}
+  /* contact */
+  .contact__band img{height:150px}
+  .socials{grid-template-columns:1fr 1fr;margin-top:18px}
+  .social{padding:10px 12px;font-size:.8125rem;flex-direction:column;align-items:flex-start;gap:2px}
+  textarea.input{min-height:96px}
+}

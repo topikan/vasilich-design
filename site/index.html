@@ -544,8 +544,11 @@ const FAN_SPEED=6; // rad/s
   function resize(){
     const W=stage.clientWidth,H=stage.clientHeight,vA=W/H;r.setSize(W,H,false);composer.setSize(W,H);cam.aspect=vA;
     // cover-fit the background texture
-    let rx=1,ry=1;if(vA>imgA)ry=imgA/vA;else rx=vA/imgA;bg.repeat.set(rx,ry);bg.offset.set((1-rx)/2,(1-ry)*.35);
-    const wide=W>860,dist=size/(2*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)))*(wide?2.1:2.3);
+    const wide=W>860,Z=wide?1.35:1.5,TX=wide?.6:.5,TY=wide?.8:.74; // background zoom and where the podium lands on screen
+    let rx=1,ry=1;if(vA>imgA)ry=imgA/vA;else rx=vA/imgA;rx/=Z;ry/=Z;bg.repeat.set(rx,ry);
+    const cl=(v,m)=>Math.max(0,Math.min(m,v));
+    bg.offset.set(cl(PODIUM.x-TX*rx,1-rx),cl((1-PODIUM.y)-(1-TY)*ry,1-ry));
+    const dist=size/(2*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)))*(wide?1.5:Math.max(1.6,1.3/vA));
     cam.clearViewOffset();cam.position.set(0,size*.5+dist*.36,dist);cam.lookAt(0,size*.42,0);cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
     // put the model base on the podium: where the podium centre lands on screen
     const u=PODIUM.x,v=1-PODIUM.y; // podium in texture coords
