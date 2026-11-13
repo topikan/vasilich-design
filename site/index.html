@@ -118,7 +118,7 @@
         <div class="hint__key hint__mouse"><span class="mouse mouse--r"><i></i></span><span data-i18n="back">Назад</span></div>
         <div class="hint__key hint__touch" data-i18n="touchHint">Касание справа — вперёд, слева — назад</div>
       </div>
-      <button class="light-btn" id="lightBtn" aria-pressed="true"><span class="light-btn__sw"><i></i></span><span data-i18n="light">Свет</span> <em class="light-btn__st" id="lightSt" data-i18n="lightOn">вкл</em></button>
+      <button class="light-btn" id="lightBtn" aria-pressed="false"><span class="light-btn__sw"><i></i></span><span data-i18n="light">Свет</span> <em class="light-btn__st" id="lightSt" data-i18n="lightOff">выкл</em></button>
     </div>
     <div class="seg" role="group" aria-label="Этапы">
       <button data-seg="0"><b data-i18n="st1">Этап 1</b></button>
@@ -398,11 +398,16 @@ function openProj(i){
   cur=i;const w=WORKS[i],n=WORKS[(i+1)%WORKS.length];
   projTitle.textContent=tr(w.t);projCat.textContent=CL[w.c];projTask.textContent=tr(w.task);projResult.textContent=tr(w.res);projDir.textContent=CL[w.c];projFmt.textContent=tr(w.fmt);
   projCount.textContent=(i+1)+' / '+WORKS.length;projNextTitle.textContent=tr(n.t);
-  projMedia.innerHTML=w.media.map(m=>typeof m==='object'?`<div class="proj__media--grid">${m.grid.map(x=>`<img src="${x}" alt="" loading="lazy">`).join('')}</div>`:m.startsWith('v:')?`<video src="${m.slice(2)}" playsinline controls preload="metadata" poster="${w.img}"></video>`:`<img src="${m}" alt="" loading="lazy">`).join('');
+  projMedia.innerHTML=w.media.map(m=>typeof m==='object'?`<div class="proj__media--grid">${m.grid.map(x=>`<img src="${x}" alt="" loading="lazy">`).join('')}</div>`:m.startsWith('v:')?`<div class="pv"><video src="${m.slice(2)}" muted loop playsinline autoplay preload="auto" disablepictureinpicture poster="${w.img}"></video><button class="pv__snd" type="button" aria-label="Звук" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="pv__on" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/><path class="pv__off" d="M16 9.5l5 5M21 9.5l-5 5"/></svg></button></div>`:`<img src="${m}" alt="" loading="lazy">`).join('');
   if(!proj.classList.contains('is-open')){lastFocus=document.activeElement;proj.classList.add('is-open');document.body.classList.add('no-scroll')}
   proj.scrollTop=0;projClose.focus();
+  projMedia.querySelectorAll('.pv video').forEach(v=>{v.muted=true;pvIO.observe(v)});
 }
-function closeProj(){projMedia.querySelectorAll('video').forEach(v=>v.pause());proj.classList.remove('is-open');document.body.classList.remove('no-scroll');lastFocus&&lastFocus.focus()}
+const pvIO=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&proj.classList.contains('is-open'))v.play().catch(()=>{});else v.pause()}),{root:proj,threshold:.25});
+projMedia.addEventListener('click',e=>{const b=e.target.closest('.pv__snd');if(!b)return;const v=b.previousElementSibling,on=v.muted;
+  projMedia.querySelectorAll('.pv video').forEach(x=>{x.muted=true;x.nextElementSibling.setAttribute('aria-pressed','false')});
+  if(on){v.muted=false;v.play().catch(()=>{});b.setAttribute('aria-pressed','true')}});
+function closeProj(){projMedia.querySelectorAll('video').forEach(v=>{v.pause();pvIO.unobserve(v)});proj.classList.remove('is-open');document.body.classList.remove('no-scroll');lastFocus&&lastFocus.focus()}
 grid.addEventListener('click',e=>{const b=e.target.closest('.work');if(b)openProj(+b.dataset.i)});
 projClose.onclick=closeProj;projNext.onclick=()=>openProj((cur+1)%WORKS.length);
 proj.addEventListener('click',e=>{if(e.target===proj)closeProj()});
@@ -574,7 +579,7 @@ const FAN_SPEED=6; // rad/s
   stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter')go(1);if(e.key==='ArrowLeft')go(-1)});
   segBtns.forEach((b,i)=>b.onclick=()=>{if(busy)return;t=SEGS[i][0];setT(t);forward(i)});
   // light switch
-  let lightOn=true,lv=1;
+  let lightOn=false,lv=0;
   const KEY0=key.intensity,GLOW0=MAT.glow.emissiveIntensity;
   lightBtn.addEventListener('click',()=>{lightOn=!lightOn;lightBtn.setAttribute('aria-pressed',lightOn);lightSt.dataset.i18n=lightOn?'lightOn':'lightOff';lightSt.textContent=window.vdT?window.vdT(lightSt.dataset.i18n):(lightOn?'вкл':'выкл')});
   let visible=false;new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);

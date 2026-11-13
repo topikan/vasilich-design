@@ -558,3 +558,14 @@ textarea.input{min-height:130px;resize:vertical}
   .work,.work--tall,.work--wide,.work--full,.work--strip{aspect-ratio:1/1}
   .contact__say{display:none}
 }
+
+/* v7: project videos — autoplay, no native controls */
+.pv{position:relative;background:#000}
+.pv video{display:block;width:100%;pointer-events:none}
+.pv__snd{position:absolute;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(20,18,16,.55);backdrop-filter:blur(6px);color:var(--sand-100);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.pv__snd:hover,.pv__snd:focus-visible{background:rgba(20,18,16,.8);border-color:var(--amber-500)}
+.pv__snd svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pv__snd svg path:first-child{fill:currentColor;stroke:none}
+.pv__snd .pv__on{display:none}
+.pv__snd[aria-pressed=true] .pv__on{display:block}
+.pv__snd[aria-pressed=true] .pv__off{display:none}
