@@ -111,7 +111,7 @@
   <p class="cube__loading" id="cubeLoading" data-i18n="cubeLoad">Загружаем модель…</p>
   <div class="cube__ui wrap">
     <div class="cube__intro rv">
-      <h2 class="h1" data-i18n="cubeTitle">Покрутите куб</h2>
+      <h2 class="h1" data-i18n="cubeTitle">Оживите куб</h2>
       <p data-i18n="cubeLead">Это живая 3D-модель — так работают наши интерактивные проекты. Пройдите три этапа, и в конце вас ждёт бонус.</p>
       <div class="hint">
         <div class="hint__key hint__mouse"><span class="mouse mouse--l"><i></i></span><span data-i18n="fwd">Вперёд</span></div>
@@ -158,7 +158,7 @@
         <div class="pack__name">FULL INTERACTIVE</div>
         <p data-i18n="d3">Интерактивные 3D-модели, веб-конфигураторы и презентации.</p>
         <ul><li data-i18n="t7">3D-модели для сайта</li><li data-i18n="t8">Веб-конфигураторы</li><li data-i18n="t9">Интерактивные презентации</li></ul>
-        <a href="#works" data-filter="interactive" class="link" data-i18n="d3l">Проекты Interactive</a>
+        <a href="#cube" class="link" data-i18n="d3l">Попробовать куб</a>
       </article>
     </div>
   </div>
@@ -174,7 +174,6 @@
         <button class="chip" aria-pressed="false" data-f="cgi">CGI</button>
         <button class="chip" aria-pressed="false" data-f="product">Product</button>
         <button class="chip" aria-pressed="false" data-f="animation">Animation</button>
-        <button class="chip" aria-pressed="false" data-f="interactive">Interactive</button>
       </div>
     </div>
     <div class="works" id="worksGrid"></div>
@@ -222,6 +221,7 @@
 <section id="contact" class="contact">
   <div class="contact__band">
     <img src="assets/contact.jpg" alt="Чемоданчик с экраном «Обсудим кейс»">
+    <div class="wrap contact__say"><p class="contact__phrase" data-i18n="ctPhrase">Каждый сильный кадр<br>начинается с разговора</p></div>
   </div>
   <h2 class="sr-only" data-i18n="ctTitle">Давайте обсудим кейс</h2>
   <div class="wrap contact__grid">
@@ -284,19 +284,19 @@ const EN={
  s2:'Product renders instead of a photo shoot: studio light, accurate materials, any angle and any number of variants.',s2a:'Catalogs and marketplaces',s2b:'Advertising stills',s2c:'Packaging and details',
  s3:'Commercials and art animation: camera work, motion and editing rhythm.',s3a:'Social media clips',s3b:'Product animation',s3c:'Website video loops',
  s4:'Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show.',s4a:'Web configurators',s4b:'3D on websites',s4c:'Interactive presentations',
- cubeLoad:'Loading the model…',cubeTitle:'Play with the cube',cubeLead:'This is a live 3D model — this is how our interactive projects work. Go through all three stages to get a bonus.',
+ cubeLoad:'Loading the model…',cubeTitle:'Bring the cube to life',cubeLead:'This is a live 3D model — this is how our interactive projects work. Go through all three stages to get a bonus.',
  fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Stage 1',st2:'Stage 2',st3:'Stage 3',light:'Light',lightOn:'on',lightOff:'off',p1:'from 3,000 ₽',p2:'from 5,000 ₽',p3:'from 15,000 ₽',p4:'from 5,000 ₽',
  offer:'You went through all three stages. Here is a discount on your first project — mention the cube in your request.',offerBtn:'Claim the discount',
  dirTitle:'Service packages',dirLead:'Order a single still, or hand us the whole direction: from the idea to the final files.',dirLbl:'Direction',
  d1:'Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable.',t1:'Environment and scene',t2:'Lighting',t3:'Materials and textures',d1l:'CGI projects',
  d2:'Product visualization, advertising renders and product animation.',t4:'Catalog renders',t5:'Advertising stills',t6:'Product animation',d2l:'Product projects',
- d3:'Interactive 3D models, web configurators and presentations.',t7:'3D models for websites',t8:'Web configurators',t9:'Interactive presentations',d3l:'Interactive projects',drag:'Drag to rotate',
+ d3:'Interactive 3D models, web configurators and presentations.',t7:'3D models for websites',t8:'Web configurators',t9:'Interactive presentations',d3l:'Try the cube',drag:'Drag to rotate',
  worksTitle:'Work',all:'All',
  aboutTitle:'Directing,<br>not just rendering',ab1:'VASILICH DESIGN is a studio where 3D starts with the question “what should the viewer feel”. First we invent the shot: point of view, light, rhythm. Then we build the scene for it.',ab2:'That is why our work looks like cinema, not a catalog: every scene has a story, every object has a character.',
  k1:'Staging',k1v:'Shot direction and composition',k2:'Light',k2v:'Cinematic lighting',k3:'Materials',k3v:'Photoreal surfaces',k4:'Motion',k4v:'Camera and object animation',k5:'Web',k5v:'Interactive models for websites',k6:'Characters',k6v:'Mascots and robots',
  qT:'Meet Vasilich',qB:'Our robot is the face of the studio. He lives in every project, and his screen became our logo.',
  flowTitle:'How we work',out:'Outcome',
- ctTitle:'Let’s discuss your case',ctLead:'Tell us about the task — even if it is just an idea. We will reply, suggest an approach and estimate the scope.',mail:'Email',
+ ctTitle:'Let’s discuss your case',ctPhrase:'Every strong shot<br>starts with a conversation',ctLead:'Tell us about the task — even if it is just an idea. We will reply, suggest an approach and estimate the scope.',mail:'Email',
  fName:'Name',fNamePh:'What should we call you',fCont:'Contact',fContPh:'Telegram, phone or email',fErr:'Leave a contact so we can reply',fTask:'Task',fTaskPh:'What needs to be done, why and by when',
  fDrop:'Attach a brief or references',fDropS:'Drop files here or click. PDF, images, archives up to 50 MB',fAgree:'By clicking the button you agree to data processing',fSend:'Send request',fDone:'Request sent',fDoneS:'This is the state after sending. In the mockup the form goes nowhere.',
  ftrAbout:'3D visualization studio: CGI, product visualization, animation and interactive 3D.',ftrNav:'Navigation',ftrReq:'Send a request',ftrSoc:'Social',copy:'© 2026 VASILICH DESIGN. All rights reserved.',specLink:'Design system',
@@ -325,8 +325,8 @@ const WORKS=[
  {t:L('Парфюм на камне','Fragrance on stone'),c:'product',img:W+'perfume/1.jpg',loop:W+'perfume/loop.mp4',task:L('Рекламный визуал флакона: стекло, вода и камень.','An advertising visual of the bottle: glass, water and stone.'),res:L('Ролик для соцсетей и ключевой кадр.','A social film and a key visual.'),fmt:L('Видео 4:5 + кадр','4:5 film + still'),media:['v:'+W+'perfume/film.mp4',W+'perfume/1.jpg']},
  {t:L('Конструктор VASILICH','VASILICH building set'),c:'product',img:W+'lego/1.jpg',loop:W+'lego/loop.mp4',task:L('Продуктовая анимация набора: сборка по деталям.','Product animation of the set: building it piece by piece.'),res:L('Ролик со звуком и кадры упаковки.','A film with sound and packaging stills.'),fmt:L('Видео 4:5 со звуком','4:5 film with sound'),media:['v:'+W+'lego/film.mp4',W+'lego/1.jpg',W+'lego/2.jpg']},
  {t:L('Презентация студии','Studio presentation'),c:'animation',img:W+'presentation/3.jpg',loop:W+'presentation/loop.mp4',task:L('Ролик-знакомство со студией и её персонажем.','An introduction film for the studio and its character.'),res:L('40-секундная анимация и серия кадров.','A 40-second animation and a series of stills.'),fmt:L('Видео 4:5','4:5 film'),media:['v:'+W+'presentation/film.mp4',W+'presentation/1.jpg',W+'presentation/2.jpg',W+'presentation/3.jpg',W+'presentation/4.jpg']},
- {t:L('Интерактивный куб','Interactive cube'),c:'interactive',img:'assets/svc-interactive.jpg',task:L('3D-объект, которым управляет посетитель сайта.','A 3D object controlled by the site visitor.'),res:L('Веб-модель с поэтапной анимацией — она работает на этой странице.','A web model with staged animation — it runs on this page.'),fmt:L('WebGL','WebGL'),media:['assets/svc-interactive.jpg','assets/cube-bg.jpg'],link:'#cube'},
- {t:L('Оформление Twitch-канала','Twitch channel design'),c:'cgi',img:W+'twitch/1.jpg',loop:W+'twitch/loop.mp4',size:'full',task:L('Единый стиль канала: экраны трансляции, шапка, аватар и панели.','One style for the channel: stream screens, banner, avatar and panels.'),res:L('Анимированные экраны и комплект панелей.','Animated screens and a set of panels.'),fmt:L('Видео 16:9 + графика','16:9 video + graphics'),media:['v:'+W+'twitch/film.mp4','v:'+W+'twitch/film2.mp4',W+'twitch/1.jpg',W+'twitch/2.jpg',{grid:[W+'twitch/3.jpg',W+'twitch/4.jpg',W+'twitch/5.jpg',W+'twitch/6.jpg',W+'twitch/7.jpg']}]}
+ {t:L('Lagavulin 16','Lagavulin 16'),c:'product',img:W+'whisky/1.jpg',loop:W+'whisky/loop.mp4',task:L('Рекламная серия для виски: бутылка, бочки и подарочная упаковка.','An advertising series for the whisky: bottle, casks and gift box.'),res:L('Ролик со звуком, баннер и серия кадров.','A film with sound, a banner and a series of stills.'),fmt:L('Видео 16:9 + кадры 4:5','16:9 film + 4:5 stills'),media:['v:'+W+'whisky/film.mp4','v:'+W+'whisky/film2.mp4',W+'whisky/1.jpg',W+'whisky/2.jpg',W+'whisky/3.jpg',W+'whisky/4.jpg',W+'whisky/5.jpg',W+'whisky/6.jpg']},
+ {t:L('Оформление Twitch-канала','Twitch channel design'),c:'cgi',img:W+'twitch/1.jpg',loop:W+'twitch/loop.mp4',task:L('Единый стиль канала: экраны трансляции, шапка, аватар и панели.','One style for the channel: stream screens, banner, avatar and panels.'),res:L('Анимированные экраны и комплект панелей.','Animated screens and a set of panels.'),fmt:L('Видео 16:9 + графика','16:9 video + graphics'),media:['v:'+W+'twitch/film.mp4','v:'+W+'twitch/film2.mp4',W+'twitch/1.jpg',W+'twitch/2.jpg',{grid:[W+'twitch/3.jpg',W+'twitch/4.jpg',W+'twitch/5.jpg',W+'twitch/6.jpg',W+'twitch/7.jpg']}]}
 ];
 const CL={cgi:'CGI',product:'Product',animation:'Animation',interactive:'Interactive'};
 const STEPS=[
@@ -509,10 +509,11 @@ function lights(scene,r){
 function fit(root){const box=new THREE.Box3().setFromObject(root),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());root.position.sub(c);root.position.y+=s.y/2;return Math.max(s.x,s.y,s.z)}
 
 /* ---- main cube ---- */
-// Fixed angle of the cube around the vertical axis (Blender Z), degrees. Replace with the exact value from the author.
-const CUBE_ROT_Z_DEG=-12;
-// Where the podium centre sits on the background image (0–1 of its width/height).
-const PODIUM={x:.665,y:.80};
+// The scene repeats the author's Blender setup, so the model lands on the podium exactly as in the background render.
+// Object: location X 1.9557 m, rotation Z 30.056°. Camera: location (0, −13.852, 0.35489), rotation X 90°.
+const CUBE_ROT_Z_DEG=30.056;
+const CAM={y:-13.852,z:0.35489,focal:42,sensor:36}; // Blender units; focal length estimated from the render (≈42 mm) — replace with the camera's real Focal Length
+const PODIUM={x:.665,y:.80}; // podium centre on the background image (0–1), used to frame the crop
 const FAN_SPEED=6; // rad/s
 (async()=>{
   const stage=document.getElementById('cubeStage'),loading=document.getElementById('cubeLoading'),offer=document.getElementById('offer');
@@ -520,19 +521,25 @@ const FAN_SPEED=6; // rad/s
   const r=new THREE.WebGLRenderer({antialias:true});
   r.setPixelRatio(Math.min(devicePixelRatio,2));r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.95;r.outputColorSpace=THREE.SRGBColorSpace;
   r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;stage.appendChild(r.domElement);
-  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(26,1,.01,1000);
-  const key=lights(scene,r);
-  // background = the podium render, cover-fitted
-  const bg=await new THREE.TextureLoader().loadAsync('assets/cube-bg.jpg');bg.colorSpace=THREE.SRGBColorSpace;scene.background=bg;
+  const bg=await new THREE.TextureLoader().loadAsync('assets/cube-bg.jpg');bg.colorSpace=THREE.SRGBColorSpace;bg.wrapS=bg.wrapT=THREE.ClampToEdgeWrapping;
   const imgA=bg.image.width/bg.image.height;
+  // Blender → three: (x, y, z) → (x, z, −y). Camera looks straight along +Y in Blender = −Z here.
+  const vfov=2*Math.atan((CAM.sensor/imgA)/2/CAM.focal)*180/Math.PI;
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(vfov,imgA,.01,1000);
+  cam.position.set(0,CAM.z,-CAM.y);cam.lookAt(0,CAM.z,0);scene.background=bg;
+  const key=lights(scene,r);
   const composer=new EffectComposer(r);composer.addPass(new RenderPass(scene,cam));
   const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.5,.5,.85);composer.addPass(bloom);composer.addPass(new OutputPass());
   let g;try{g=await gltfP}catch(e){loading.textContent='—';return}
-  const root=g.scene;restyle(root);
-  const pivot=new THREE.Group();pivot.add(root);scene.add(pivot);
-  const size=fit(root);pivot.rotation.y=THREE.MathUtils.degToRad(CUBE_ROT_Z_DEG);
-  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(size*6,size*6),new THREE.ShadowMaterial({opacity:.6}));shadow.rotation.x=-Math.PI/2;shadow.receiveShadow=true;scene.add(shadow);
-  key.target=pivot;
+  const root=g.scene;restyle(root);scene.add(root);
+  const body=root.getObjectByName('Cube')||root;body.rotation.y=THREE.MathUtils.degToRad(CUBE_ROT_Z_DEG);
+  root.updateMatrixWorld(true);
+  const box=new THREE.Box3().setFromObject(root),ctr=box.getCenter(new THREE.Vector3());
+  // land the cube on the glowing square of the podium in the render (its centre is at SPOT on the image)
+  {const SPOT={x:.683,y:.80},dist=cam.position.z-ctr.z,ty=Math.tan(THREE.MathUtils.degToRad(vfov/2));
+   const wantY=CAM.z+(1-2*SPOT.y)*ty*dist;root.position.y+=wantY-box.min.y;root.updateMatrixWorld(true);box.setFromObject(root);box.getCenter(ctr)}
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:.55}));shadow.rotation.x=-Math.PI/2;shadow.position.set(ctr.x,box.min.y+.002,ctr.z);shadow.receiveShadow=true;scene.add(shadow);
+  key.position.add(ctr);key.target=body;key.shadow.normalBias=.02;scene.children.filter(o=>o.isDirectionalLight).forEach(l=>{l.position.add(ctr);l.target.position.copy(ctr);scene.add(l.target)});
   // the fan spins on its own, so its timeline track is taken out of the stage animation
   const fan=root.getObjectByName('Fan')||root.getObjectByName('Cylinder');
   const clips=g.animations.map(c=>{const cc=c.clone();if(fan)cc.tracks=cc.tracks.filter(t=>!t.name.startsWith(fan.name+'.'));return cc}).filter(c=>c.tracks.length);
@@ -540,21 +547,16 @@ const FAN_SPEED=6; // rad/s
   const actions=clips.map(a=>{const ac=mixer.clipAction(a);ac.play();ac.paused=true;return ac});
   const setT=v=>{actions.forEach(a=>{a.time=Math.min(v,a.getClip().duration)});mixer.update(0)};setT(0);
   loading.remove();
-  const ndc=new THREE.Vector3();
   function resize(){
-    const W=stage.clientWidth,H=stage.clientHeight,vA=W/H;r.setSize(W,H,false);composer.setSize(W,H);cam.aspect=vA;
-    // cover-fit the background texture
-    const wide=W>860,Z=wide?1.35:1.5,TX=wide?.6:.5,TY=wide?.8:.74; // background zoom and where the podium lands on screen
-    let rx=1,ry=1;if(vA>imgA)ry=imgA/vA;else rx=vA/imgA;rx/=Z;ry/=Z;bg.repeat.set(rx,ry);
+    const W=stage.clientWidth,H=stage.clientHeight,vA=W/H;r.setSize(W,H,false);composer.setSize(W,H);
+    // crop of the render that is shown: cover-fit, zoomed in, podium placed at (TX, TY) of the screen
+    const wide=W>860,Z=wide?1.15:.72,TX=wide?.6:.5,TY=wide?.78:.68;
+    let rx=1,ry=1;if(vA>imgA)ry=imgA/vA;else rx=vA/imgA;rx/=Z;ry/=Z;
     const cl=(v,m)=>Math.max(0,Math.min(m,v));
-    bg.offset.set(cl(PODIUM.x-TX*rx,1-rx),cl((1-PODIUM.y)-(1-TY)*ry,1-ry));
-    const dist=size/(2*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)))*(wide?1.5:Math.max(1.6,1.3/vA));
-    cam.clearViewOffset();cam.position.set(0,size*.5+dist*.36,dist);cam.lookAt(0,size*.42,0);cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
-    // put the model base on the podium: where the podium centre lands on screen
-    const u=PODIUM.x,v=1-PODIUM.y; // podium in texture coords
-    const sx=(u-bg.offset.x)/rx,sy=1-(v-bg.offset.y)/ry; // 0..1 screen
-    ndc.set(0,0,0).project(cam);const cx=(ndc.x+1)/2,cy=(1-ndc.y)/2;
-    cam.setViewOffset(W,H,(cx-sx)*W,(cy-sy)*H,W,H);cam.updateProjectionMatrix();
+    const ox=cl(PODIUM.x-TX*rx,1-rx),oy=ry>1?(1-ry)*.55:cl((1-PODIUM.y)-(1-TY)*ry,1-ry);
+    bg.repeat.set(rx,ry);bg.offset.set(ox,oy);
+    // the camera renders the same crop of its full 16:9 frame, so model and background stay locked together
+    const FW=W/rx,FH=H/ry;cam.aspect=imgA;cam.setViewOffset(FW,FH,ox*FW,(1-oy-ry)*FH,W,H);cam.updateProjectionMatrix();
   }
   resize();addEventListener('resize',resize);
   // stages
