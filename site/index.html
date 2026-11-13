@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -474,29 +474,34 @@ import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 // Segment bounds in seconds of the .glb timeline (~0–10 s). TZ: frames 1–30 / 31–60 / 61–90 — adjust once confirmed.
 const SEGS=[[0,3.75],[3.75,7.5],[7.5,10]];
 
-function worn(){
-  // scuffed metal: blotchy base, fine grain, random scratches and small pits (lighter = rougher)
-  const N=1024,c=document.createElement('canvas');c.width=c.height=N;const g=c.getContext('2d');
-  g.fillStyle='#8c8c8c';g.fillRect(0,0,N,N);
-  for(let i=0;i<260;i++){const v=110+Math.random()*80|0,r=20+Math.random()*120;const gr=g.createRadialGradient(0,0,0,0,0,r);gr.addColorStop(0,`rgba(${v},${v},${v},${.18+Math.random()*.2})`);gr.addColorStop(1,`rgba(${v},${v},${v},0)`);g.save();g.translate(Math.random()*N,Math.random()*N);g.fillStyle=gr;g.fillRect(-r,-r,2*r,2*r);g.restore()}
-  const id=g.getImageData(0,0,N,N),d=id.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*26;d[i]+=n;d[i+1]+=n;d[i+2]+=n}g.putImageData(id,0,0);
-  g.lineCap='round';
-  for(let i=0;i<1400;i++){const x=Math.random()*N,y=Math.random()*N,a=Math.random()*Math.PI*2,l=6+Math.random()*(Math.random()<.15?140:40),v=170+Math.random()*70|0;
-    g.strokeStyle=`rgba(${v},${v},${v},${.25+Math.random()*.45})`;g.lineWidth=.6+Math.random()*1.3;g.beginPath();g.moveTo(x,y);g.quadraticCurveTo(x+Math.cos(a)*l*.5+Math.random()*6-3,y+Math.sin(a)*l*.5+Math.random()*6-3,x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke()}
-  for(let i=0;i<500;i++){const v=40+Math.random()*50|0;g.fillStyle=`rgba(${v},${v},${v},${.3+Math.random()*.4})`;g.beginPath();g.arc(Math.random()*N,Math.random()*N,.6+Math.random()*2.2,0,7);g.fill()}
-  const tx=new THREE.CanvasTexture(c);tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.set(1.5,1.5);tx.anisotropy=8;return tx;
+// Dark smoky metal like the Eevee render: 3D noise in the object's own space, so the pattern
+// never stretches along UVs. Dark base with grey "smoke" clouds; roughness follows the clouds.
+const SMOKE_GLSL=`
+float h3(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
+float n3(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
+ return mix(mix(mix(h3(i),h3(i+vec3(1,0,0)),f.x),mix(h3(i+vec3(0,1,0)),h3(i+vec3(1,1,0)),f.x),f.y),
+            mix(mix(h3(i+vec3(0,0,1)),h3(i+vec3(1,0,1)),f.x),mix(h3(i+vec3(0,1,1)),h3(i+vec3(1,1,1)),f.x),f.y),f.z);}
+float fbm(vec3 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n3(p);p=p*2.03+17.1;a*=.5;}return v;}`;
+function smoky({base,smoke,metal=.75,r0=.22,r1=.5,scale=2.6}){
+  const m=new THREE.MeshStandardMaterial({color:0xffffff,metalness:metal,roughness:1});
+  m.onBeforeCompile=sh=>{
+    sh.uniforms.uBase={value:new THREE.Color(base)};sh.uniforms.uSmoke={value:new THREE.Color(smoke)};
+    sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPO;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPO=position;');
+    sh.fragmentShader=sh.fragmentShader
+      .replace('#include <common>','#include <common>\nvarying vec3 vPO;uniform vec3 uBase,uSmoke;'+SMOKE_GLSL+'\nfloat gSm;')
+      .replace('#include <color_fragment>',`#include <color_fragment>
+        vec3 q=vPO*${scale.toFixed(2)};vec3 w=vec3(fbm(q),fbm(q+5.2),fbm(q+9.7));
+        float n=fbm(q+2.2*w);gSm=smoothstep(.38,.76,n);
+        diffuseColor.rgb=mix(uBase,uSmoke,gSm*(.75+.25*fbm(q*6.)));`)
+      .replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>
+        roughnessFactor=mix(${r0.toFixed(2)},${r1.toFixed(2)},gSm);`);
+  };
+  return m;
 }
-function tint(src,lo,hi){
-  // colour map from the same pattern: scratches read slightly lighter, pits darker
-  const c=document.createElement('canvas');c.width=c.height=src.image.width;const g=c.getContext('2d');g.drawImage(src.image,0,0);
-  const id=g.getImageData(0,0,c.width,c.height),d=id.data;for(let i=0;i<d.length;i+=4){const k=d[i]/255;for(let j=0;j<3;j++)d[i+j]=lo[j]+(hi[j]-lo[j])*k}g.putImageData(id,0,0);
-  const tx=new THREE.CanvasTexture(c);tx.colorSpace=THREE.SRGBColorSpace;tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.copy(src.repeat);tx.anisotropy=8;return tx;
-}
-const rough=worn();
 const MAT={
-  body:new THREE.MeshStandardMaterial({color:0xffffff,map:tint(rough,[34,31,28],[92,86,78]),metalness:.82,roughness:.72,roughnessMap:rough,bumpMap:rough,bumpScale:.6}),
-  trim:new THREE.MeshStandardMaterial({color:0xffffff,map:tint(rough,[70,52,38],[150,118,88]),metalness:.9,roughness:.68,roughnessMap:rough,bumpMap:rough,bumpScale:.6}),
-  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xff7a26,emissiveIntensity:2.2}),
+  body:smoky({base:0x0b0b0c,smoke:0x5c5c5e}),
+  trim:smoky({base:0x0e0d0c,smoke:0x3e3b38,metal:.8,r0:.28,r1:.55,scale:3.4}),
+  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xffa766,emissiveIntensity:2.6}),
   glass:new THREE.MeshPhysicalMaterial({color:0x060505,metalness:0,roughness:.08,clearcoat:1})
 };
 function restyle(root){
