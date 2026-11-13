@@ -569,3 +569,15 @@ textarea.input{min-height:130px;resize:vertical}
 .pv__snd .pv__on{display:none}
 .pv__snd[aria-pressed=true] .pv__on{display:block}
 .pv__snd[aria-pressed=true] .pv__off{display:none}
+
+/* v8: promo code on the cube's plate */
+.promo{position:absolute;z-index:4;transform:translate(-50%,-50%) scale(.9);display:inline-flex;align-items:baseline;gap:.35em;padding:.2em .3em;border:0;border-radius:4px;background:none;text-shadow:0 1px 6px rgba(0,0,0,.7);color:var(--sand-100);font-family:var(--f-display);font-size:16px;letter-spacing:.02em;white-space:nowrap;cursor:copy;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s,background .3s,color .3s}
+.promo.is-on{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.promo b{font-weight:600;color:var(--amber-300);letter-spacing:.08em;user-select:all}
+.promo.is-lit{color:#1b120a;text-shadow:none}
+.promo.is-lit b{color:#1b120a}
+.promo__l,.promo b{transition:opacity .2s}
+.promo__ok{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .2s}
+.promo.is-copied .promo__l,.promo.is-copied b{opacity:0}
+.promo.is-copied .promo__ok{opacity:1}
+.promo:focus-visible{outline:2px solid var(--amber-500);outline-offset:3px}

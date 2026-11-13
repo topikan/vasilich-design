@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -108,6 +108,7 @@
 <section class="cube" id="cube">
   <img class="cube__bg" src="assets/cube-bg.jpg" alt="">
   <div class="cube__stage" id="cubeStage" role="button" tabindex="0" aria-label="3D-модель"></div>
+  <button class="promo" id="promo" type="button" aria-live="polite"><span class="promo__l" data-i18n="promoL">Промо-код:</span> <b>VD10</b><span class="promo__ok" data-i18n="promoOk">Скопировано</span></button>
   <p class="cube__loading" id="cubeLoading" data-i18n="cubeLoad">Загружаем модель…</p>
   <div class="cube__ui wrap">
     <div class="cube__intro rv">
@@ -127,7 +128,7 @@
     </div>
     <aside class="offer" id="offer" aria-live="polite">
       <div class="offer__num">−10%</div>
-      <p data-i18n="offer">Вы прошли все три этапа. Дарим скидку на первый проект — упомяните куб в заявке.</p>
+      <p data-i18n="offer">Вы прошли все три этапа. Дарим скидку на первый проект — упомяните промокод в заявке.</p>
       <a href="#contact" class="btn"><span data-i18n="offerBtn">Получить скидку</span><svg><use href="#i-arrow"/></svg></a>
     </aside>
   </div>
@@ -286,7 +287,7 @@ const EN={
  s4:'Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show.',s4a:'Web configurators',s4b:'3D on websites',s4c:'Interactive presentations',
  cubeLoad:'Loading the model…',cubeTitle:'Bring the cube to life',cubeLead:'This is a live 3D model — this is how our interactive projects work. Go through all three stages to get a bonus.',
  fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Stage 1',st2:'Stage 2',st3:'Stage 3',light:'Light',lightOn:'on',lightOff:'off',p1:'from 3,000 ₽',p2:'from 5,000 ₽',p3:'from 15,000 ₽',p4:'from 5,000 ₽',
- offer:'You went through all three stages. Here is a discount on your first project — mention the cube in your request.',offerBtn:'Claim the discount',
+ offer:'You went through all three stages. Here is a discount on your first project — mention the promo code in your request.',offerBtn:'Claim the discount',promoL:'Promo code:',promoOk:'Copied',
  dirTitle:'Service packages',dirLead:'Order a single still, or hand us the whole direction: from the idea to the final files.',dirLbl:'Direction',
  d1:'Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable.',t1:'Environment and scene',t2:'Lighting',t3:'Materials and textures',d1l:'CGI projects',
  d2:'Product visualization, advertising renders and product animation.',t4:'Catalog renders',t5:'Advertising stills',t6:'Product animation',d2l:'Product projects',
@@ -473,18 +474,29 @@ import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 // Segment bounds in seconds of the .glb timeline (~0–10 s). TZ: frames 1–30 / 31–60 / 61–90 — adjust once confirmed.
 const SEGS=[[0,3.75],[3.75,7.5],[7.5,10]];
 
-function brushed(){
-  const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
-  g.fillStyle='#808080';g.fillRect(0,0,512,512);
-  for(let i=0;i<2600;i++){const y=Math.random()*512,v=95+Math.random()*70|0;g.strokeStyle=`rgba(${v},${v},${v},${.05+Math.random()*.14})`;g.lineWidth=Math.random()*1.4;g.beginPath();g.moveTo(0,y);g.lineTo(512,y+Math.random()*2-1);g.stroke()}
-  for(let i=0;i<40;i++){g.fillStyle=`rgba(30,30,30,${Math.random()*.1})`;g.beginPath();g.arc(Math.random()*512,Math.random()*512,Math.random()*60,0,7);g.fill()}
-  const tx=new THREE.CanvasTexture(c);tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.set(2,2);return tx;
+function worn(){
+  // scuffed metal: blotchy base, fine grain, random scratches and small pits (lighter = rougher)
+  const N=1024,c=document.createElement('canvas');c.width=c.height=N;const g=c.getContext('2d');
+  g.fillStyle='#8c8c8c';g.fillRect(0,0,N,N);
+  for(let i=0;i<260;i++){const v=110+Math.random()*80|0,r=20+Math.random()*120;const gr=g.createRadialGradient(0,0,0,0,0,r);gr.addColorStop(0,`rgba(${v},${v},${v},${.18+Math.random()*.2})`);gr.addColorStop(1,`rgba(${v},${v},${v},0)`);g.save();g.translate(Math.random()*N,Math.random()*N);g.fillStyle=gr;g.fillRect(-r,-r,2*r,2*r);g.restore()}
+  const id=g.getImageData(0,0,N,N),d=id.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*26;d[i]+=n;d[i+1]+=n;d[i+2]+=n}g.putImageData(id,0,0);
+  g.lineCap='round';
+  for(let i=0;i<1400;i++){const x=Math.random()*N,y=Math.random()*N,a=Math.random()*Math.PI*2,l=6+Math.random()*(Math.random()<.15?140:40),v=170+Math.random()*70|0;
+    g.strokeStyle=`rgba(${v},${v},${v},${.25+Math.random()*.45})`;g.lineWidth=.6+Math.random()*1.3;g.beginPath();g.moveTo(x,y);g.quadraticCurveTo(x+Math.cos(a)*l*.5+Math.random()*6-3,y+Math.sin(a)*l*.5+Math.random()*6-3,x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke()}
+  for(let i=0;i<500;i++){const v=40+Math.random()*50|0;g.fillStyle=`rgba(${v},${v},${v},${.3+Math.random()*.4})`;g.beginPath();g.arc(Math.random()*N,Math.random()*N,.6+Math.random()*2.2,0,7);g.fill()}
+  const tx=new THREE.CanvasTexture(c);tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.set(1.5,1.5);tx.anisotropy=8;return tx;
 }
-const rough=brushed();
+function tint(src,lo,hi){
+  // colour map from the same pattern: scratches read slightly lighter, pits darker
+  const c=document.createElement('canvas');c.width=c.height=src.image.width;const g=c.getContext('2d');g.drawImage(src.image,0,0);
+  const id=g.getImageData(0,0,c.width,c.height),d=id.data;for(let i=0;i<d.length;i+=4){const k=d[i]/255;for(let j=0;j<3;j++)d[i+j]=lo[j]+(hi[j]-lo[j])*k}g.putImageData(id,0,0);
+  const tx=new THREE.CanvasTexture(c);tx.colorSpace=THREE.SRGBColorSpace;tx.wrapS=tx.wrapT=THREE.RepeatWrapping;tx.repeat.copy(src.repeat);tx.anisotropy=8;return tx;
+}
+const rough=worn();
 const MAT={
-  body:new THREE.MeshPhysicalMaterial({color:0x2e2a26,metalness:.85,roughness:.45,roughnessMap:rough,clearcoat:.35,clearcoatRoughness:.4}),
-  trim:new THREE.MeshPhysicalMaterial({color:0x9a7450,metalness:1,roughness:.3,roughnessMap:rough}),
-  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xff7a26,emissiveIntensity:3.2}),
+  body:new THREE.MeshStandardMaterial({color:0xffffff,map:tint(rough,[34,31,28],[92,86,78]),metalness:.82,roughness:.72,roughnessMap:rough,bumpMap:rough,bumpScale:.6}),
+  trim:new THREE.MeshStandardMaterial({color:0xffffff,map:tint(rough,[70,52,38],[150,118,88]),metalness:.9,roughness:.68,roughnessMap:rough,bumpMap:rough,bumpScale:.6}),
+  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xff7a26,emissiveIntensity:2.2}),
   glass:new THREE.MeshPhysicalMaterial({color:0x060505,metalness:0,roughness:.08,clearcoat:1})
 };
 function restyle(root){
@@ -506,8 +518,8 @@ function makeRenderer(el){
 }
 function lights(scene,r){
   scene.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),.04).texture;
-  const key=new THREE.SpotLight(0xffa860,80,0,.55,.6,1.4);key.position.set(2.5,4.5,3);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.bias=-.0005;scene.add(key);
-  const rim=new THREE.DirectionalLight(0xffd2a0,2.4);rim.position.set(-4,2.5,-3);scene.add(rim);
+  const key=new THREE.SpotLight(0xffa860,45,0,.55,.7,1.4);key.position.set(2.5,4.5,3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.0003;key.shadow.radius=4;scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffd2a0,1.3);rim.position.set(-4,2.5,-3);scene.add(rim);
   const fill=new THREE.DirectionalLight(0x8a7666,.7);fill.position.set(-2,1,4);scene.add(fill);
   return key;
 }
@@ -533,8 +545,8 @@ const FAN_SPEED=6; // rad/s
   const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(vfov,imgA,.01,1000);
   cam.position.set(0,CAM.z,-CAM.y);cam.lookAt(0,CAM.z,0);scene.background=bg;
   const key=lights(scene,r);
-  const composer=new EffectComposer(r);composer.addPass(new RenderPass(scene,cam));
-  const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.5,.5,.85);composer.addPass(bloom);composer.addPass(new OutputPass());
+  const composer=new EffectComposer(r,new THREE.WebGLRenderTarget(1,1,{samples:4,type:THREE.HalfFloatType}));composer.addPass(new RenderPass(scene,cam));
+  const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.3,.4,.9);composer.addPass(bloom);composer.addPass(new OutputPass());
   let g;try{g=await gltfP}catch(e){loading.textContent='—';return}
   const root=g.scene;restyle(root);scene.add(root);
   const body=root.getObjectByName('Cube')||root;body.rotation.y=THREE.MathUtils.degToRad(CUBE_ROT_Z_DEG);
@@ -578,6 +590,18 @@ const FAN_SPEED=6; // rad/s
   stage.addEventListener('contextmenu',e=>e.preventDefault());
   stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter')go(1);if(e.key==='ArrowLeft')go(-1)});
   segBtns.forEach((b,i)=>b.onclick=()=>{if(busy)return;t=SEGS[i][0];setT(t);forward(i)});
+  // promo code on the plate: shown after stage 3, follows the plate on screen
+  const promo=document.getElementById('promo'),plate=root.getObjectByName('Cube007'),pb=new THREE.Box3(),pv=new THREE.Vector3();
+  function placePromo(){
+    if(!plate||!offer.classList.contains('is-on')){promo.classList.remove('is-on');return}
+    pb.setFromObject(plate);let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;const W=stage.clientWidth,H=stage.clientHeight;
+    for(const x of [pb.min.x,pb.max.x])for(const y of [pb.min.y,pb.max.y])for(const z of [pb.min.z,pb.max.z]){pv.set(x,y,z).project(cam);const sx=(pv.x+1)/2*W,sy=(1-pv.y)/2*H;x0=Math.min(x0,sx);x1=Math.max(x1,sx);y0=Math.min(y0,sy);y1=Math.max(y1,sy)}
+    const s=promo.style,sr=stage.getBoundingClientRect(),pr=promo.offsetParent.getBoundingClientRect();
+    s.left=(sr.left-pr.left+(x0+x1)/2)+'px';s.top=(sr.top-pr.top+(y0+y1)/2)+'px';const fs0=parseFloat(s.fontSize)||16,k=promo.offsetWidth/fs0;s.fontSize=Math.max(9,Math.min(22,(y1-y0)*.34,(x1-x0)*.8/k))+'px';
+    promo.classList.add('is-on');promo.classList.toggle('is-lit',lv>.5);
+  }
+  promo.addEventListener('pointerup',e=>e.stopPropagation());
+  promo.addEventListener('click',async e=>{e.stopPropagation();promo.classList.add('is-copied');clearTimeout(promo._t);promo._t=setTimeout(()=>promo.classList.remove('is-copied'),1600);try{await navigator.clipboard.writeText('VD10')}catch(_){const ta=document.createElement('textarea');ta.value='VD10';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}});
   // light switch
   let lightOn=false,lv=0;
   const KEY0=key.intensity,GLOW0=MAT.glow.emissiveIntensity;
@@ -588,13 +612,13 @@ const FAN_SPEED=6; // rad/s
     requestAnimationFrame(loop);const dt=Math.min(clock.getDelta(),.1);if(!visible)return;
     if(fan)fan.rotation.x+=dt*FAN_SPEED;
     lv+=((lightOn?1:0)-lv)*Math.min(1,dt*6);
-    MAT.glow.emissiveIntensity=GLOW0*lv;key.intensity=KEY0*(.25+.75*lv);bloom.strength=.12+.38*lv;
+    MAT.glow.emissiveIntensity=GLOW0*lv;key.intensity=KEY0*(.25+.75*lv);bloom.strength=.06+.24*lv;
     if(busy){
       const d=target-t,step=dt*Math.sign(d);
       if(Math.abs(d)<=Math.abs(step)){t=target;busy=false;if(seg===2&&t>=SEGS[2][1]-1e-3)offer.classList.add('is-on')}else t+=step;
       setT(t);const [a,b]=SEGS[act];prog(act,Math.max(0,Math.min(1,(t-a)/(b-a))));
     }
-    composer.render();
+    placePromo();composer.render();
   })();
 })();
 </script>
