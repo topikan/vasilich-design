@@ -7,8 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
-<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -95,7 +94,7 @@
       </article>
       <article class="card rv rv-d3" tabindex="0" aria-pressed="false">
         <div class="card__in">
-          <div class="card__face card__front"><span class="card__price" data-i18n="p4">от 5 000 ₽</span><img src="assets/svc-interactive.jpg" alt="Светящийся модуль на подиуме"><div class="card__title"><h3 class="h3">Interactive 3D</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
+          <div class="card__face card__front"><span class="card__price" data-i18n="p4">от 5 000 ₽</span><video src="assets/svc-interactive.mp4" poster="assets/svc-interactive.jpg" muted loop playsinline autoplay aria-label="Светящийся модуль на подиуме"></video><div class="card__title"><h3 class="h3">Interactive 3D</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
           <div class="card__face card__back"><h3 class="h3">Interactive 3D</h3><p data-i18n="s4">Модели, которые вращают, раскрывают и настраивают прямо в браузере — на сайте, в презентации или на выставке.</p><ul><li data-i18n="s4a">Веб-конфигураторы</li><li data-i18n="s4b">3D на сайте</li><li data-i18n="s4c">Интерактивные презентации</li></ul><div class="card__cost"><span data-i18n="p4">от 5 000 ₽</span></div><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
@@ -104,31 +103,34 @@
   </div>
 </section>
 
-<!-- 4. INTERACTIVE CUBE -->
-<section class="cube" id="cube">
-  <img class="cube__bg" src="assets/cube-bg.jpg" alt="">
-  <div class="cube__stage" id="cubeStage" role="button" tabindex="0" aria-label="3D-модель"></div>
-  <button class="promo" id="promo" type="button" aria-live="polite"><span class="promo__l" data-i18n="promoL">Промо-код:</span> <b>VD10</b><span class="promo__ok" data-i18n="promoOk">Скопировано</span></button>
-  <p class="cube__loading" id="cubeLoading" data-i18n="cubeLoad">Загружаем модель…</p>
+<!-- 4. INTERACTIVE DIORAMA -->
+<section class="cube dio" id="cube">
+  <div class="dio__stage" id="dioStage" aria-hidden="true">
+    <video class="dio__v is-on" data-seg="1-connect" muted playsinline preload="auto"></video>
+    <video class="dio__v" data-seg="2-power" muted playsinline preload="auto"></video>
+    <video class="dio__v" data-seg="3-loop" muted playsinline preload="metadata" loop></video>
+    <video class="dio__v" data-seg="4-off" muted playsinline preload="metadata"></video>
+    <video class="dio__v" data-seg="5-disconnect" muted playsinline preload="metadata"></video>
+  </div>
   <div class="cube__ui wrap">
     <div class="cube__intro rv">
-      <h2 class="h1" data-i18n="cubeTitle">Оживите куб</h2>
-      <p data-i18n="cubeLead">Это живая 3D-модель — так работают наши интерактивные проекты. Пройдите три этапа, и в конце вас ждёт бонус.</p>
-      <div class="hint">
-        <div class="hint__key hint__mouse"><span class="mouse mouse--l"><i></i></span><span data-i18n="fwd">Вперёд</span></div>
-        <div class="hint__key hint__mouse"><span class="mouse mouse--r"><i></i></span><span data-i18n="back">Назад</span></div>
-        <div class="hint__key hint__touch" data-i18n="touchHint">Касание справа — вперёд, слева — назад</div>
+      <h2 class="h1" data-i18n="cubeTitle">Запустите диораму</h2>
+      <p data-i18n="cubeLead">Это живая CGI-диорама — так работают наши интерактивные проекты. Подключите кабель, включите питание и запустите механизм. После выключения вас ждёт бонус.</p>
+      <div class="dio__ctl">
+        <button class="btn dio__btn" id="dioBtn" type="button"><span id="dioLbl" data-i18n="dConnect">Подключить кабель</span></button>
+        <p class="dio__timer" id="dioTimer" aria-live="polite"><span data-i18n="dTimer">До завершения цикла:</span> <b id="dioSec">8</b> <span data-i18n="dSec">сек.</span></p>
       </div>
-      <button class="light-btn" id="lightBtn" aria-pressed="false"><span class="light-btn__sw"><i></i></span><span data-i18n="light">Свет</span> <em class="light-btn__st" id="lightSt" data-i18n="lightOff">выкл</em></button>
+      <button class="music-btn" id="musicBtn" type="button" aria-pressed="false"><span class="music-btn__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="musicLbl" data-i18n="musicOn">Включить музыку</span></button>
     </div>
-    <div class="seg" role="group" aria-label="Этапы">
-      <button data-seg="0"><b data-i18n="st1">Этап 1</b></button>
-      <button data-seg="1"><b data-i18n="st2">Этап 2</b></button>
-      <button data-seg="2"><b data-i18n="st3">Этап 3</b></button>
+    <div class="seg" aria-hidden="true">
+      <button tabindex="-1"><b data-i18n="st1">Кабель</b></button>
+      <button tabindex="-1"><b data-i18n="st2">Питание</b></button>
+      <button tabindex="-1"><b data-i18n="st3">Движение</b></button>
     </div>
     <aside class="offer" id="offer" aria-live="polite">
       <div class="offer__num">−10%</div>
-      <p data-i18n="offer">Вы прошли все три этапа. Дарим скидку на первый проект — упомяните промокод в заявке.</p>
+      <p data-i18n="offer">Диорама выключена — спасибо, что запустили её. Дарим скидку 10% на первый проект, укажите промокод в заявке.</p>
+      <button class="offer__code" id="promoCode" type="button"><span data-i18n="promoL">Промокод:</span> <b>VD10</b><em data-i18n="promoCopy">копировать</em></button>
       <a href="#contact" class="btn"><span data-i18n="offerBtn">Получить скидку</span><svg><use href="#i-arrow"/></svg></a>
     </aside>
   </div>
@@ -147,19 +149,22 @@
         <div class="pack__name">FULL CGI</div>
         <p data-i18n="d1">Сцены целиком: окружение, атмосфера, работа со светом и материалами. Кадр, в котором веришь каждой поверхности.</p>
         <ul><li data-i18n="t1">Окружение и сцена</li><li data-i18n="t2">Постановка света</li><li data-i18n="t3">Материалы и текстуры</li></ul>
+        <div class="pack__deal"><span data-i18n="pk1">Анимация + 2 статичных кадра</span><b data-i18n="pk1p">от 17 000 ₽</b></div>
         <a href="#works" data-filter="cgi" class="link" data-i18n="d1l">Проекты CGI</a>
       </article>
       <article class="pack rv rv-d1">
         <div class="pack__name">FULL PRODUCT</div>
         <p data-i18n="d2">Предметная визуализация, рекламные рендеры и продуктовые анимации.</p>
         <ul><li data-i18n="t4">Рендеры для каталога</li><li data-i18n="t5">Рекламные кадры</li><li data-i18n="t6">Продуктовая анимация</li></ul>
+        <div class="pack__deal"><span data-i18n="pk2">Анимация + 2 статичных кадра</span><b data-i18n="pk2p">от 20 000 ₽</b></div>
         <a href="#works" data-filter="product" class="link" data-i18n="d2l">Проекты Product</a>
       </article>
       <article class="pack rv rv-d2">
         <div class="pack__name">FULL INTERACTIVE</div>
         <p data-i18n="d3">Интерактивные 3D-модели, веб-конфигураторы и презентации.</p>
         <ul><li data-i18n="t7">3D-модели для сайта</li><li data-i18n="t8">Веб-конфигураторы</li><li data-i18n="t9">Интерактивные презентации</li></ul>
-        <a href="#cube" class="link" data-i18n="d3l">Попробовать куб</a>
+        <div class="pack__deal"><span data-i18n="pk3">Анимированная модель + интеграция на сайт</span><b data-i18n="pk3p">от 10 000 ₽</b></div>
+        <a href="#cube" class="link" data-i18n="d3l">Запустить диораму</a>
       </article>
     </div>
   </div>
@@ -285,13 +290,13 @@ const EN={
  s2:'Product renders instead of a photo shoot: studio light, accurate materials, any angle and any number of variants.',s2a:'Catalogs and marketplaces',s2b:'Advertising stills',s2c:'Packaging and details',
  s3:'Commercials and art animation: camera work, motion and editing rhythm.',s3a:'Social media clips',s3b:'Product animation',s3c:'Website video loops',
  s4:'Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show.',s4a:'Web configurators',s4b:'3D on websites',s4c:'Interactive presentations',
- cubeLoad:'Loading the model…',cubeTitle:'Bring the cube to life',cubeLead:'This is a live 3D model — this is how our interactive projects work. Go through all three stages to get a bonus.',
- fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Stage 1',st2:'Stage 2',st3:'Stage 3',light:'Light',lightOn:'on',lightOff:'off',p1:'from 3,000 ₽',p2:'from 5,000 ₽',p3:'from 15,000 ₽',p4:'from 5,000 ₽',
- offer:'You went through all three stages. Here is a discount on your first project — mention the promo code in your request.',offerBtn:'Claim the discount',promoL:'Promo code:',promoOk:'Copied',
+ cubeLoad:'Loading the model…',cubeTitle:'Start the diorama',cubeLead:'This is a live CGI diorama — this is how our interactive projects work. Connect the cable, power it on and start the mechanism. A bonus waits after you switch it off.',
+ fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Cable',st2:'Power',st3:'Motion',light:'Light',lightOn:'on',lightOff:'off',p1:'from 3,000 ₽',p2:'from 5,000 ₽',p3:'from 15,000 ₽',p4:'from 5,000 ₽',
+ offer:'The diorama is off — thanks for running it. Here is 10% off your first project: add the promo code to your request.',offerBtn:'Claim the discount',promoL:'Promo code:',promoCopy:'copy',promoOk:'copied',dConnect:'Connect the cable',dConnecting:'Connecting the cable…',dPower:'Power on',dPowering:'Powering on…',dRun:'Start motion',dStop:'Stop motion',dStopping:'Finishing the cycle…',dOff:'Powering off…',dDisc:'Disconnecting the cable…',dLoad:'Loading…',dTimer:'Until the cycle ends:',dSec:'s',musicOn:'Turn music on',musicOff:'Turn music off',
  dirTitle:'Service packages',dirLead:'Order a single still, or hand us the whole direction: from the idea to the final files.',dirLbl:'Direction',
  d1:'Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable.',t1:'Environment and scene',t2:'Lighting',t3:'Materials and textures',d1l:'CGI projects',
  d2:'Product visualization, advertising renders and product animation.',t4:'Catalog renders',t5:'Advertising stills',t6:'Product animation',d2l:'Product projects',
- d3:'Interactive 3D models, web configurators and presentations.',t7:'3D models for websites',t8:'Web configurators',t9:'Interactive presentations',d3l:'Try the cube',drag:'Drag to rotate',
+ d3:'Interactive 3D models, web configurators and presentations.',t7:'3D models for websites',t8:'Web configurators',t9:'Interactive presentations',d3l:'Start the diorama',pk1:'Animation + 2 stills',pk1p:'from 17,000 ₽',pk2:'Animation + 2 stills',pk2p:'from 20,000 ₽',pk3:'Animated model + website integration',pk3p:'from 10,000 ₽',drag:'Drag to rotate',
  worksTitle:'Work',all:'All',
  aboutTitle:'Directing,<br>not just rendering',ab1:'VASILICH DESIGN is a studio where 3D starts with the question “what should the viewer feel”. First we invent the shot: point of view, light, rhythm. Then we build the scene for it.',ab2:'That is why our work looks like cinema, not a catalog: every scene has a story, every object has a character.',
  k1:'Staging',k1v:'Shot direction and composition',k2:'Light',k2v:'Cinematic lighting',k3:'Materials',k3v:'Photoreal surfaces',k4:'Motion',k4v:'Camera and object animation',k5:'Web',k5v:'Interactive models for websites',k6:'Characters',k6v:'Mascots and robots',
@@ -303,7 +308,7 @@ const EN={
  ftrAbout:'3D visualization studio: CGI, product visualization, animation and interactive 3D.',ftrNav:'Navigation',ftrReq:'Send a request',ftrSoc:'Social',copy:'© 2026 VASILICH DESIGN. All rights reserved.',specLink:'Design system',
  pTask:'Task',pRes:'Result',pDir:'Direction',pFmt:'Format',pNext:'Next project'
 };
-const RU={out:'На выходе',lightOn:'вкл',lightOff:'выкл'};let LANG='ru';
+const RU={out:'На выходе',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
 document.querySelectorAll('[data-i18n]').forEach(el=>{RU[el.dataset.i18n]??=el.innerHTML});
 document.querySelectorAll('[data-i18n-ph]').forEach(el=>{RU[el.dataset.i18nPh]??=el.placeholder});
 const t=k=>(LANG==='en'?EN:RU)[k]??RU[k]??k;window.vdT=t;
@@ -461,170 +466,145 @@ let saved='ru';try{saved=localStorage.getItem('vd-lang')||'ru'}catch(e){}
 setLang(saved);
 </script>
 
-<script type="module">
-/* ================= 3D: cube block + interactive plate ================= */
-import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
-import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
-import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
-
-// Segment bounds in seconds of the .glb timeline (~0–10 s). TZ: frames 1–30 / 31–60 / 61–90 — adjust once confirmed.
-const SEGS=[[0,3.75],[3.75,7.5],[7.5,10]];
-
-// Dark smoky metal like the Eevee render: 3D noise in the object's own space, so the pattern
-// never stretches along UVs. Dark base with grey "smoke" clouds; roughness follows the clouds.
-const SMOKE_GLSL=`
-float h3(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
-float n3(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
- return mix(mix(mix(h3(i),h3(i+vec3(1,0,0)),f.x),mix(h3(i+vec3(0,1,0)),h3(i+vec3(1,1,0)),f.x),f.y),
-            mix(mix(h3(i+vec3(0,0,1)),h3(i+vec3(1,0,1)),f.x),mix(h3(i+vec3(0,1,1)),h3(i+vec3(1,1,1)),f.x),f.y),f.z);}
-float fbm(vec3 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n3(p);p=p*2.03+17.1;a*=.5;}return v;}`;
-function smoky({base,smoke,metal=.75,r0=.22,r1=.5,scale=2.6}){
-  const m=new THREE.MeshStandardMaterial({color:0xffffff,metalness:metal,roughness:1});
-  m.onBeforeCompile=sh=>{
-    sh.uniforms.uBase={value:new THREE.Color(base)};sh.uniforms.uSmoke={value:new THREE.Color(smoke)};
-    sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vPO;').replace('#include <begin_vertex>','#include <begin_vertex>\nvPO=position;');
-    sh.fragmentShader=sh.fragmentShader
-      .replace('#include <common>','#include <common>\nvarying vec3 vPO;uniform vec3 uBase,uSmoke;'+SMOKE_GLSL+'\nfloat gSm;')
-      .replace('#include <color_fragment>',`#include <color_fragment>
-        vec3 q=vPO*${scale.toFixed(2)};vec3 w=vec3(fbm(q),fbm(q+5.2),fbm(q+9.7));
-        float n=fbm(q+2.2*w);gSm=smoothstep(.38,.76,n);
-        diffuseColor.rgb=mix(uBase,uSmoke,gSm*(.75+.25*fbm(q*6.)));`)
-      .replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>
-        roughnessFactor=mix(${r0.toFixed(2)},${r1.toFixed(2)},gSm);`);
-  };
-  return m;
-}
-const MAT={
-  body:smoky({base:0x0b0b0c,smoke:0x5c5c5e}),
-  trim:smoky({base:0x0e0d0c,smoke:0x3e3b38,metal:.8,r0:.28,r1:.55,scale:3.4}),
-  glow:new THREE.MeshStandardMaterial({color:0x000000,emissive:0xffa766,emissiveIntensity:2.6}),
-  glass:new THREE.MeshPhysicalMaterial({color:0x060505,metalness:0,roughness:.08,clearcoat:1})
-};
-function restyle(root){
-  root.traverse(o=>{
-    if(!o.isMesh)return;o.castShadow=true;o.receiveShadow=true;
-    const n=(o.material&&o.material.name)||'';
-    if(/^Material\.00[23]/.test(n))o.material=MAT.glow;
-    else if(n==='Material.001')o.material=MAT.glass;
-    else if(n.endsWith('.001'))o.material=MAT.trim;
-    else o.material=MAT.body;
-  });
-}
-const gltfP=new Promise((res,rej)=>new GLTFLoader().load('assets/cube.glb',res,undefined,rej));
-function makeRenderer(el){
-  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
-  r.setPixelRatio(Math.min(devicePixelRatio,2));r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.95;r.outputColorSpace=THREE.SRGBColorSpace;
-  r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;r.setClearColor(0x000000,0);
-  el.appendChild(r.domElement);return r;
-}
-function lights(scene,r){
-  scene.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),.04).texture;
-  const key=new THREE.SpotLight(0xffa860,45,0,.55,.7,1.4);key.position.set(2.5,4.5,3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.0003;key.shadow.radius=4;scene.add(key);
-  const rim=new THREE.DirectionalLight(0xffd2a0,1.3);rim.position.set(-4,2.5,-3);scene.add(rim);
-  const fill=new THREE.DirectionalLight(0x8a7666,.7);fill.position.set(-2,1,4);scene.add(fill);
-  return key;
-}
-function fit(root){const box=new THREE.Box3().setFromObject(root),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());root.position.sub(c);root.position.y+=s.y/2;return Math.max(s.x,s.y,s.z)}
-
-/* ---- main cube ---- */
-// The scene repeats the author's Blender setup, so the model lands on the podium exactly as in the background render.
-// Object: location X 1.9557 m, rotation Z 30.056°. Camera: location (0, −13.852, 0.35489), rotation X 90°.
-const CUBE_ROT_Z_DEG=30.056;
-const CAM={y:-13.852,z:0.35489,focal:42,sensor:36}; // Blender units; focal length estimated from the render (≈42 mm) — replace with the camera's real Focal Length
-const PODIUM={x:.665,y:.80}; // podium centre on the background image (0–1), used to frame the crop
-const FAN_SPEED=6; // rad/s
-(async()=>{
-  const stage=document.getElementById('cubeStage'),loading=document.getElementById('cubeLoading'),offer=document.getElementById('offer');
-  const segBtns=[...document.querySelectorAll('.seg button')],lightBtn=document.getElementById('lightBtn'),lightSt=document.getElementById('lightSt');
-  const r=new THREE.WebGLRenderer({antialias:true});
-  r.setPixelRatio(Math.min(devicePixelRatio,2));r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.95;r.outputColorSpace=THREE.SRGBColorSpace;
-  r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;stage.appendChild(r.domElement);
-  const bg=await new THREE.TextureLoader().loadAsync('assets/cube-bg.jpg');bg.colorSpace=THREE.SRGBColorSpace;bg.wrapS=bg.wrapT=THREE.ClampToEdgeWrapping;
-  const imgA=bg.image.width/bg.image.height;
-  // Blender → three: (x, y, z) → (x, z, −y). Camera looks straight along +Y in Blender = −Z here.
-  const vfov=2*Math.atan((CAM.sensor/imgA)/2/CAM.focal)*180/Math.PI;
-  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(vfov,imgA,.01,1000);
-  cam.position.set(0,CAM.z,-CAM.y);cam.lookAt(0,CAM.z,0);scene.background=bg;
-  const key=lights(scene,r);
-  const composer=new EffectComposer(r,new THREE.WebGLRenderTarget(1,1,{samples:4,type:THREE.HalfFloatType}));composer.addPass(new RenderPass(scene,cam));
-  const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.3,.4,.9);composer.addPass(bloom);composer.addPass(new OutputPass());
-  let g;try{g=await gltfP}catch(e){loading.textContent='—';return}
-  const root=g.scene;restyle(root);scene.add(root);
-  const body=root.getObjectByName('Cube')||root;body.rotation.y=THREE.MathUtils.degToRad(CUBE_ROT_Z_DEG);
-  root.updateMatrixWorld(true);
-  const box=new THREE.Box3().setFromObject(root),ctr=box.getCenter(new THREE.Vector3());
-  // land the cube on the glowing square of the podium in the render (its centre is at SPOT on the image)
-  {const SPOT={x:.683,y:.80},dist=cam.position.z-ctr.z,ty=Math.tan(THREE.MathUtils.degToRad(vfov/2));
-   const wantY=CAM.z+(1-2*SPOT.y)*ty*dist;root.position.y+=wantY-box.min.y;root.updateMatrixWorld(true);box.setFromObject(root);box.getCenter(ctr)}
-  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(12,12),new THREE.ShadowMaterial({opacity:.55}));shadow.rotation.x=-Math.PI/2;shadow.position.set(ctr.x,box.min.y+.002,ctr.z);shadow.receiveShadow=true;scene.add(shadow);
-  key.position.add(ctr);key.target=body;key.shadow.normalBias=.02;scene.children.filter(o=>o.isDirectionalLight).forEach(l=>{l.position.add(ctr);l.target.position.copy(ctr);scene.add(l.target)});
-  // the fan spins on its own, so its timeline track is taken out of the stage animation
-  const fan=root.getObjectByName('Fan')||root.getObjectByName('Cylinder');
-  const clips=g.animations.map(c=>{const cc=c.clone();if(fan)cc.tracks=cc.tracks.filter(t=>!t.name.startsWith(fan.name+'.'));return cc}).filter(c=>c.tracks.length);
-  const mixer=new THREE.AnimationMixer(root);
-  const actions=clips.map(a=>{const ac=mixer.clipAction(a);ac.play();ac.paused=true;return ac});
-  const setT=v=>{actions.forEach(a=>{a.time=Math.min(v,a.getClip().duration)});mixer.update(0)};setT(0);
-  loading.remove();
-  function resize(){
-    const W=stage.clientWidth,H=stage.clientHeight,vA=W/H;r.setSize(W,H,false);composer.setSize(W,H);
-    // crop of the render that is shown: cover-fit, zoomed in, podium placed at (TX, TY) of the screen
-    const wide=W>860,Z=wide?1.15:.72,TX=wide?.6:.5,TY=wide?.78:.68;
-    let rx=1,ry=1;if(vA>imgA)ry=imgA/vA;else rx=vA/imgA;rx/=Z;ry/=Z;
-    const cl=(v,m)=>Math.max(0,Math.min(m,v));
-    const ox=cl(PODIUM.x-TX*rx,1-rx),oy=ry>1?(1-ry)*.55:cl((1-PODIUM.y)-(1-TY)*ry,1-ry);
-    bg.repeat.set(rx,ry);bg.offset.set(ox,oy);
-    // the camera renders the same crop of its full 16:9 frame, so model and background stay locked together
-    const FW=W/rx,FH=H/ry;cam.aspect=imgA;cam.setViewOffset(FW,FH,ox*FW,(1-oy-ry)*FH,W,H);cam.updateProjectionMatrix();
+<script>
+/* ================= interactive diorama: video segments driven by a state machine =================
+   The render (450 frames, 30 fps) is cut into five clips along the TZ timeline:
+   1-connect 0–2 s · 2-power 2–3 s · 3-loop 3–11 s (8 s, repeats) · 4-off 11–12 s · 5-disconnect 12–15 s.
+   Desktop uses the square render, phones the vertical one. A clip is shown only once its first frame is
+   decoded, so the previous clip's last frame stays on screen and there are no black frames. */
+(()=>{
+  const DIO={base:'assets/diorama/',square:'sq',vertical:'v',mobile:'(max-width:860px)'};
+  const stage=document.getElementById('dioStage'),btn=document.getElementById('dioBtn'),lbl=document.getElementById('dioLbl'),
+        timer=document.getElementById('dioTimer'),sec=document.getElementById('dioSec'),offer=document.getElementById('offer'),
+        promo=document.getElementById('promoCode'),segs=[...document.querySelectorAll('#cube .seg button')];
+  const V={};stage.querySelectorAll('video').forEach(v=>V[v.dataset.seg]=v);
+  const mq=matchMedia(DIO.mobile);let set='';
+  function setSources(){
+    const want=mq.matches?DIO.vertical:DIO.square;if(want===set)return;set=want;
+    Object.entries(V).forEach(([k,v])=>{v.src=DIO.base+want+'/'+k+'.mp4'});
+    V['1-connect'].poster=DIO.base+want+'/0.jpg';V['1-connect'].load();
   }
-  resize();addEventListener('resize',resize);
-  // stages
-  let t=0,target=0,seg=-1,act=-1,busy=false;
-  const prog=(i,p)=>segBtns[i].style.setProperty('--p',(p*100).toFixed(1)+'%');
-  function mark(){segBtns.forEach((b,j)=>{b.classList.toggle('is-active',j===act);if(j<act)prog(j,1);else if(j>act)prog(j,0)})}
-  function forward(i){if(busy)return;act=i;seg=i;if(t<SEGS[i][0]||t>SEGS[i][1])t=SEGS[i][0];target=SEGS[i][1];busy=true;mark();offer.classList.remove('is-on')}
-  function backward(){if(busy||seg<0)return;act=seg;target=SEGS[seg][0];seg--;busy=true;mark();offer.classList.remove('is-on')}
-  const go=d=>{if(d>0){if(seg<2)forward(seg+1)}else backward()};
-  stage.addEventListener('pointerup',e=>{
-    if(e.pointerType==='mouse'){if(e.button===0)go(1);else if(e.button===2)go(-1)}
-    else{const b=stage.getBoundingClientRect();go(e.clientX-b.left>b.width/2?1:-1)}
-  });
-  stage.addEventListener('contextmenu',e=>e.preventDefault());
-  stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter')go(1);if(e.key==='ArrowLeft')go(-1)});
-  segBtns.forEach((b,i)=>b.onclick=()=>{if(busy)return;t=SEGS[i][0];setT(t);forward(i)});
-  // promo code on the plate: shown after stage 3, follows the plate on screen
-  const promo=document.getElementById('promo'),plate=root.getObjectByName('Cube007'),pb=new THREE.Box3(),pv=new THREE.Vector3();
-  function placePromo(){
-    if(!plate||!offer.classList.contains('is-on')){promo.classList.remove('is-on');return}
-    pb.setFromObject(plate);let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;const W=stage.clientWidth,H=stage.clientHeight;
-    for(const x of [pb.min.x,pb.max.x])for(const y of [pb.min.y,pb.max.y])for(const z of [pb.min.z,pb.max.z]){pv.set(x,y,z).project(cam);const sx=(pv.x+1)/2*W,sy=(1-pv.y)/2*H;x0=Math.min(x0,sx);x1=Math.max(x1,sx);y0=Math.min(y0,sy);y1=Math.max(y1,sy)}
-    const s=promo.style,sr=stage.getBoundingClientRect(),pr=promo.offsetParent.getBoundingClientRect();
-    s.left=(sr.left-pr.left+(x0+x1)/2)+'px';s.top=(sr.top-pr.top+(y0+y1)/2)+'px';const fs0=parseFloat(s.fontSize)||16,k=promo.offsetWidth/fs0;s.fontSize=Math.max(9,Math.min(22,(y1-y0)*.34,(x1-x0)*.8/k))+'px';
-    promo.classList.add('is-on');promo.classList.toggle('is-lit',lv>.5);
+  setSources();
+  mq.addEventListener('change',()=>{if(state==='IDLE'){setSources();show(V['1-connect'])}});
+
+  // ---- helpers
+  const t=k=>window.vdT?window.vdT(k):k;
+  function label(key,busy){lbl.dataset.i18n=key;lbl.innerHTML=t(key);btn.disabled=!!busy;btn.classList.toggle('is-busy',!!busy)}
+  const prog=(i,p)=>segs[i].style.setProperty('--p',(Math.max(0,Math.min(1,p))*100).toFixed(1)+'%');
+  function show(v){stage.querySelectorAll('video').forEach(x=>{if(x!==v){x.classList.remove('is-on')}});v.classList.add('is-on')}
+  function firstFrame(v){return new Promise(res=>{
+    if('requestVideoFrameCallback' in v)v.requestVideoFrameCallback(()=>res());
+    else v.addEventListener('playing',()=>requestAnimationFrame(()=>res()),{once:true});
+  })}
+  // play a clip from the start; swap it in on its first frame
+  async function run(key){
+    const v=V[key];v.preload='auto';
+    try{v.currentTime=0}catch(e){}
+    const ff=firstFrame(v);
+    await v.play();await ff;
+    const prev=stage.querySelector('video.is-on');show(v);if(prev&&prev!==v)prev.pause();
+    return v;
   }
-  promo.addEventListener('pointerup',e=>e.stopPropagation());
-  promo.addEventListener('click',async e=>{e.stopPropagation();promo.classList.add('is-copied');clearTimeout(promo._t);promo._t=setTimeout(()=>promo.classList.remove('is-copied'),1600);try{await navigator.clipboard.writeText('VD10')}catch(_){const ta=document.createElement('textarea');ta.value='VD10';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}});
-  // light switch
-  let lightOn=false,lv=0;
-  const KEY0=key.intensity,GLOW0=MAT.glow.emissiveIntensity;
-  lightBtn.addEventListener('click',()=>{lightOn=!lightOn;lightBtn.setAttribute('aria-pressed',lightOn);lightSt.dataset.i18n=lightOn?'lightOn':'lightOff';lightSt.textContent=window.vdT?window.vdT(lightSt.dataset.i18n):(lightOn?'вкл':'выкл')});
-  let visible=false;new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
-  const clock=new THREE.Clock();
-  (function loop(){
-    requestAnimationFrame(loop);const dt=Math.min(clock.getDelta(),.1);if(!visible)return;
-    if(fan)fan.rotation.x+=dt*FAN_SPEED;
-    lv+=((lightOn?1:0)-lv)*Math.min(1,dt*6);
-    MAT.glow.emissiveIntensity=GLOW0*lv;key.intensity=KEY0*(.25+.75*lv);bloom.strength=.06+.24*lv;
-    if(busy){
-      const d=target-t,step=dt*Math.sign(d);
-      if(Math.abs(d)<=Math.abs(step)){t=target;busy=false;if(seg===2&&t>=SEGS[2][1]-1e-3)offer.classList.add('is-on')}else t+=step;
-      setT(t);const [a,b]=SEGS[act];prog(act,Math.max(0,Math.min(1,(t-a)/(b-a))));
+  const ended=v=>new Promise(res=>v.addEventListener('ended',res,{once:true}));
+  const warm=(...keys)=>keys.forEach(k=>{if(V[k].preload!=='auto'){V[k].preload='auto';V[k].load()}});
+
+  // ---- state machine
+  // IDLE → CONNECTING → CABLE_CONNECTED → POWERING_ON → READY → ACTIVE_LOOP → WAITING_FOR_LOOP_END → POWERING_OFF → DISCONNECTING → IDLE
+  let state='IDLE',raf=0;
+  async function step(){
+    if(btn.disabled)return;
+    try{
+      if(state==='IDLE'){
+        state='CONNECTING';offer.classList.remove('is-on');label('dConnecting',1);segs.forEach((_,i)=>prog(i,0));warm('3-loop');
+        const v=await run('1-connect');track(v,0);await ended(v);
+        state='CABLE_CONNECTED';prog(0,1);label('dPower');
+      }else if(state==='CABLE_CONNECTED'){
+        state='POWERING_ON';label('dPowering',1);
+        const v=await run('2-power');track(v,1);await ended(v);
+        state='READY';prog(1,1);label('dRun');warm('4-off','5-disconnect');
+      }else if(state==='READY'){
+        const v=V['3-loop'];v.loop=true;
+        state='ACTIVE_LOOP';label('dStop');
+        await run('3-loop');track(v,2,true);
+      }else if(state==='ACTIVE_LOOP'){
+        // stop at the end of the current 8 s cycle: no jump, no rewind
+        const v=V['3-loop'];v.loop=false;
+        state='WAITING_FOR_LOOP_END';label('dStopping',1);timer.classList.add('is-on');
+        const tick=()=>{if(state!=='WAITING_FOR_LOOP_END')return;sec.textContent=Math.max(0,Math.ceil((v.duration||8)-v.currentTime-.05));requestAnimationFrame(tick)};tick();
+        await ended(v);
+        timer.classList.remove('is-on');prog(2,0);
+        state='POWERING_OFF';label('dOff',1);
+        const off=await run('4-off');track(off,1,false,true);await ended(off);
+        state='DISCONNECTING';label('dDisc',1);
+        const dc=await run('5-disconnect');track(dc,0,false,true);await ended(dc);
+        state='IDLE';segs.forEach((_,i)=>prog(i,0));label('dConnect');
+        offer.classList.add('is-on');
+      }
+    }catch(e){
+      // a clip failed to load or play: return to the last stable state instead of hanging
+      console.warn('diorama',e);timer.classList.remove('is-on');
+      const back={CONNECTING:['IDLE','dConnect'],POWERING_ON:['CABLE_CONNECTED','dPower'],ACTIVE_LOOP:['READY','dRun']}[state]||['IDLE','dConnect'];
+      state=back[0];label(back[1]);
     }
-    placePromo();composer.render();
-  })();
+  }
+  // progress bars follow the real playback position
+  function track(v,i,loop,reverse){
+    cancelAnimationFrame(raf);
+    const f=()=>{const p=v.duration?v.currentTime/v.duration:0;prog(i,reverse?1-p:p);
+      if(loop?(state==='ACTIVE_LOOP'||state==='WAITING_FOR_LOOP_END'):!v.ended)raf=requestAnimationFrame(f)};f();
+  }
+  btn.addEventListener('click',step);
+  // pause the clip while the block is off screen; resume where it was
+  new IntersectionObserver(es=>{const v=stage.querySelector('video.is-on');if(!v)return;
+    if(es[0].isIntersecting){if(state!=='IDLE'&&state!=='CABLE_CONNECTED'&&state!=='READY'&&!v.ended)v.play().catch(()=>{})}else v.pause()}).observe(stage);
+
+  // promo code copy
+  promo.addEventListener('click',async()=>{
+    promo.classList.add('is-copied');const em=promo.querySelector('em');em.dataset.i18n='promoOk';em.innerHTML=t('promoOk');
+    clearTimeout(promo._t);promo._t=setTimeout(()=>{promo.classList.remove('is-copied');em.dataset.i18n='promoCopy';em.innerHTML=t('promoCopy')},1800);
+    try{await navigator.clipboard.writeText('VD10')}catch(_){const ta=document.createElement('textarea');ta.value='VD10';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}
+  });
+})();
+
+/* ================= music: independent of the diorama =================
+   Add a track by adding its file to the list. Missing files are skipped automatically. */
+(()=>{
+  const PLAYLIST=['assets/music/melody_01.mp3','assets/music/melody_02.mp3','assets/music/melody_03.mp3','assets/music/melody_04.mp3'];
+  const FADE_IN=.8,FADE_OUT=1.2,VOL=.55;
+  const btn=document.getElementById('musicBtn'),lbl=document.getElementById('musicLbl');
+  const t=k=>window.vdT?window.vdT(k):k;
+  const audio=new Audio();audio.loop=true;audio.preload='none';
+  let bad=new Set(),last=-1,on=false,ctx=null,gain=null,fadeT=0;
+  function ensureGraph(){
+    // a gain node gives smooth fades everywhere, including iOS where element volume is fixed
+    if(ctx)return;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+    try{ctx=new AC();gain=ctx.createGain();gain.gain.value=0;ctx.createMediaElementSource(audio).connect(gain).connect(ctx.destination)}catch(e){ctx=null;gain=null}
+  }
+  function ramp(to,dur){
+    if(gain){const g=gain.gain,n=ctx.currentTime;g.cancelScheduledValues(n);g.setValueAtTime(g.value,n);g.linearRampToValueAtTime(to,n+dur)}
+    else{const from=audio.volume,t0=performance.now();cancelAnimationFrame(fadeT);const f=()=>{const k=Math.min(1,(performance.now()-t0)/(dur*1000));audio.volume=from+(to-from)*k;if(k<1)fadeT=requestAnimationFrame(f)};f()}
+  }
+  function pick(){
+    const ok=PLAYLIST.map((_,i)=>i).filter(i=>!bad.has(i));if(!ok.length)return -1;
+    const pool=ok.length>1?ok.filter(i=>i!==last):ok;return pool[Math.floor(Math.random()*pool.length)];
+  }
+  function ui(){btn.setAttribute('aria-pressed',on);lbl.dataset.i18n=on?'musicOff':'musicOn';lbl.innerHTML=t(lbl.dataset.i18n)}
+  async function start(){
+    ensureGraph();if(ctx&&ctx.state==='suspended')await ctx.resume().catch(()=>{});
+    for(;;){
+      const i=pick();if(i<0){on=false;ui();btn.disabled=true;btn.title='—';return}
+      audio.pause();audio.src=PLAYLIST[i];audio.preload='auto';
+      if(gain)gain.gain.value=0;else audio.volume=0;
+      try{await audio.play();last=i;break}catch(e){if(e&&e.name==='NotAllowedError'){on=false;ui();return}bad.add(i)}
+    }
+    if(!on){audio.pause();return}  // switched off while loading
+    ramp(VOL,FADE_IN);
+  }
+  function stop(){
+    ramp(0,FADE_OUT);const src=audio.src;
+    setTimeout(()=>{if(!on&&audio.src===src)audio.pause()},FADE_OUT*1000+60);
+  }
+  btn.addEventListener('click',()=>{on=!on;ui();on?start():stop()});
 })();
 </script>
 </body>
