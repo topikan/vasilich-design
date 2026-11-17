@@ -492,9 +492,11 @@ setLang(saved);
   function label(key,busy){lbl.dataset.i18n=key;lbl.innerHTML=t(key);btn.disabled=!!busy;btn.classList.toggle('is-busy',!!busy)}
   const prog=(i,p)=>segs[i].style.setProperty('--p',(Math.max(0,Math.min(1,p))*100).toFixed(1)+'%');
   function show(v){stage.querySelectorAll('video').forEach(x=>{if(x!==v){x.classList.remove('is-on')}});v.classList.add('is-on')}
+  // resolves on the first decoded frame; never waits longer than 300 ms (hidden tabs may not deliver frame callbacks)
   function firstFrame(v){return new Promise(res=>{
-    if('requestVideoFrameCallback' in v)v.requestVideoFrameCallback(()=>res());
-    else v.addEventListener('playing',()=>requestAnimationFrame(()=>res()),{once:true});
+    const done=()=>{clearTimeout(to);res()},to=setTimeout(done,300);
+    if('requestVideoFrameCallback' in v)v.requestVideoFrameCallback(done);
+    else v.addEventListener('playing',()=>requestAnimationFrame(done),{once:true});
   })}
   // play a clip from the start; swap it in on its first frame
   async function run(key){
@@ -505,7 +507,8 @@ setLang(saved);
     const prev=stage.querySelector('video.is-on');show(v);if(prev&&prev!==v)prev.pause();
     return v;
   }
-  const ended=v=>new Promise(res=>v.addEventListener('ended',res,{once:true}));
+  // resolves when the clip has finished, also if it finished before anyone started waiting
+  const ended=v=>new Promise(res=>{if(v.ended&&!v.loop)return res();const f=()=>{if(v.ended){clearInterval(iv);v.removeEventListener('ended',f);res()}};const iv=setInterval(f,250);v.addEventListener('ended',f)});
   const warm=(...keys)=>keys.forEach(k=>{if(V[k].preload!=='auto'){V[k].preload='auto';V[k].load()}});
 
   // ---- state machine
