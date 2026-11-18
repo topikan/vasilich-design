@@ -109,7 +109,6 @@
     <video class="dio__v is-on" data-seg="1-connect" muted playsinline preload="auto"></video>
     <video class="dio__v" data-seg="2-power" muted playsinline preload="auto"></video>
     <video class="dio__v" data-seg="3-loop" muted playsinline preload="metadata" loop></video>
-    <video class="dio__v" data-seg="3-stop" muted playsinline preload="metadata"></video>
     <video class="dio__v" data-seg="4-off" muted playsinline preload="metadata"></video>
     <video class="dio__v" data-seg="5-disconnect" muted playsinline preload="metadata"></video>
   </div>
@@ -470,12 +469,12 @@ setLang(saved);
 <script>
 /* ================= interactive diorama: video segments driven by a state machine =================
    The render (450 frames, 30 fps) is cut into five clips along the TZ timeline:
-   1-connect frames 1–60 · 2-power 61–90 · 3-loop 91–360 (9 s, repeats) · 3-stop 361–390 (rotation settles)
-   · 4-off 391–405 · 5-disconnect 406–450. Power-off and disconnect each wait for the visitor's click.
+   1-connect frames 1–60 · 2-power 61–90 · 3-loop 91–360 (9 s, repeats) · 4-off 361–390 · 5-disconnect 391–450.
+   Stopping finishes the current cycle and holds on frame 360; power-off and disconnect each wait for the visitor's click.
    Desktop uses the square render, phones the vertical one. A clip is shown only once its first frame is
    decoded, so the previous clip's last frame stays on screen and there are no black frames. */
 (()=>{
-  const DIO={base:'assets/diorama/',square:'sq',vertical:'v',mobile:'(max-width:860px)',ver:'2'};
+  const DIO={base:'assets/diorama/',square:'sq',vertical:'v',mobile:'(max-width:860px)',ver:'3'};
   const stage=document.getElementById('dioStage'),btn=document.getElementById('dioBtn'),lbl=document.getElementById('dioLbl'),
         timer=document.getElementById('dioTimer'),sec=document.getElementById('dioSec'),offer=document.getElementById('offer'),
         promo=document.getElementById('promoCode'),segs=[...document.querySelectorAll('#cube .seg button')];
@@ -514,7 +513,7 @@ setLang(saved);
   const warm=(...keys)=>keys.forEach(k=>{if(V[k].preload!=='auto'){V[k].preload='auto';V[k].load()}});
 
   // ---- state machine
-  // IDLE → CONNECTING → CABLE_CONNECTED → POWERING_ON → READY → ACTIVE_LOOP → WAITING_FOR_LOOP_END → SETTLING
+  // IDLE → CONNECTING → CABLE_CONNECTED → POWERING_ON → READY → ACTIVE_LOOP → WAITING_FOR_LOOP_END
   //   → STOPPED (button: power off) → POWERING_OFF → POWERED_OFF (button: disconnect) → DISCONNECTING → IDLE
   let state='IDLE',raf=0;
   async function step(){
@@ -527,7 +526,7 @@ setLang(saved);
       }else if(state==='CABLE_CONNECTED'){
         state='POWERING_ON';label('dPowering',1);
         const v=await run('2-power');track(v,1);await ended(v);
-        state='READY';prog(1,1);label('dRun');warm('3-stop','4-off','5-disconnect');
+        state='READY';prog(1,1);label('dRun');warm('4-off','5-disconnect');
       }else if(state==='READY'){
         const v=V['3-loop'];v.loop=true;
         state='ACTIVE_LOOP';label('dStop');
@@ -539,8 +538,6 @@ setLang(saved);
         const tick=()=>{if(state!=='WAITING_FOR_LOOP_END')return;sec.textContent=Math.max(0,Math.ceil((v.duration||9)-v.currentTime-.05));requestAnimationFrame(tick)};tick();
         await ended(v);
         timer.classList.remove('is-on');
-        state='SETTLING';
-        const st=await run('3-stop');track(st,2,false,true);await ended(st);
         state='STOPPED';prog(2,0);label('dPowerOff');
       }else if(state==='STOPPED'){
         state='POWERING_OFF';label('dOff',1);
@@ -555,7 +552,7 @@ setLang(saved);
     }catch(e){
       // a clip failed to load or play: return to the last stable state instead of hanging
       console.warn('diorama',e);timer.classList.remove('is-on');
-      const back={CONNECTING:['IDLE','dConnect'],POWERING_ON:['CABLE_CONNECTED','dPower'],ACTIVE_LOOP:['READY','dRun'],SETTLING:['STOPPED','dPowerOff'],POWERING_OFF:['STOPPED','dPowerOff'],DISCONNECTING:['POWERED_OFF','dUnplug']}[state]||['IDLE','dConnect'];
+      const back={CONNECTING:['IDLE','dConnect'],POWERING_ON:['CABLE_CONNECTED','dPower'],ACTIVE_LOOP:['READY','dRun'],POWERING_OFF:['STOPPED','dPowerOff'],DISCONNECTING:['POWERED_OFF','dUnplug']}[state]||['IDLE','dConnect'];
       state=back[0];label(back[1]);
     }
   }
