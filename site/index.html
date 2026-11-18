@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
 
@@ -248,8 +248,10 @@
       <div class="field field--full"><label for="f-task" data-i18n="fTask">Задача</label><textarea class="input" id="f-task" data-i18n-ph="fTaskPh" placeholder="Что нужно сделать, для чего и к какому сроку"></textarea></div>
       <label class="drop" id="drop"><span class="drop__icon"><svg><use href="#i-clip"/></svg></span><span><b data-i18n="fDrop">Прикрепите ТЗ или референсы</b><br><span class="caption" data-i18n="fDropS">Перетащите файлы сюда или нажмите. PDF, изображения, архивы до 50 МБ</span></span><input type="file" multiple id="f-files"></label>
       <div class="files" id="files"></div>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <p class="form__err" id="f-msg" role="alert" hidden></p>
       <div class="form__foot"><span class="caption" data-i18n="fAgree">Нажимая кнопку, вы соглашаетесь на обработку данных</span><button class="btn" type="submit"><span data-i18n="fSend">Отправить заявку</span><svg><use href="#i-arrow"/></svg></button></div>
-      <div class="form__done"><h3 class="h3" data-i18n="fDone">Заявка отправлена</h3><p class="muted" style="margin-top:8px" data-i18n="fDoneS">Так выглядит состояние после отправки. В макете форма никуда не уходит.</p></div>
+      <div class="form__done"><h3 class="h3" data-i18n="fDone">Заявка отправлена</h3><p class="muted" style="margin-top:8px" data-i18n="fDoneS">Спасибо! Мы получили заявку и скоро ответим.</p></div>
     </form>
   </div>
 </section>
@@ -306,11 +308,11 @@ const EN={
  flowTitle:'How we work',out:'Outcome',
  ctTitle:'Let’s discuss your case',ctPhrase:'Every strong shot<br>starts with a conversation',ctLead:'Tell us about the task — even if it is just an idea. We will reply, suggest an approach and estimate the scope.',mail:'Email',
  fName:'Name',fNamePh:'What should we call you',fCont:'Contact',fContPh:'Telegram, phone or email',fErr:'Leave a contact so we can reply',fTask:'Task',fTaskPh:'What needs to be done, why and by when',
- fDrop:'Attach a brief or references',fDropS:'Drop files here or click. PDF, images, archives up to 50 MB',fAgree:'By clicking the button you agree to data processing',fSend:'Send request',fDone:'Request sent',fDoneS:'This is the state after sending. In the mockup the form goes nowhere.',
+ fDrop:'Attach a brief or references',fDropS:'Drop files here or click. PDF, images, archives up to 50 MB',fAgree:'By clicking the button you agree to data processing',fSend:'Send request',fDone:'Request sent',fDoneS:'Thank you! We have received your request and will reply soon.',fBig:'Files are too large: up to 50 MB in total.',fRate:'Too many requests in a row. Please try again in a few minutes.',fFail:'Could not send the request. Please try again or write to us on Telegram or by email.',
  ftrAbout:'3D visualization studio: CGI, product visualization, animation and interactive 3D.',ftrNav:'Navigation',ftrReq:'Send a request',ftrSoc:'Social',copy:'© 2026 VASILICH DESIGN. All rights reserved.',specLink:'Design system',
  pTask:'Task',pRes:'Result',pDir:'Direction',pFmt:'Format',pNext:'Next project'
 };
-const RU={out:'На выходе',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dPowerOff:'Выключить питание',dUnplug:'Отсоединить кабель',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
+const RU={out:'На выходе',fBig:'Файлы слишком большие: всего до 50 МБ.',fRate:'Слишком много заявок подряд. Попробуйте через несколько минут.',fFail:'Не получилось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram или на почту.',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dPowerOff:'Выключить питание',dUnplug:'Отсоединить кабель',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
 document.querySelectorAll('[data-i18n]').forEach(el=>{RU[el.dataset.i18n]??=el.innerHTML});
 document.querySelectorAll('[data-i18n-ph]').forEach(el=>{RU[el.dataset.i18nPh]??=el.placeholder});
 const t=k=>(LANG==='en'?EN:RU)[k]??RU[k]??k;window.vdT=t;
@@ -453,16 +455,33 @@ addEventListener('resize',()=>goFlow(fi,true));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-/* ================= form ================= */
-const form=document.getElementById('form'),fc=document.getElementById('f-contact');
-form.addEventListener('submit',e=>{e.preventDefault();if(!fc.value.trim()){fc.classList.add('is-error');document.getElementById('f-contact-err').hidden=false;fc.focus();return}form.classList.add('is-sent')});
-fc.addEventListener('input',()=>{fc.classList.remove('is-error');document.getElementById('f-contact-err').hidden=true});
+/* ================= form: sends to api/lead.php (request saved on the server + sent to Telegram) ================= */
+const form=document.getElementById('form'),fc=document.getElementById('f-contact'),fSend=form.querySelector('button[type=submit]'),fMsg=document.getElementById('f-msg');
 const drop=document.getElementById('drop'),fIn=document.getElementById('f-files'),fl=document.getElementById('files');
-const showFiles=list=>{fl.innerHTML=[...list].map(f=>`<span class="tag">${f.name.replace(/[<>&]/g,'')}</span>`).join('')};
-fIn.onchange=()=>showFiles(fIn.files);
+const FMAX=50*1024*1024;let picked=[];const fOpened=Date.now();
+const showFiles=()=>{fl.innerHTML=picked.map((f,i)=>`<span class="tag">${f.name.replace(/[<>&]/g,'')}<button type="button" class="tag__x" data-i="${i}" aria-label="×">×</button></span>`).join('')};
+const addFiles=list=>{for(const f of list){if(picked.length>=10)break;if(!picked.some(p=>p.name===f.name&&p.size===f.size))picked.push(f)}showFiles();fIn.value=''};
+fl.addEventListener('click',e=>{const b=e.target.closest('.tag__x');if(b){picked.splice(+b.dataset.i,1);showFiles()}});
+fIn.onchange=()=>addFiles(fIn.files);
 ['dragenter','dragover'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.add('is-over')}));
 ['dragleave','drop'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.remove('is-over')}));
-drop.addEventListener('drop',e=>showFiles(e.dataTransfer.files));
+drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+const fErr=k=>{fMsg.dataset.i18n=k;fMsg.innerHTML=t(k);fMsg.hidden=false};
+form.addEventListener('submit',async e=>{
+  e.preventDefault();fMsg.hidden=true;
+  if(!fc.value.trim()){fc.classList.add('is-error');document.getElementById('f-contact-err').hidden=false;fc.focus();return}
+  if(picked.reduce((a,f)=>a+f.size,0)>FMAX)return fErr('fBig');
+  const fd=new FormData();fd.append('name',document.getElementById('f-name').value);fd.append('contact',fc.value);fd.append('task',document.getElementById('f-task').value);
+  fd.append('website',form.querySelector('[name=website]').value);fd.append('t',fOpened);fd.append('lang',LANG);picked.forEach(f=>fd.append('files[]',f,f.name));
+  fSend.disabled=true;fSend.classList.add('is-busy');
+  try{
+    const r=await fetch('api/lead.php',{method:'POST',body:fd});const j=await r.json().catch(()=>({}));
+    if(r.ok&&j.ok){form.classList.add('is-sent');form.reset();picked=[];showFiles()}
+    else fErr(r.status===413||j.error==='too_big'?'fBig':r.status===429?'fRate':'fFail');
+  }catch(_){fErr('fFail')}
+  finally{fSend.disabled=false;fSend.classList.remove('is-busy')}
+});
+fc.addEventListener('input',()=>{fc.classList.remove('is-error');document.getElementById('f-contact-err').hidden=true});
 
 let saved='ru';try{saved=localStorage.getItem('vd-lang')||'ru'}catch(e){}
 setLang(saved);
