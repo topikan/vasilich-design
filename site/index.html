@@ -109,6 +109,7 @@
     <video class="dio__v is-on" data-seg="1-connect" muted playsinline preload="auto"></video>
     <video class="dio__v" data-seg="2-power" muted playsinline preload="auto"></video>
     <video class="dio__v" data-seg="3-loop" muted playsinline preload="metadata" loop></video>
+    <video class="dio__v" data-seg="3-stop" muted playsinline preload="metadata"></video>
     <video class="dio__v" data-seg="4-off" muted playsinline preload="metadata"></video>
     <video class="dio__v" data-seg="5-disconnect" muted playsinline preload="metadata"></video>
   </div>
@@ -118,7 +119,7 @@
       <p data-i18n="cubeLead">Это живая CGI-диорама — так работают наши интерактивные проекты. Подключите кабель, включите питание и запустите механизм. После выключения вас ждёт бонус.</p>
       <div class="dio__ctl">
         <button class="btn dio__btn" id="dioBtn" type="button"><span id="dioLbl" data-i18n="dConnect">Подключить кабель</span></button>
-        <p class="dio__timer" id="dioTimer" aria-live="polite"><span data-i18n="dTimer">До завершения цикла:</span> <b id="dioSec">8</b> <span data-i18n="dSec">сек.</span></p>
+        <p class="dio__timer" id="dioTimer" aria-live="polite"><span data-i18n="dTimer">До завершения цикла:</span> <b id="dioSec">9</b> <span data-i18n="dSec">сек.</span></p>
       </div>
       <button class="music-btn" id="musicBtn" type="button" aria-pressed="false"><span class="music-btn__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="musicLbl" data-i18n="musicOn">Включить музыку</span></button>
     </div>
@@ -143,7 +144,7 @@
       <h2 class="h1" data-i18n="dirTitle">Пакеты услуг</h2>
       <p data-i18n="dirLead">Можно заказать отдельный кадр, а можно отдать нам направление целиком: от идеи до готовых файлов.</p>
     </div>
-    <div class="packs__film rv"><video src="assets/packs.mp4" poster="assets/packs.jpg" muted loop playsinline autoplay></video></div>
+    <div class="packs__film rv"><video src="assets/packs.mp4?v=2" poster="assets/packs.jpg?v=2" muted loop playsinline autoplay></video></div>
     <div class="packs__grid">
       <article class="pack rv">
         <div class="pack__name">FULL CGI</div>
@@ -292,7 +293,7 @@ const EN={
  s4:'Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show.',s4a:'Web configurators',s4b:'3D on websites',s4c:'Interactive presentations',
  cubeLoad:'Loading the model…',cubeTitle:'Start the diorama',cubeLead:'This is a live CGI diorama — this is how our interactive projects work. Connect the cable, power it on and start the mechanism. A bonus waits after you switch it off.',
  fwd:'Forward',back:'Back',touchHint:'Tap right — forward, left — back',st1:'Cable',st2:'Power',st3:'Motion',light:'Light',lightOn:'on',lightOff:'off',p1:'from 3,000 ₽',p2:'from 5,000 ₽',p3:'from 15,000 ₽',p4:'from 5,000 ₽',
- offer:'The diorama is off — thanks for running it. Here is 10% off your first project: add the promo code to your request.',offerBtn:'Claim the discount',promoL:'Promo code:',promoCopy:'copy',promoOk:'copied',dConnect:'Connect the cable',dConnecting:'Connecting the cable…',dPower:'Power on',dPowering:'Powering on…',dRun:'Start motion',dStop:'Stop motion',dStopping:'Finishing the cycle…',dOff:'Powering off…',dDisc:'Disconnecting the cable…',dLoad:'Loading…',dTimer:'Until the cycle ends:',dSec:'s',musicOn:'Turn music on',musicOff:'Turn music off',
+ offer:'The diorama is off — thanks for running it. Here is 10% off your first project: add the promo code to your request.',offerBtn:'Claim the discount',promoL:'Promo code:',promoCopy:'copy',promoOk:'copied',dConnect:'Connect the cable',dConnecting:'Connecting the cable…',dPower:'Power on',dPowering:'Powering on…',dRun:'Start motion',dStop:'Stop motion',dStopping:'Finishing the cycle…',dOff:'Powering off…',dDisc:'Disconnecting the cable…',dPowerOff:'Power off',dUnplug:'Disconnect the cable',dLoad:'Loading…',dTimer:'Until the cycle ends:',dSec:'s',musicOn:'Turn music on',musicOff:'Turn music off',
  dirTitle:'Service packages',dirLead:'Order a single still, or hand us the whole direction: from the idea to the final files.',dirLbl:'Direction',
  d1:'Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable.',t1:'Environment and scene',t2:'Lighting',t3:'Materials and textures',d1l:'CGI projects',
  d2:'Product visualization, advertising renders and product animation.',t4:'Catalog renders',t5:'Advertising stills',t6:'Product animation',d2l:'Product projects',
@@ -308,7 +309,7 @@ const EN={
  ftrAbout:'3D visualization studio: CGI, product visualization, animation and interactive 3D.',ftrNav:'Navigation',ftrReq:'Send a request',ftrSoc:'Social',copy:'© 2026 VASILICH DESIGN. All rights reserved.',specLink:'Design system',
  pTask:'Task',pRes:'Result',pDir:'Direction',pFmt:'Format',pNext:'Next project'
 };
-const RU={out:'На выходе',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
+const RU={out:'На выходе',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dPowerOff:'Выключить питание',dUnplug:'Отсоединить кабель',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
 document.querySelectorAll('[data-i18n]').forEach(el=>{RU[el.dataset.i18n]??=el.innerHTML});
 document.querySelectorAll('[data-i18n-ph]').forEach(el=>{RU[el.dataset.i18nPh]??=el.placeholder});
 const t=k=>(LANG==='en'?EN:RU)[k]??RU[k]??k;window.vdT=t;
@@ -469,11 +470,12 @@ setLang(saved);
 <script>
 /* ================= interactive diorama: video segments driven by a state machine =================
    The render (450 frames, 30 fps) is cut into five clips along the TZ timeline:
-   1-connect 0–2 s · 2-power 2–3 s · 3-loop 3–11 s (8 s, repeats) · 4-off 11–12 s · 5-disconnect 12–15 s.
+   1-connect frames 1–60 · 2-power 61–90 · 3-loop 91–360 (9 s, repeats) · 3-stop 361–390 (rotation settles)
+   · 4-off 391–405 · 5-disconnect 406–450. Power-off and disconnect each wait for the visitor's click.
    Desktop uses the square render, phones the vertical one. A clip is shown only once its first frame is
    decoded, so the previous clip's last frame stays on screen and there are no black frames. */
 (()=>{
-  const DIO={base:'assets/diorama/',square:'sq',vertical:'v',mobile:'(max-width:860px)'};
+  const DIO={base:'assets/diorama/',square:'sq',vertical:'v',mobile:'(max-width:860px)',ver:'2'};
   const stage=document.getElementById('dioStage'),btn=document.getElementById('dioBtn'),lbl=document.getElementById('dioLbl'),
         timer=document.getElementById('dioTimer'),sec=document.getElementById('dioSec'),offer=document.getElementById('offer'),
         promo=document.getElementById('promoCode'),segs=[...document.querySelectorAll('#cube .seg button')];
@@ -481,7 +483,7 @@ setLang(saved);
   const mq=matchMedia(DIO.mobile);let set='';
   function setSources(){
     const want=mq.matches?DIO.vertical:DIO.square;if(want===set)return;set=want;
-    Object.entries(V).forEach(([k,v])=>{v.src=DIO.base+want+'/'+k+'.mp4'});
+    Object.entries(V).forEach(([k,v])=>{v.src=DIO.base+want+'/'+k+'.mp4?v='+DIO.ver});
     V['1-connect'].poster=DIO.base+want+'/0.jpg';V['1-connect'].load();
   }
   setSources();
@@ -512,7 +514,8 @@ setLang(saved);
   const warm=(...keys)=>keys.forEach(k=>{if(V[k].preload!=='auto'){V[k].preload='auto';V[k].load()}});
 
   // ---- state machine
-  // IDLE → CONNECTING → CABLE_CONNECTED → POWERING_ON → READY → ACTIVE_LOOP → WAITING_FOR_LOOP_END → POWERING_OFF → DISCONNECTING → IDLE
+  // IDLE → CONNECTING → CABLE_CONNECTED → POWERING_ON → READY → ACTIVE_LOOP → WAITING_FOR_LOOP_END → SETTLING
+  //   → STOPPED (button: power off) → POWERING_OFF → POWERED_OFF (button: disconnect) → DISCONNECTING → IDLE
   let state='IDLE',raf=0;
   async function step(){
     if(btn.disabled)return;
@@ -524,7 +527,7 @@ setLang(saved);
       }else if(state==='CABLE_CONNECTED'){
         state='POWERING_ON';label('dPowering',1);
         const v=await run('2-power');track(v,1);await ended(v);
-        state='READY';prog(1,1);label('dRun');warm('4-off','5-disconnect');
+        state='READY';prog(1,1);label('dRun');warm('3-stop','4-off','5-disconnect');
       }else if(state==='READY'){
         const v=V['3-loop'];v.loop=true;
         state='ACTIVE_LOOP';label('dStop');
@@ -533,11 +536,17 @@ setLang(saved);
         // stop at the end of the current 8 s cycle: no jump, no rewind
         const v=V['3-loop'];v.loop=false;
         state='WAITING_FOR_LOOP_END';label('dStopping',1);timer.classList.add('is-on');
-        const tick=()=>{if(state!=='WAITING_FOR_LOOP_END')return;sec.textContent=Math.max(0,Math.ceil((v.duration||8)-v.currentTime-.05));requestAnimationFrame(tick)};tick();
+        const tick=()=>{if(state!=='WAITING_FOR_LOOP_END')return;sec.textContent=Math.max(0,Math.ceil((v.duration||9)-v.currentTime-.05));requestAnimationFrame(tick)};tick();
         await ended(v);
-        timer.classList.remove('is-on');prog(2,0);
+        timer.classList.remove('is-on');
+        state='SETTLING';
+        const st=await run('3-stop');track(st,2,false,true);await ended(st);
+        state='STOPPED';prog(2,0);label('dPowerOff');
+      }else if(state==='STOPPED'){
         state='POWERING_OFF';label('dOff',1);
         const off=await run('4-off');track(off,1,false,true);await ended(off);
+        state='POWERED_OFF';prog(1,0);label('dUnplug');
+      }else if(state==='POWERED_OFF'){
         state='DISCONNECTING';label('dDisc',1);
         const dc=await run('5-disconnect');track(dc,0,false,true);await ended(dc);
         state='IDLE';segs.forEach((_,i)=>prog(i,0));label('dConnect');
@@ -546,7 +555,7 @@ setLang(saved);
     }catch(e){
       // a clip failed to load or play: return to the last stable state instead of hanging
       console.warn('diorama',e);timer.classList.remove('is-on');
-      const back={CONNECTING:['IDLE','dConnect'],POWERING_ON:['CABLE_CONNECTED','dPower'],ACTIVE_LOOP:['READY','dRun']}[state]||['IDLE','dConnect'];
+      const back={CONNECTING:['IDLE','dConnect'],POWERING_ON:['CABLE_CONNECTED','dPower'],ACTIVE_LOOP:['READY','dRun'],SETTLING:['STOPPED','dPowerOff'],POWERING_OFF:['STOPPED','dPowerOff'],DISCONNECTING:['POWERED_OFF','dUnplug']}[state]||['IDLE','dConnect'];
       state=back[0];label(back[1]);
     }
   }
@@ -559,7 +568,7 @@ setLang(saved);
   btn.addEventListener('click',step);
   // pause the clip while the block is off screen; resume where it was
   new IntersectionObserver(es=>{const v=stage.querySelector('video.is-on');if(!v)return;
-    if(es[0].isIntersecting){if(state!=='IDLE'&&state!=='CABLE_CONNECTED'&&state!=='READY'&&!v.ended)v.play().catch(()=>{})}else v.pause()}).observe(stage);
+    if(es[0].isIntersecting){if(!['IDLE','CABLE_CONNECTED','READY','STOPPED','POWERED_OFF'].includes(state)&&!v.ended)v.play().catch(()=>{})}else v.pause()}).observe(stage);
 
   // promo code copy
   promo.addEventListener('click',async()=>{
