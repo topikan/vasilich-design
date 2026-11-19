@@ -1,7 +1,7 @@
 <?php
 // Gives a request's attachment to a signed-in admin.
 require __DIR__ . '/../lib/vd.php';
-session_set_cookie_params(['httponly' => true, 'secure' => !empty($_SERVER['HTTPS']), 'samesite' => 'Strict', 'path' => dirname($_SERVER['SCRIPT_NAME']) . '/']);
+session_set_cookie_params(['httponly' => true, 'secure' => vd_https(), 'samesite' => 'Strict', 'path' => dirname($_SERVER['SCRIPT_NAME']) . '/']);
 session_name('vdadmin');
 session_start();
 if (empty($_SESSION['auth'])) { header('Location: ./'); exit; }

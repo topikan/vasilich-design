@@ -99,7 +99,7 @@ function vd_gc_uploads(array $c): void {
     $used = json_encode($c, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     foreach (glob(vd_site_dir() . '/uploads/*') ?: [] as $f) {
         $n = basename($f);
-        if ($n === 'content.js' || $n[0] === '.' || !is_file($f)) continue;
+        if ($n === 'content.js' || $n === 'index.html' || $n[0] === '.' || !is_file($f)) continue;
         if (filemtime($f) > time() - 600) continue;          // just uploaded, maybe not saved yet
         if (strpos($used, 'uploads/' . $n) === false) @unlink($f);
     }

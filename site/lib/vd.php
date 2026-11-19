@@ -4,7 +4,9 @@
 if (PHP_SAPI !== 'cli' && basename($_SERVER['SCRIPT_FILENAME'] ?? '') === 'vd.php') { http_response_code(404); exit; }
 
 date_default_timezone_set('Europe/Moscow');
+const VD_HOST = 'vasilichdesign.art';            // used in e-mails instead of the request's Host header
 const VD_MAX_FILES = 10;
+const VD_FILES_QUOTA = 3 * 1024 * 1024 * 1024;    // stop accepting attachments when stored files reach 3 GB
 const VD_MAX_BYTES = 50 * 1024 * 1024;           // all attachments of one request together
 const VD_TG_MAX_FILE = 49 * 1024 * 1024;          // Telegram bots can send files up to 50 MB
 
@@ -43,6 +45,36 @@ function vd_config(): array {
                  'relay_url' => '', 'relay_secret' => '', 'mail_to' => 'vasilichdesign@yandex.ru', 'mail_mode' => 'fail'];
 }
 function vd_config_save(array $c): void { vd_json_write(vd_data_dir() . '/config.json', $c); }
+
+// Visitor IP. Behind the hosting's proxy REMOTE_ADDR can be a local address; then the forwarded one is used.
+function vd_ip(): string {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+        foreach (['HTTP_X_REAL_IP', 'HTTP_X_FORWARDED_FOR'] as $h) {
+            foreach (array_map('trim', explode(',', (string)($_SERVER[$h] ?? ''))) as $c)
+                if (filter_var($c, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) return $c;
+        }
+    }
+    return $ip;
+}
+function vd_https(): bool {
+    return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || ($_SERVER['SERVER_PORT'] ?? '') == 443
+        || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https' || ($_SERVER['HTTP_X_FORWARDED_SSL'] ?? '') === 'on';
+}
+// Simple attempt limiter: true while $key made fewer than $max attempts in $window seconds.
+function vd_limit_ok(string $bucket, string $key, int $max, int $window, bool $count = true): bool {
+    $p = vd_data_dir() . "/limit-$bucket.json";
+    $fh = fopen($p, 'c+'); flock($fh, LOCK_EX);
+    $all = json_decode(stream_get_contents($fh) ?: '[]', true) ?: [];
+    $now = time();
+    foreach ($all as $k => $ts) { $all[$k] = array_values(array_filter($ts, fn($t) => $t > $now - $window)); if (!$all[$k]) unset($all[$k]); }
+    $k = hash('sha256', $key);
+    $ok = count($all[$k] ?? []) < $max;
+    if ($ok && $count) $all[$k][] = $now;
+    ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode($all)); flock($fh, LOCK_UN); fclose($fh);
+    return $ok;
+}
+function vd_dir_size(string $dir): int { $n = 0; foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS)) as $f) $n += $f->getSize(); return $n; }
 
 function vd_h($s): string { return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 
@@ -136,7 +168,7 @@ function vd_notify(array &$lead): void {
 }
 
 function vd_mail_lead(string $to, array $l): bool {
-    $host = preg_replace('/^www\./', '', $_SERVER['HTTP_HOST'] ?? 'vasilichdesign.art');
+    $host = VD_HOST;
     $subject = '=?UTF-8?B?' . base64_encode('Заявка с сайта №' . $l['num'] . ($l['name'] !== '' ? ' — ' . $l['name'] : '')) . '?=';
     $body = strip_tags(str_replace(['<b>', '</b>'], '', vd_lead_text($l, false)));
     if ($l['files']) $body .= "\n\nФайлы можно скачать в админке: https://{$host}/admin/#{$l['id']}";

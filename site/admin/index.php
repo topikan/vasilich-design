@@ -2,11 +2,18 @@
 // Admin page: requests from the site + Telegram settings. Password protected.
 require __DIR__ . '/../lib/vd.php';
 define('VD_ADMIN', 1);
-session_set_cookie_params(['httponly' => true, 'secure' => !empty($_SERVER['HTTPS']), 'samesite' => 'Strict', 'path' => dirname($_SERVER['SCRIPT_NAME']) . '/']);
+session_set_cookie_params(['httponly' => true, 'secure' => vd_https(), 'samesite' => 'Strict', 'path' => dirname($_SERVER['SCRIPT_NAME']) . '/']);
 session_name('vdadmin');
 session_start();
 header('Cache-Control: no-store');
 header('X-Robots-Tag: noindex, nofollow');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: no-referrer');
+header('X-Frame-Options: DENY');
+// the admin page only over https
+if (!vd_https() && preg_match('/(^|\.)vasilichdesign\.art$/', strtolower($_SERVER['HTTP_HOST'] ?? ''))) {
+    header('Location: https://' . VD_HOST . ($_SERVER['REQUEST_URI'] ?? '/admin/'), true, 301); exit;
+}
 header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; frame-ancestors 'none'");
 
 $c = vd_config();
@@ -24,7 +31,8 @@ if (!$c['password_hash']) {
     $err = '';
     if ($act === 'setup') {
         $p1 = (string)($_POST['p1'] ?? ''); $p2 = (string)($_POST['p2'] ?? '');
-        if (!hash_equals($c['setup_code'], strtoupper(trim((string)($_POST['code'] ?? ''))))) $err = 'Неверный код установки';
+        if (!vd_limit_ok('setup', vd_ip(), 10, 3600)) $err = 'Слишком много попыток. Подождите час.';
+        elseif (!hash_equals($c['setup_code'], strtoupper(trim((string)($_POST['code'] ?? ''))))) $err = 'Неверный код установки';
         elseif (mb_strlen($p1) < 8) $err = 'Пароль — минимум 8 символов';
         elseif ($p1 !== $p2) $err = 'Пароли не совпадают';
         else { $c['password_hash'] = password_hash($p1, PASSWORD_DEFAULT); $c['setup_code'] = ''; vd_config_save($c); session_regenerate_id(true); $_SESSION['auth'] = 1; go('Пароль сохранён', '?tab=settings'); }
@@ -45,15 +53,15 @@ if (!$c['password_hash']) {
 
 // ---------- login ----------
 if ($act === 'logout') { $_SESSION = []; session_destroy(); header('Location: ./'); exit; }
+if (!empty($_SESSION['auth']) && (time() - ($_SESSION['seen'] ?? time())) > 8 * 3600) { $_SESSION = []; }
+$_SESSION['seen'] = time();
 if (empty($_SESSION['auth'])) {
     $err = '';
     if ($act === 'login') {
-        $att = vd_json_read(vd_data_dir() . '/login.json', []);
-        $key = hash('sha256', $_SERVER['REMOTE_ADDR'] ?? '');
-        $recent = array_filter($att[$key] ?? [], fn($t) => $t > time() - 900);
-        if (count($recent) >= 8) $err = 'Слишком много попыток. Подождите 15 минут.';
-        elseif (password_verify((string)($_POST['p'] ?? ''), $c['password_hash'])) { session_regenerate_id(true); $_SESSION['auth'] = 1; unset($att[$key]); vd_json_write(vd_data_dir() . '/login.json', $att); go(); }
-        else { $recent[] = time(); $att[$key] = array_values($recent); vd_json_write(vd_data_dir() . '/login.json', $att); $err = 'Неверный пароль'; }
+        $ip = vd_ip();
+        if (!vd_limit_ok('login', $ip, 8, 900, false) || !vd_limit_ok('login-all', 'all', 40, 900, false)) $err = 'Слишком много попыток. Подождите 15 минут.';
+        elseif (password_verify((string)($_POST['p'] ?? ''), $c['password_hash'])) { session_regenerate_id(true); $_SESSION['auth'] = 1; $_SESSION['ip'] = $ip; go(); }
+        else { vd_limit_ok('login', $ip, 8, 900); vd_limit_ok('login-all', 'all', 40, 900); usleep(400000); $err = 'Неверный пароль'; }
     }
     page('Вход', function () use ($csrf, $err) { ?>
       <form method="post" class="card narrow">

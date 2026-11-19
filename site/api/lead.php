@@ -3,6 +3,7 @@
 require __DIR__ . '/../lib/vd.php';
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
+header('X-Content-Type-Options: nosniff');
 
 function out(int $code, array $data) { http_response_code($code); echo json_encode($data, JSON_UNESCAPED_UNICODE); exit; }
 
@@ -20,20 +21,13 @@ $contact = trim(mb_substr((string)($_POST['contact'] ?? ''), 0, 300));
 $task = trim(mb_substr((string)($_POST['task'] ?? ''), 0, 10000));
 if ($contact === '') out(422, ['ok' => false, 'error' => 'contact']);
 
-// at most 5 requests per IP in 10 minutes
-$ip = $_SERVER['REMOTE_ADDR'] ?? '';
-$rlPath = vd_data_dir() . '/ratelimit.json';
-$rl = vd_json_read($rlPath, []);
+// at most 5 requests per IP in 10 minutes, 60 from everyone per hour
 $now = time();
-foreach ($rl as $k => $ts) { $rl[$k] = array_values(array_filter($ts, fn($t) => $t > $now - 600)); if (!$rl[$k]) unset($rl[$k]); }
-$key = hash('sha256', $ip);
-if (count($rl[$key] ?? []) >= 5) out(429, ['ok' => false, 'error' => 'rate']);
-$rl[$key][] = $now;
-vd_json_write($rlPath, $rl);
+if (!vd_limit_ok('lead', vd_ip(), 5, 600) || !vd_limit_ok('lead-all', 'all', 60, 3600)) out(429, ['ok' => false, 'error' => 'rate']);
 
 $id = date('Ymd-His') . '-' . bin2hex(random_bytes(3));
 $leadFiles = [];
-if (!empty($_FILES['files']) && is_array($_FILES['files']['name'])) {
+if (!empty($_FILES['files']) && is_array($_FILES['files']['name']) && vd_dir_size(vd_data_dir() . '/files') < VD_FILES_QUOTA) {
     $dir = vd_data_dir() . '/files/' . $id;
     $total = 0;
     foreach ($_FILES['files']['name'] as $i => $orig) {
