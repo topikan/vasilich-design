@@ -54,12 +54,13 @@ if (!empty($_FILES['files']) && is_array($_FILES['files']['name'])) {
 $all = glob(vd_data_dir() . '/leads/*.json') ?: [];
 $lead = ['id' => $id, 'num' => count($all) + 1, 'time' => $now, 'name' => $name, 'contact' => $contact, 'task' => $task,
          'files' => $leadFiles, 'status' => 'new', 'lang' => ($_POST['lang'] ?? 'ru') === 'en' ? 'en' : 'ru',
-         'page' => mb_substr((string)($_SERVER['HTTP_REFERER'] ?? ''), 0, 300), 'tg' => ''];
+         'page' => mb_substr((string)($_SERVER['HTTP_REFERER'] ?? ''), 0, 300), 'tg' => '', 'tg_ok' => false, 'tg_tries' => 0];
 $path = vd_data_dir() . "/leads/$id.json";
 vd_json_write($path, $lead);
 
 // answer the visitor first, then talk to Telegram (it can take a few seconds with files)
 echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE);
 if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
-$lead['tg'] = vd_notify($lead);
+vd_notify($lead);
 vd_json_write($path, $lead);
+if (!empty($lead['tg_ok'])) vd_retry_pending(3);

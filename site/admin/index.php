@@ -78,7 +78,7 @@ switch ($act) {
         go('Заявка удалена');
     case 'resend':
         $p = $leadPath($_POST['id'] ?? ''); $l = vd_json_read($p, null);
-        if ($l) { $l['tg'] = vd_notify($l); vd_json_write($p, $l); go($l['tg'], '#' . $l['id']); }
+        if ($l) { $l['tg_tries'] = 0; vd_notify($l); vd_json_write($p, $l); go($l['tg'], '#' . $l['id']); }
         go();
     case 'token':
         $t = trim((string)($_POST['token'] ?? ''));
@@ -113,6 +113,21 @@ switch ($act) {
         $res = [];
         foreach ($c['tg_chats'] as $ch) { $r = vd_tg($c['tg_token'], 'sendMessage', ['chat_id' => $ch['id'], 'text' => 'Проверка: заявки с сайта приходят сюда.']); $res[] = $ch['name'] . ': ' . (!empty($r['ok']) ? 'доставлено' : ($r['description'] ?? 'ошибка')); }
         go(implode('; ', $res), '?tab=settings');
+    case 'relay':
+        $u = trim((string)($_POST['relay_url'] ?? ''));
+        if ($u !== '' && !preg_match('#^https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec$#', $u)) go('Адрес реле должен выглядеть как https://script.google.com/macros/s/…/exec', '?tab=settings');
+        $c['relay_url'] = $u;
+        vd_config_save($c); @unlink(vd_data_dir() . '/tg_blocked');
+        go($u ? 'Адрес реле сохранён. Нажмите «Отправить проверочное сообщение».' : 'Реле отключено', '?tab=settings');
+    case 'mail':
+        $m = trim((string)($_POST['mail_to'] ?? ''));
+        if ($m !== '' && !filter_var($m, FILTER_VALIDATE_EMAIL)) go('Почта указана с ошибкой', '?tab=settings');
+        $c['mail_to'] = $m; $c['mail_mode'] = in_array($_POST['mail_mode'] ?? '', ['fail', 'always', 'off'], true) ? $_POST['mail_mode'] : 'fail';
+        vd_config_save($c); go('Настройки почты сохранены', '?tab=settings');
+    case 'mailtest':
+        if (!$c['mail_to']) go('Сначала укажите почту', '?tab=settings');
+        $ok = vd_mail_lead($c['mail_to'], ['num' => 0, 'name' => 'Проверка', 'contact' => 'это тестовое письмо', 'task' => 'Если вы его видите, заявки на почту доходят. Проверьте и папку «Спам».', 'files' => [], 'time' => time(), 'id' => 'test']);
+        go($ok ? 'Письмо отправлено на ' . $c['mail_to'] . ' — проверьте почту и «Спам»' : 'Хостинг не смог отправить письмо', '?tab=settings');
     case 'password':
         if (!password_verify((string)($_POST['old'] ?? ''), $c['password_hash'])) go('Текущий пароль неверный', '?tab=settings');
         if (mb_strlen((string)($_POST['new'] ?? '')) < 8) go('Новый пароль — минимум 8 символов', '?tab=settings');
@@ -120,6 +135,8 @@ switch ($act) {
 }
 
 // ---------- pages ----------
+if (!$c['relay_secret']) { $c['relay_secret'] = bin2hex(random_bytes(16)); vd_config_save($c); }
+vd_retry_pending(2);
 $tab = ($_GET['tab'] ?? '') === 'settings' ? 'settings' : 'leads';
 $leads = vd_leads();
 $filter = in_array($_GET['s'] ?? '', ['new', 'work', 'done'], true) ? $_GET['s'] : '';
@@ -185,6 +202,21 @@ page('Заявки', function () use ($tab, $leads, $filter, $ST, $c, $csrf, $fl
         <p><a class="tglink" href="<?= vd_h($link) ?>" target="_blank" rel="noopener"><?= vd_h($link) ?></a></p>
         <form method="post" class="row"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><button name="act" value="link">Проверить привязку</button><button name="act" value="test" class="ghost">Отправить проверочное сообщение</button></form>
       <?php endif; ?>
+    </section>
+    <section class="card">
+      <h2>3. Если Telegram не доходит</h2>
+      <p class="muted">Хостинг в России, и связь с Telegram там часто режется. Неотправленные заявки сайт сам пробует отправить ещё раз (при новых заявках, при открытии этой страницы и по расписанию). Надёжный обход — реле через Google: заявки уходят в Telegram с серверов Google.</p>
+      <p><b>Статус:</b> <?= $c['relay_url'] ? 'реле подключено' : 'реле не подключено' ?><?php if (is_file(vd_data_dir() . '/tg_blocked') && filemtime(vd_data_dir() . '/tg_blocked') > time() - 1800) echo ' · прямое соединение с Telegram сейчас не работает'; ?></p>
+      <p class="muted">Секрет для скрипта реле: <code><?= vd_h($c['relay_secret']) ?></code></p>
+      <form method="post" class="row"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><input type="hidden" name="act" value="relay">
+        <input name="relay_url" value="<?= vd_h($c['relay_url']) ?>" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"><button>Сохранить</button></form>
+    </section>
+    <section class="card">
+      <h2>4. Дубль на почту</h2>
+      <form method="post" class="row"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><input type="hidden" name="act" value="mail">
+        <input name="mail_to" type="email" value="<?= vd_h($c['mail_to']) ?>" placeholder="почта">
+        <select name="mail_mode" style="flex:0 1 auto;width:auto"><?php foreach (['fail' => 'когда Telegram не доступен', 'always' => 'всегда', 'off' => 'не отправлять'] as $k => $v) echo '<option value="' . $k . '"' . ($c['mail_mode'] === $k ? ' selected' : '') . '>' . $v . '</option>'; ?></select>
+        <button>Сохранить</button><button name="act" value="mailtest" class="ghost">Тестовое письмо</button></form>
     </section>
     <section class="card">
       <h2>Пароль от этой страницы</h2>
