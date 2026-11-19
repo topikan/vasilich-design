@@ -1,0 +1,1097 @@
+{
+ "works": [
+  {
+   "id": "w1",
+   "t": {
+    "ru": "Меч",
+    "en": "The sword"
+   },
+   "c": "cgi",
+   "img": "assets/works/sword/1.jpg",
+   "loop": "assets/works/sword/loop.mp4",
+   "pos": "center 30%",
+   "task": {
+    "ru": "Показать оружие как артефакт: металл, гравировка, драгоценные вставки.",
+    "en": "Present the weapon as an artifact: metal, engraving, gem inlays."
+   },
+   "res": {
+    "ru": "Ролик с пролётами камеры и серия кадров крупным планом.",
+    "en": "A film with camera fly-throughs and a series of close-ups."
+   },
+   "fmt": {
+    "ru": "Видео 16:9 + кадры 4:5",
+    "en": "16:9 film + 4:5 stills"
+   },
+   "media": [
+    "v:assets/works/sword/film.mp4",
+    "assets/works/sword/1.jpg",
+    "assets/works/sword/2.jpg"
+   ],
+   "hidden": false
+  },
+  {
+   "id": "w2",
+   "t": {
+    "ru": "Парфюм на камне",
+    "en": "Fragrance on stone"
+   },
+   "c": "product",
+   "img": "assets/works/perfume/1.jpg",
+   "loop": "assets/works/perfume/loop.mp4",
+   "pos": "",
+   "task": {
+    "ru": "Рекламный визуал флакона: стекло, вода и камень.",
+    "en": "An advertising visual of the bottle: glass, water and stone."
+   },
+   "res": {
+    "ru": "Ролик для соцсетей и ключевой кадр.",
+    "en": "A social film and a key visual."
+   },
+   "fmt": {
+    "ru": "Видео 4:5 + кадр",
+    "en": "4:5 film + still"
+   },
+   "media": [
+    "v:assets/works/perfume/film.mp4",
+    "assets/works/perfume/1.jpg"
+   ],
+   "hidden": false
+  },
+  {
+   "id": "w3",
+   "t": {
+    "ru": "Конструктор VASILICH",
+    "en": "VASILICH building set"
+   },
+   "c": "cgi",
+   "img": "assets/works/lego/1.jpg",
+   "loop": "assets/works/lego/loop.mp4",
+   "pos": "",
+   "task": {
+    "ru": "Продуктовая анимация набора: сборка по деталям.",
+    "en": "Product animation of the set: building it piece by piece."
+   },
+   "res": {
+    "ru": "Ролик со звуком и кадры упаковки.",
+    "en": "A film with sound and packaging stills."
+   },
+   "fmt": {
+    "ru": "Видео 4:5 со звуком",
+    "en": "4:5 film with sound"
+   },
+   "media": [
+    "v:assets/works/lego/film.mp4",
+    "assets/works/lego/1.jpg",
+    "assets/works/lego/2.jpg"
+   ],
+   "hidden": false
+  },
+  {
+   "id": "w4",
+   "t": {
+    "ru": "Презентация студии",
+    "en": "Studio presentation"
+   },
+   "c": "animation",
+   "img": "assets/works/presentation/3.jpg",
+   "loop": "assets/works/presentation/loop.mp4",
+   "pos": "",
+   "task": {
+    "ru": "Ролик-знакомство со студией и её персонажем.",
+    "en": "An introduction film for the studio and its character."
+   },
+   "res": {
+    "ru": "40-секундная анимация и серия кадров.",
+    "en": "A 40-second animation and a series of stills."
+   },
+   "fmt": {
+    "ru": "Видео 4:5",
+    "en": "4:5 film"
+   },
+   "media": [
+    "v:assets/works/presentation/film.mp4",
+    "assets/works/presentation/1.jpg",
+    "assets/works/presentation/2.jpg",
+    "assets/works/presentation/3.jpg",
+    "assets/works/presentation/4.jpg"
+   ],
+   "hidden": false
+  },
+  {
+   "id": "w5",
+   "t": {
+    "ru": "Lagavulin 16",
+    "en": "Lagavulin 16"
+   },
+   "c": "product",
+   "img": "assets/works/whisky/1.jpg",
+   "loop": "assets/works/whisky/loop.mp4",
+   "pos": "",
+   "task": {
+    "ru": "Рекламная серия для виски: бутылка, бочки и подарочная упаковка.",
+    "en": "An advertising series for the whisky: bottle, casks and gift box."
+   },
+   "res": {
+    "ru": "Ролик со звуком, баннер и серия кадров.",
+    "en": "A film with sound, a banner and a series of stills."
+   },
+   "fmt": {
+    "ru": "Видео 16:9 + кадры 4:5",
+    "en": "16:9 film + 4:5 stills"
+   },
+   "media": [
+    "v:assets/works/whisky/film.mp4",
+    "v:assets/works/whisky/film2.mp4",
+    "assets/works/whisky/1.jpg",
+    "assets/works/whisky/2.jpg",
+    "assets/works/whisky/3.jpg",
+    "assets/works/whisky/4.jpg",
+    "assets/works/whisky/5.jpg",
+    "assets/works/whisky/6.jpg"
+   ],
+   "hidden": false
+  },
+  {
+   "id": "w6",
+   "t": {
+    "ru": "Оформление Twitch-канала",
+    "en": "Twitch channel design"
+   },
+   "c": "cgi",
+   "img": "assets/works/twitch/1.jpg",
+   "loop": "assets/works/twitch/loop.mp4",
+   "pos": "",
+   "task": {
+    "ru": "Единый стиль канала: экраны трансляции, шапка, аватар и панели.",
+    "en": "One style for the channel: stream screens, banner, avatar and panels."
+   },
+   "res": {
+    "ru": "Анимированные экраны и комплект панелей.",
+    "en": "Animated screens and a set of panels."
+   },
+   "fmt": {
+    "ru": "Видео 16:9 + графика",
+    "en": "16:9 video + graphics"
+   },
+   "media": [
+    "v:assets/works/twitch/film.mp4",
+    "v:assets/works/twitch/film2.mp4",
+    "assets/works/twitch/1.jpg",
+    "assets/works/twitch/2.jpg",
+    {
+     "grid": [
+      "assets/works/twitch/3.jpg",
+      "assets/works/twitch/4.jpg",
+      "assets/works/twitch/5.jpg",
+      "assets/works/twitch/6.jpg",
+      "assets/works/twitch/7.jpg"
+     ]
+    }
+   ],
+   "hidden": false
+  }
+ ],
+ "steps": [
+  {
+   "t": {
+    "ru": "Обсуждение задачи",
+    "en": "Briefing"
+   },
+   "d": {
+    "ru": "Созваниваемся или переписываемся: цель, аудитория, где будет жить результат, сроки и бюджет.",
+    "en": "A call or a chat: the goal, the audience, where the result will live, timing and budget."
+   },
+   "o": {
+    "ru": "Понимание задачи",
+    "en": "A clear task"
+   }
+  },
+  {
+   "t": {
+    "ru": "Разработка концепции",
+    "en": "Concept"
+   },
+   "d": {
+    "ru": "Предлагаем идею кадра или ролика: настроение, точку зрения, ключевые сцены.",
+    "en": "We propose the idea of the shot or film: mood, point of view, key scenes."
+   },
+   "o": {
+    "ru": "Концепция",
+    "en": "Concept"
+   }
+  },
+  {
+   "t": {
+    "ru": "Референсы и ТЗ",
+    "en": "References and brief"
+   },
+   "d": {
+    "ru": "Собираем мудборд, фиксируем ракурсы, материалы и форматы. По этому ТЗ сверяем результат.",
+    "en": "We build a moodboard and fix angles, materials and formats. The result is checked against this brief."
+   },
+   "o": {
+    "ru": "Утверждённое ТЗ",
+    "en": "Approved brief"
+   }
+  },
+  {
+   "t": {
+    "ru": "3D-сцена и материалы",
+    "en": "3D scene and materials"
+   },
+   "d": {
+    "ru": "Моделируем объекты и окружение, настраиваем поверхности. Показываем черновые превью.",
+    "en": "We model objects and the environment, set up surfaces and show draft previews."
+   },
+   "o": {
+    "ru": "Сцена и превью",
+    "en": "Scene and previews"
+   }
+  },
+  {
+   "t": {
+    "ru": "Свет и визуализация",
+    "en": "Light and rendering"
+   },
+   "d": {
+    "ru": "Ставим свет как на съёмочной площадке и рендерим финальные кадры.",
+    "en": "We light the scene like a film set and render the final frames."
+   },
+   "o": {
+    "ru": "Финальные рендеры",
+    "en": "Final renders"
+   }
+  },
+  {
+   "t": {
+    "ru": "Анимация или интерактив",
+    "en": "Animation or interactive"
+   },
+   "d": {
+    "ru": "Анимируем камеру и объекты или готовим модель для браузера.",
+    "en": "We animate the camera and objects or prepare the model for the browser."
+   },
+   "o": {
+    "ru": "Ролик или веб-модель",
+    "en": "Film or web model"
+   }
+  },
+  {
+   "t": {
+    "ru": "Доработка и передача",
+    "en": "Polish and delivery"
+   },
+   "d": {
+    "ru": "Вносим правки, готовим файлы под все площадки и передаём исходники.",
+    "en": "We apply revisions, prepare files for every platform and hand over the sources."
+   },
+   "o": {
+    "ru": "Готовые файлы",
+    "en": "Final files"
+   }
+  }
+ ],
+ "texts": [
+  {
+   "k": "nav1",
+   "sec": "Шапка",
+   "ru": "Услуги",
+   "en": "Services"
+  },
+  {
+   "k": "nav2",
+   "sec": "Шапка",
+   "ru": "Пакеты",
+   "en": "Packages"
+  },
+  {
+   "k": "nav3",
+   "sec": "Шапка",
+   "ru": "Работы",
+   "en": "Work"
+  },
+  {
+   "k": "nav4",
+   "sec": "Шапка",
+   "ru": "О студии",
+   "en": "Studio"
+  },
+  {
+   "k": "nav5",
+   "sec": "Шапка",
+   "ru": "Этапы",
+   "en": "Process"
+  },
+  {
+   "k": "cta",
+   "sec": "Шапка",
+   "ru": "Обсудить проект",
+   "en": "Start a project"
+  },
+  {
+   "k": "nav6",
+   "sec": "Шапка",
+   "ru": "Контакты",
+   "en": "Contact"
+  },
+  {
+   "k": "heroLead",
+   "sec": "Первый экран",
+   "ru": "Студия 3D-визуализации. Строим сцены, ставим свет и делаем кадры, анимацию и интерактивные модели, которые показывают продукт лучше фотографии.",
+   "en": "A 3D visualization studio. We build scenes, set the light and make stills, animation and interactive models that show a product better than a photo shoot."
+  },
+  {
+   "k": "heroBtn",
+   "sec": "Первый экран",
+   "ru": "Смотреть работы",
+   "en": "See the work"
+  },
+  {
+   "k": "heroHint",
+   "sec": "Первый экран",
+   "ru": "Ведите курсором — мы ставим свет",
+   "en": "Move your cursor — we set the light"
+  },
+  {
+   "k": "svcTitle",
+   "sec": "Услуги",
+   "ru": "Что мы делаем",
+   "en": "What we do"
+  },
+  {
+   "k": "svcLead",
+   "sec": "Услуги",
+   "ru": "Четыре услуги — от одного кадра до модели, которую клиент крутит в браузере. Наведите на карточку или нажмите на неё.",
+   "en": "Four services — from a single still to a model your client spins in the browser. Hover or tap a card."
+  },
+  {
+   "k": "p1",
+   "sec": "Услуги",
+   "ru": "от 3 000 ₽",
+   "en": "from 3,000 ₽"
+  },
+  {
+   "k": "s1",
+   "sec": "Услуги",
+   "ru": "Сцены целиком: окружение, свет, материалы и атмосфера. Для рекламных кампаний, презентаций и арт-проектов.",
+   "en": "Complete scenes: environment, light, materials and atmosphere. For ad campaigns, presentations and art projects."
+  },
+  {
+   "k": "s1a",
+   "sec": "Услуги",
+   "ru": "Интерьеры и окружение",
+   "en": "Interiors and environments"
+  },
+  {
+   "k": "s1b",
+   "sec": "Услуги",
+   "ru": "Концепт-сцены",
+   "en": "Concept scenes"
+  },
+  {
+   "k": "s1c",
+   "sec": "Услуги",
+   "ru": "Кадры для кампаний",
+   "en": "Campaign stills"
+  },
+  {
+   "k": "p2",
+   "sec": "Услуги",
+   "ru": "от 5 000 ₽",
+   "en": "from 5,000 ₽"
+  },
+  {
+   "k": "s2",
+   "sec": "Услуги",
+   "ru": "Рендеры товара вместо фотосъёмки: студийный свет, точные материалы, любой ракурс и любое количество вариантов.",
+   "en": "Product renders instead of a photo shoot: studio light, accurate materials, any angle and any number of variants."
+  },
+  {
+   "k": "s2a",
+   "sec": "Услуги",
+   "ru": "Каталог и маркетплейсы",
+   "en": "Catalogs and marketplaces"
+  },
+  {
+   "k": "s2b",
+   "sec": "Услуги",
+   "ru": "Рекламные кадры",
+   "en": "Advertising stills"
+  },
+  {
+   "k": "s2c",
+   "sec": "Услуги",
+   "ru": "Упаковка и детали",
+   "en": "Packaging and details"
+  },
+  {
+   "k": "p3",
+   "sec": "Услуги",
+   "ru": "от 15 000 ₽",
+   "en": "from 15,000 ₽"
+  },
+  {
+   "k": "s3",
+   "sec": "Услуги",
+   "ru": "Рекламные ролики и художественная анимация: работа с камерой, движением и ритмом монтажа.",
+   "en": "Commercials and art animation: camera work, motion and editing rhythm."
+  },
+  {
+   "k": "s3a",
+   "sec": "Услуги",
+   "ru": "Ролики для соцсетей",
+   "en": "Social media clips"
+  },
+  {
+   "k": "s3b",
+   "sec": "Услуги",
+   "ru": "Продуктовые анимации",
+   "en": "Product animation"
+  },
+  {
+   "k": "s3c",
+   "sec": "Услуги",
+   "ru": "Видеофоны для сайтов",
+   "en": "Website video loops"
+  },
+  {
+   "k": "p4",
+   "sec": "Услуги",
+   "ru": "от 5 000 ₽",
+   "en": "from 5,000 ₽"
+  },
+  {
+   "k": "s4",
+   "sec": "Услуги",
+   "ru": "Модели, которые вращают, раскрывают и настраивают прямо в браузере — на сайте, в презентации или на выставке.",
+   "en": "Models people rotate, open and configure right in the browser — on a website, in a pitch or at a trade show."
+  },
+  {
+   "k": "s4a",
+   "sec": "Услуги",
+   "ru": "Веб-конфигураторы",
+   "en": "Web configurators"
+  },
+  {
+   "k": "s4b",
+   "sec": "Услуги",
+   "ru": "3D на сайте",
+   "en": "3D on websites"
+  },
+  {
+   "k": "s4c",
+   "sec": "Услуги",
+   "ru": "Интерактивные презентации",
+   "en": "Interactive presentations"
+  },
+  {
+   "k": "cubeTitle",
+   "sec": "Диорама",
+   "ru": "Запустите диораму",
+   "en": "Start the diorama"
+  },
+  {
+   "k": "cubeLead",
+   "sec": "Диорама",
+   "ru": "Это живая CGI-диорама — так работают наши интерактивные проекты. Подключите кабель, включите питание и запустите механизм. После выключения вас ждёт бонус.",
+   "en": "This is a live CGI diorama — this is how our interactive projects work. Connect the cable, power it on and start the mechanism. A bonus waits after you switch it off."
+  },
+  {
+   "k": "dConnect",
+   "sec": "Диорама",
+   "ru": "Подключить кабель",
+   "en": "Connect the cable"
+  },
+  {
+   "k": "dTimer",
+   "sec": "Диорама",
+   "ru": "До завершения цикла:",
+   "en": "Until the cycle ends:"
+  },
+  {
+   "k": "dSec",
+   "sec": "Диорама",
+   "ru": "сек.",
+   "en": "s"
+  },
+  {
+   "k": "musicOn",
+   "sec": "Диорама",
+   "ru": "Включить музыку",
+   "en": "Turn music on"
+  },
+  {
+   "k": "st1",
+   "sec": "Диорама",
+   "ru": "Кабель",
+   "en": "Cable"
+  },
+  {
+   "k": "st2",
+   "sec": "Диорама",
+   "ru": "Питание",
+   "en": "Power"
+  },
+  {
+   "k": "st3",
+   "sec": "Диорама",
+   "ru": "Движение",
+   "en": "Motion"
+  },
+  {
+   "k": "offer",
+   "sec": "Диорама",
+   "ru": "Диорама выключена — спасибо, что запустили её. Дарим скидку 10% на первый проект, укажите промокод в заявке.",
+   "en": "The diorama is off — thanks for running it. Here is 10% off your first project: add the promo code to your request."
+  },
+  {
+   "k": "promoL",
+   "sec": "Диорама",
+   "ru": "Промокод:",
+   "en": "Promo code:"
+  },
+  {
+   "k": "promoCopy",
+   "sec": "Диорама",
+   "ru": "копировать",
+   "en": "copy"
+  },
+  {
+   "k": "offerBtn",
+   "sec": "Диорама",
+   "ru": "Получить скидку",
+   "en": "Claim the discount"
+  },
+  {
+   "k": "dirTitle",
+   "sec": "Пакеты услуг",
+   "ru": "Пакеты услуг",
+   "en": "Service packages"
+  },
+  {
+   "k": "dirLead",
+   "sec": "Пакеты услуг",
+   "ru": "Можно заказать отдельный кадр, а можно отдать нам направление целиком: от идеи до готовых файлов.",
+   "en": "Order a single still, or hand us the whole direction: from the idea to the final files."
+  },
+  {
+   "k": "d1",
+   "sec": "Пакеты услуг",
+   "ru": "Сцены целиком: окружение, атмосфера, работа со светом и материалами. Кадр, в котором веришь каждой поверхности.",
+   "en": "Complete scenes: environment, atmosphere, light and materials. A frame where every surface is believable."
+  },
+  {
+   "k": "t1",
+   "sec": "Пакеты услуг",
+   "ru": "Окружение и сцена",
+   "en": "Environment and scene"
+  },
+  {
+   "k": "t2",
+   "sec": "Пакеты услуг",
+   "ru": "Постановка света",
+   "en": "Lighting"
+  },
+  {
+   "k": "t3",
+   "sec": "Пакеты услуг",
+   "ru": "Материалы и текстуры",
+   "en": "Materials and textures"
+  },
+  {
+   "k": "pk1",
+   "sec": "Пакеты услуг",
+   "ru": "Анимация + 2 статичных кадра",
+   "en": "Animation + 2 stills"
+  },
+  {
+   "k": "pk1p",
+   "sec": "Пакеты услуг",
+   "ru": "от 17 000 ₽",
+   "en": "from 17,000 ₽"
+  },
+  {
+   "k": "d1l",
+   "sec": "Пакеты услуг",
+   "ru": "Проекты CGI",
+   "en": "CGI projects"
+  },
+  {
+   "k": "d2",
+   "sec": "Пакеты услуг",
+   "ru": "Предметная визуализация, рекламные рендеры и продуктовые анимации.",
+   "en": "Product visualization, advertising renders and product animation."
+  },
+  {
+   "k": "t4",
+   "sec": "Пакеты услуг",
+   "ru": "Рендеры для каталога",
+   "en": "Catalog renders"
+  },
+  {
+   "k": "t5",
+   "sec": "Пакеты услуг",
+   "ru": "Рекламные кадры",
+   "en": "Advertising stills"
+  },
+  {
+   "k": "t6",
+   "sec": "Пакеты услуг",
+   "ru": "Продуктовая анимация",
+   "en": "Product animation"
+  },
+  {
+   "k": "pk2",
+   "sec": "Пакеты услуг",
+   "ru": "Анимация + 2 статичных кадра",
+   "en": "Animation + 2 stills"
+  },
+  {
+   "k": "pk2p",
+   "sec": "Пакеты услуг",
+   "ru": "от 20 000 ₽",
+   "en": "from 20,000 ₽"
+  },
+  {
+   "k": "d2l",
+   "sec": "Пакеты услуг",
+   "ru": "Проекты Product",
+   "en": "Product projects"
+  },
+  {
+   "k": "d3",
+   "sec": "Пакеты услуг",
+   "ru": "Интерактивные 3D-модели, веб-конфигураторы и презентации.",
+   "en": "Interactive 3D models, web configurators and presentations."
+  },
+  {
+   "k": "t7",
+   "sec": "Пакеты услуг",
+   "ru": "3D-модели для сайта",
+   "en": "3D models for websites"
+  },
+  {
+   "k": "t8",
+   "sec": "Пакеты услуг",
+   "ru": "Веб-конфигураторы",
+   "en": "Web configurators"
+  },
+  {
+   "k": "t9",
+   "sec": "Пакеты услуг",
+   "ru": "Интерактивные презентации",
+   "en": "Interactive presentations"
+  },
+  {
+   "k": "pk3",
+   "sec": "Пакеты услуг",
+   "ru": "Анимированная модель + интеграция на сайт",
+   "en": "Animated model + website integration"
+  },
+  {
+   "k": "pk3p",
+   "sec": "Пакеты услуг",
+   "ru": "от 10 000 ₽",
+   "en": "from 10,000 ₽"
+  },
+  {
+   "k": "d3l",
+   "sec": "Пакеты услуг",
+   "ru": "Запустить диораму",
+   "en": "Start the diorama"
+  },
+  {
+   "k": "worksTitle",
+   "sec": "Портфолио",
+   "ru": "Работы",
+   "en": "Work"
+  },
+  {
+   "k": "all",
+   "sec": "Портфолио",
+   "ru": "Все",
+   "en": "All"
+  },
+  {
+   "k": "aboutTitle",
+   "sec": "О студии",
+   "ru": "Режиссура,<br>а не просто рендер",
+   "en": "Directing,<br>not just rendering"
+  },
+  {
+   "k": "ab1",
+   "sec": "О студии",
+   "ru": "VASILICH DESIGN — студия, где 3D начинается с вопроса «что должен почувствовать зритель». Сначала мы придумываем кадр: точку зрения, свет, ритм. Потом строим под него сцену.",
+   "en": "VASILICH DESIGN is a studio where 3D starts with the question “what should the viewer feel”. First we invent the shot: point of view, light, rhythm. Then we build the scene for it."
+  },
+  {
+   "k": "ab2",
+   "sec": "О студии",
+   "ru": "Поэтому наши работы похожи на кино, а не на каталог: у каждой сцены есть история, у каждого объекта — характер.",
+   "en": "That is why our work looks like cinema, not a catalog: every scene has a story, every object has a character."
+  },
+  {
+   "k": "k1",
+   "sec": "О студии",
+   "ru": "Постановка",
+   "en": "Staging"
+  },
+  {
+   "k": "k1v",
+   "sec": "О студии",
+   "ru": "Режиссура и композиция кадра",
+   "en": "Shot direction and composition"
+  },
+  {
+   "k": "k2",
+   "sec": "О студии",
+   "ru": "Свет",
+   "en": "Light"
+  },
+  {
+   "k": "k2v",
+   "sec": "О студии",
+   "ru": "Кинематографичное освещение",
+   "en": "Cinematic lighting"
+  },
+  {
+   "k": "k3",
+   "sec": "О студии",
+   "ru": "Материалы",
+   "en": "Materials"
+  },
+  {
+   "k": "k3v",
+   "sec": "О студии",
+   "ru": "Фотореалистичные поверхности",
+   "en": "Photoreal surfaces"
+  },
+  {
+   "k": "k4",
+   "sec": "О студии",
+   "ru": "Движение",
+   "en": "Motion"
+  },
+  {
+   "k": "k4v",
+   "sec": "О студии",
+   "ru": "Анимация камеры и объектов",
+   "en": "Camera and object animation"
+  },
+  {
+   "k": "k5",
+   "sec": "О студии",
+   "ru": "Веб",
+   "en": "Web"
+  },
+  {
+   "k": "k5v",
+   "sec": "О студии",
+   "ru": "Интерактивные модели для сайтов",
+   "en": "Interactive models for websites"
+  },
+  {
+   "k": "k6",
+   "sec": "О студии",
+   "ru": "Персонажи",
+   "en": "Characters"
+  },
+  {
+   "k": "k6v",
+   "sec": "О студии",
+   "ru": "Маскоты и роботы",
+   "en": "Mascots and robots"
+  },
+  {
+   "k": "qT",
+   "sec": "О студии",
+   "ru": "Знакомьтесь, это Василич",
+   "en": "Meet Vasilich"
+  },
+  {
+   "k": "qB",
+   "sec": "О студии",
+   "ru": "Наш робот — лицо студии. Он живёт в каждом проекте, а его экран стал нашим логотипом.",
+   "en": "Our robot is the face of the studio. He lives in every project, and his screen became our logo."
+  },
+  {
+   "k": "flowTitle",
+   "sec": "Этапы работы",
+   "ru": "Как идёт работа",
+   "en": "How we work"
+  },
+  {
+   "k": "ctPhrase",
+   "sec": "Контакты и форма",
+   "ru": "Каждый сильный кадр<br>начинается с разговора",
+   "en": "Every strong shot<br>starts with a conversation"
+  },
+  {
+   "k": "ctTitle",
+   "sec": "Контакты и форма",
+   "ru": "Давайте обсудим кейс",
+   "en": "Let’s discuss your case"
+  },
+  {
+   "k": "ctLead",
+   "sec": "Контакты и форма",
+   "ru": "Расскажите о задаче — даже если есть только идея. Ответим, предложим подход и оценим объём работы.",
+   "en": "Tell us about the task — even if it is just an idea. We will reply, suggest an approach and estimate the scope."
+  },
+  {
+   "k": "mail",
+   "sec": "Контакты и форма",
+   "ru": "Почта",
+   "en": "Email"
+  },
+  {
+   "k": "fName",
+   "sec": "Контакты и форма",
+   "ru": "Имя",
+   "en": "Name"
+  },
+  {
+   "k": "fCont",
+   "sec": "Контакты и форма",
+   "ru": "Контакт для связи",
+   "en": "Contact"
+  },
+  {
+   "k": "fErr",
+   "sec": "Контакты и форма",
+   "ru": "Оставьте контакт, чтобы мы могли ответить",
+   "en": "Leave a contact so we can reply"
+  },
+  {
+   "k": "fTask",
+   "sec": "Контакты и форма",
+   "ru": "Задача",
+   "en": "Task"
+  },
+  {
+   "k": "fDrop",
+   "sec": "Контакты и форма",
+   "ru": "Прикрепите ТЗ или референсы",
+   "en": "Attach a brief or references"
+  },
+  {
+   "k": "fDropS",
+   "sec": "Контакты и форма",
+   "ru": "Перетащите файлы сюда или нажмите. PDF, изображения, архивы до 50 МБ",
+   "en": "Drop files here or click. PDF, images, archives up to 50 MB"
+  },
+  {
+   "k": "fAgree",
+   "sec": "Контакты и форма",
+   "ru": "Нажимая кнопку, вы соглашаетесь на обработку данных",
+   "en": "By clicking the button you agree to data processing"
+  },
+  {
+   "k": "fSend",
+   "sec": "Контакты и форма",
+   "ru": "Отправить заявку",
+   "en": "Send request"
+  },
+  {
+   "k": "fDone",
+   "sec": "Контакты и форма",
+   "ru": "Заявка отправлена",
+   "en": "Request sent"
+  },
+  {
+   "k": "fDoneS",
+   "sec": "Контакты и форма",
+   "ru": "Спасибо! Мы получили заявку и скоро ответим.",
+   "en": "Thank you! We have received your request and will reply soon."
+  },
+  {
+   "k": "ftrAbout",
+   "sec": "Подвал",
+   "ru": "Студия 3D-визуализации: CGI, предметная визуализация, анимация и интерактивное 3D.",
+   "en": "3D visualization studio: CGI, product visualization, animation and interactive 3D."
+  },
+  {
+   "k": "ftrNav",
+   "sec": "Подвал",
+   "ru": "Навигация",
+   "en": "Navigation"
+  },
+  {
+   "k": "ftrReq",
+   "sec": "Подвал",
+   "ru": "Оставить заявку",
+   "en": "Send a request"
+  },
+  {
+   "k": "ftrSoc",
+   "sec": "Подвал",
+   "ru": "Соцсети",
+   "en": "Social"
+  },
+  {
+   "k": "copy",
+   "sec": "Подвал",
+   "ru": "© 2026 VASILICH DESIGN. Все права защищены.",
+   "en": "© 2026 VASILICH DESIGN. All rights reserved."
+  },
+  {
+   "k": "specLink",
+   "sec": "Подвал",
+   "ru": "Дизайн-система макета",
+   "en": "Design system"
+  },
+  {
+   "k": "pTask",
+   "sec": "Подвал",
+   "ru": "Задача",
+   "en": "Task"
+  },
+  {
+   "k": "pRes",
+   "sec": "Подвал",
+   "ru": "Результат",
+   "en": "Result"
+  },
+  {
+   "k": "pDir",
+   "sec": "Подвал",
+   "ru": "Направление",
+   "en": "Direction"
+  },
+  {
+   "k": "pFmt",
+   "sec": "Подвал",
+   "ru": "Формат",
+   "en": "Format"
+  },
+  {
+   "k": "pNext",
+   "sec": "Подвал",
+   "ru": "Следующий проект",
+   "en": "Next project"
+  },
+  {
+   "k": "fNamePh",
+   "sec": "Контакты и форма",
+   "ru": "Как к вам обращаться",
+   "en": "What should we call you",
+   "ph": true
+  },
+  {
+   "k": "fContPh",
+   "sec": "Контакты и форма",
+   "ru": "Telegram, телефон или почта",
+   "en": "Telegram, phone or email",
+   "ph": true
+  },
+  {
+   "k": "fTaskPh",
+   "sec": "Контакты и форма",
+   "ru": "Что нужно сделать, для чего и к какому сроку",
+   "en": "What needs to be done, why and by when",
+   "ph": true
+  },
+  {
+   "k": "out",
+   "sec": "Этапы работы",
+   "ru": "На выходе",
+   "en": "Outcome"
+  },
+  {
+   "k": "fBig",
+   "sec": "Контакты и форма",
+   "ru": "Файлы слишком большие: всего до 50 МБ.",
+   "en": "Files are too large: up to 50 MB in total."
+  },
+  {
+   "k": "fRate",
+   "sec": "Контакты и форма",
+   "ru": "Слишком много заявок подряд. Попробуйте через несколько минут.",
+   "en": "Too many requests in a row. Please try again in a few minutes."
+  },
+  {
+   "k": "fFail",
+   "sec": "Контакты и форма",
+   "ru": "Не получилось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram или на почту.",
+   "en": "Could not send the request. Please try again or write to us on Telegram or by email."
+  },
+  {
+   "k": "promoOk",
+   "sec": "Диорама",
+   "ru": "скопировано",
+   "en": "copied"
+  },
+  {
+   "k": "dConnecting",
+   "sec": "Диорама",
+   "ru": "Подключаем кабель…",
+   "en": "Connecting the cable…"
+  },
+  {
+   "k": "dPower",
+   "sec": "Диорама",
+   "ru": "Включить питание",
+   "en": "Power on"
+  },
+  {
+   "k": "dPowering",
+   "sec": "Диорама",
+   "ru": "Включаем питание…",
+   "en": "Powering on…"
+  },
+  {
+   "k": "dRun",
+   "sec": "Диорама",
+   "ru": "Запустить движение",
+   "en": "Start motion"
+  },
+  {
+   "k": "dStop",
+   "sec": "Диорама",
+   "ru": "Остановить движение",
+   "en": "Stop motion"
+  },
+  {
+   "k": "dStopping",
+   "sec": "Диорама",
+   "ru": "Дожидаемся конца цикла…",
+   "en": "Finishing the cycle…"
+  },
+  {
+   "k": "dOff",
+   "sec": "Диорама",
+   "ru": "Выключаем питание…",
+   "en": "Powering off…"
+  },
+  {
+   "k": "dDisc",
+   "sec": "Диорама",
+   "ru": "Отсоединяем кабель…",
+   "en": "Disconnecting the cable…"
+  },
+  {
+   "k": "dPowerOff",
+   "sec": "Диорама",
+   "ru": "Выключить питание",
+   "en": "Power off"
+  },
+  {
+   "k": "dUnplug",
+   "sec": "Диорама",
+   "ru": "Отсоединить кабель",
+   "en": "Disconnect the cable"
+  },
+  {
+   "k": "dLoad",
+   "sec": "Диорама",
+   "ru": "Загружаем…",
+   "en": "Loading…"
+  },
+  {
+   "k": "musicOff",
+   "sec": "Диорама",
+   "ru": "Выключить музыку",
+   "en": "Turn music off"
+  }
+ ]
+}

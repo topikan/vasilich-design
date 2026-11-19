@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=12">
+<link rel="stylesheet" href="styles.css?v=13">
+<script src="uploads/content.js"></script>
 </head>
 <body>
 
@@ -55,8 +56,8 @@
 <!-- 2. HERO -->
 <section class="hero" id="hero">
   <div class="hero__media" id="heroMedia">
-    <img class="hero__img hero__img--base" src="assets/hero.jpg" alt="Робот в мастерской студии">
-    <img class="hero__img hero__img--lit" src="assets/hero.jpg" alt="" aria-hidden="true">
+    <img class="hero__img hero__img--base" data-media="hero" src="assets/hero.jpg" alt="Робот в мастерской студии">
+    <img class="hero__img hero__img--lit" data-media="hero" src="assets/hero.jpg" alt="" aria-hidden="true">
   </div>
   <div class="hero__body wrap">
     <h1 class="display"><span class="ln"><span>VASILICH</span></span><span class="ln"><span>DESIGN</span></span></h1>
@@ -79,25 +80,25 @@
     <div class="svc" id="svc">
       <article class="card rv" tabindex="0" aria-pressed="false">
         <div class="card__in">
-          <div class="card__face card__front"><span class="card__price" data-i18n="p1">от 3 000 ₽</span><img src="assets/svc-cgi.jpg" alt="Ретро-гаджеты на подиумах"><div class="card__title"><h3 class="h3">CGI</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
+          <div class="card__face card__front"><span class="card__price" data-i18n="p1">от 3 000 ₽</span><img data-media="svcCgi" src="assets/svc-cgi.jpg" alt="Ретро-гаджеты на подиумах"><div class="card__title"><h3 class="h3">CGI</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
           <div class="card__face card__back"><h3 class="h3">CGI</h3><p data-i18n="s1">Сцены целиком: окружение, свет, материалы и атмосфера. Для рекламных кампаний, презентаций и арт-проектов.</p><ul><li data-i18n="s1a">Интерьеры и окружение</li><li data-i18n="s1b">Концепт-сцены</li><li data-i18n="s1c">Кадры для кампаний</li></ul><div class="card__cost"><span data-i18n="p1">от 3 000 ₽</span></div><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
       <article class="card rv rv-d1" tabindex="0" aria-pressed="false">
         <div class="card__in">
-          <div class="card__face card__front"><span class="card__price" data-i18n="p2">от 5 000 ₽</span><img src="assets/svc-product.jpg" alt="Кресло в студийном свете"><div class="card__title"><h3 class="h3">Product Visualization</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
+          <div class="card__face card__front"><span class="card__price" data-i18n="p2">от 5 000 ₽</span><img data-media="svcProduct" src="assets/svc-product.jpg" alt="Кресло в студийном свете"><div class="card__title"><h3 class="h3">Product Visualization</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
           <div class="card__face card__back"><h3 class="h3">Product Visualization</h3><p data-i18n="s2">Рендеры товара вместо фотосъёмки: студийный свет, точные материалы, любой ракурс и любое количество вариантов.</p><ul><li data-i18n="s2a">Каталог и маркетплейсы</li><li data-i18n="s2b">Рекламные кадры</li><li data-i18n="s2c">Упаковка и детали</li></ul><div class="card__cost"><span data-i18n="p2">от 5 000 ₽</span></div><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
       <article class="card rv rv-d2" tabindex="0" aria-pressed="false">
         <div class="card__in">
-          <div class="card__face card__front"><span class="card__price" data-i18n="p3">от 15 000 ₽</span><video src="assets/svc-animation.mp4" poster="assets/svc-animation.jpg" muted loop playsinline autoplay></video><div class="card__title"><h3 class="h3">Animation</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
+          <div class="card__face card__front"><span class="card__price" data-i18n="p3">от 15 000 ₽</span><video data-media="svcAnim" src="assets/svc-animation.mp4" poster="assets/svc-animation.jpg" muted loop playsinline autoplay></video><div class="card__title"><h3 class="h3">Animation</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
           <div class="card__face card__back"><h3 class="h3">Animation</h3><p data-i18n="s3">Рекламные ролики и художественная анимация: работа с камерой, движением и ритмом монтажа.</p><ul><li data-i18n="s3a">Ролики для соцсетей</li><li data-i18n="s3b">Продуктовые анимации</li><li data-i18n="s3c">Видеофоны для сайтов</li></ul><div class="card__cost"><span data-i18n="p3">от 15 000 ₽</span></div><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
       <article class="card rv rv-d3" tabindex="0" aria-pressed="false">
         <div class="card__in">
-          <div class="card__face card__front"><span class="card__price" data-i18n="p4">от 5 000 ₽</span><video src="assets/svc-interactive.mp4" poster="assets/svc-interactive.jpg" muted loop playsinline autoplay aria-label="Светящийся модуль на подиуме"></video><div class="card__title"><h3 class="h3">Interactive 3D</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
+          <div class="card__face card__front"><span class="card__price" data-i18n="p4">от 5 000 ₽</span><video data-media="svcInter" src="assets/svc-interactive.mp4" poster="assets/svc-interactive.jpg" muted loop playsinline autoplay aria-label="Светящийся модуль на подиуме"></video><div class="card__title"><h3 class="h3">Interactive 3D</h3><span class="card__flip"><svg><use href="#i-flip"/></svg></span></div></div>
           <div class="card__face card__back"><h3 class="h3">Interactive 3D</h3><p data-i18n="s4">Модели, которые вращают, раскрывают и настраивают прямо в браузере — на сайте, в презентации или на выставке.</p><ul><li data-i18n="s4a">Веб-конфигураторы</li><li data-i18n="s4b">3D на сайте</li><li data-i18n="s4c">Интерактивные презентации</li></ul><div class="card__cost"><span data-i18n="p4">от 5 000 ₽</span></div><span class="card__close"><svg><use href="#i-close"/></svg></span></div>
         </div>
       </article>
@@ -146,7 +147,7 @@
       <h2 class="h1" data-i18n="dirTitle">Пакеты услуг</h2>
       <p data-i18n="dirLead">Можно заказать отдельный кадр, а можно отдать нам направление целиком: от идеи до готовых файлов.</p>
     </div>
-    <div class="packs__film rv"><video src="assets/packs.mp4?v=2" poster="assets/packs.jpg?v=2" muted loop playsinline autoplay></video></div>
+    <div class="packs__film rv"><video data-media="packs" src="assets/packs.mp4?v=2" poster="assets/packs.jpg?v=2" muted loop playsinline autoplay></video></div>
     <div class="packs__grid">
       <article class="pack rv">
         <div class="pack__name">FULL CGI</div>
@@ -192,7 +193,7 @@
 <!-- 7. ABOUT -->
 <section class="about sec" id="about">
   <div class="about__box rv">
-    <img class="about__img" src="assets/about.jpg" alt="Робот у окна">
+    <img class="about__img" data-media="about" src="assets/about.jpg" alt="Робот у окна">
     <div class="about__text">
       <h2 class="h1" data-i18n="aboutTitle">Режиссура,<br>а не просто рендер</h2>
       <p data-i18n="ab1">VASILICH DESIGN — студия, где 3D начинается с вопроса «что должен почувствовать зритель». Сначала мы придумываем кадр: точку зрения, свет, ритм. Потом строим под него сцену.</p>
@@ -229,7 +230,7 @@
 <!-- 9. CONTACT -->
 <section id="contact" class="contact">
   <div class="contact__band">
-    <img src="assets/contact.jpg" alt="Чемоданчик с экраном «Обсудим кейс»">
+    <img data-media="contact" src="assets/contact.jpg" alt="Чемоданчик с экраном «Обсудим кейс»">
     <div class="wrap contact__say"><p class="contact__phrase" data-i18n="ctPhrase">Каждый сильный кадр<br>начинается с разговора</p></div>
   </div>
   <h2 class="sr-only" data-i18n="ctTitle">Давайте обсудим кейс</h2>
@@ -237,9 +238,9 @@
     <div class="rv">
       <p class="lead" data-i18n="ctLead">Расскажите о задаче — даже если есть только идея. Ответим, предложим подход и оценим объём работы.</p>
       <div class="socials">
-        <a class="social" href="#contact">Telegram<span>@vasilich_design</span></a>
-        <a class="social" href="#contact">Behance<span>vasilichdesign</span></a>
-        <a class="social" href="mailto:vasilichdesign@yandex.ru"><em data-i18n="mail">Почта</em><span>vasilichdesign@yandex.ru</span></a>
+        <a class="social" data-c="tg" href="https://t.me/vasilich_design" target="_blank" rel="noopener">Telegram<span>@vasilich_design</span></a>
+        <a class="social" data-c="behance" href="https://www.behance.net/vasilichdesign" target="_blank" rel="noopener">Behance<span>vasilichdesign</span></a>
+        <a class="social" data-c="mail" href="mailto:vasilichdesign@yandex.ru"><em data-i18n="mail">Почта</em><span>vasilichdesign@yandex.ru</span></a>
       </div>
     </div>
     <form class="form rv rv-d1" id="form" novalidate>
@@ -263,8 +264,8 @@
     <div class="ftr__grid">
       <div><a href="#top" class="logo"><svg viewBox="0 0 40 40" class="logo__mark"><rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#E2873A" stroke-width="2.2"/><rect x="12" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><rect x="23.8" y="13" width="4.2" height="7.5" rx="2.1" fill="#EEE7DC"/><path d="M13.5 26.2q6.5 5 13 0" fill="none" stroke="#EEE7DC" stroke-width="2.2" stroke-linecap="round"/></svg><b>VASILICH<span>DESIGN</span></b></a><p class="muted small" style="margin-top:18px;max-width:22em" data-i18n="ftrAbout">Студия 3D-визуализации: CGI, предметная визуализация, анимация и интерактивное 3D.</p></div>
       <div><h4 data-i18n="ftrNav">Навигация</h4><ul><li><a href="#services" data-i18n="nav1">Услуги</a></li><li><a href="#packs" data-i18n="nav2">Пакеты</a></li><li><a href="#works" data-i18n="nav3">Работы</a></li><li><a href="#about" data-i18n="nav4">О студии</a></li><li><a href="#flow" data-i18n="nav5">Этапы</a></li></ul></div>
-      <div><h4 data-i18n="nav6">Контакты</h4><ul><li><a href="mailto:vasilichdesign@yandex.ru">vasilichdesign@yandex.ru</a></li><li><a href="tel:+79889244387">+7 988 924-43-87</a></li><li><a href="#contact" data-i18n="ftrReq">Оставить заявку</a></li></ul></div>
-      <div><h4 data-i18n="ftrSoc">Соцсети</h4><ul><li><a href="#contact">Telegram</a></li><li><a href="#contact">Behance</a></li><li><a href="#contact">Instagram</a></li><li><a href="#contact">YouTube</a></li></ul></div>
+      <div><h4 data-i18n="nav6">Контакты</h4><ul><li><a data-c="mail" href="mailto:vasilichdesign@yandex.ru">vasilichdesign@yandex.ru</a></li><li><a data-c="phone" href="tel:+79889244387">+7 988 924-43-87</a></li><li><a href="#contact" data-i18n="ftrReq">Оставить заявку</a></li></ul></div>
+      <div><h4 data-i18n="ftrSoc">Соцсети</h4><ul><li><a data-c="tg" data-c-label href="https://t.me/vasilich_design" target="_blank" rel="noopener">Telegram</a></li><li><a data-c="behance" data-c-label href="https://www.behance.net/vasilichdesign" target="_blank" rel="noopener">Behance</a></li><li><a data-c="instagram" data-c-label href="#contact">Instagram</a></li><li><a data-c="youtube" data-c-label href="#contact">YouTube</a></li></ul></div>
     </div>
     <div class="ftr__big" aria-hidden="true">VASILICH</div>
     <div class="ftr__bottom"><span data-i18n="copy">© 2026 VASILICH DESIGN. Все права защищены.</span><span>DESIGNED BY VASILICH DESIGN</span><a href="spec.html" class="link" data-i18n="specLink">Дизайн-система макета</a></div>
@@ -315,6 +316,9 @@ const EN={
 const RU={out:'На выходе',fBig:'Файлы слишком большие: всего до 50 МБ.',fRate:'Слишком много заявок подряд. Попробуйте через несколько минут.',fFail:'Не получилось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram или на почту.',lightOn:'вкл',lightOff:'выкл',promoOk:'скопировано',dConnecting:'Подключаем кабель…',dPower:'Включить питание',dPowering:'Включаем питание…',dRun:'Запустить движение',dStop:'Остановить движение',dStopping:'Дожидаемся конца цикла…',dOff:'Выключаем питание…',dDisc:'Отсоединяем кабель…',dPowerOff:'Выключить питание',dUnplug:'Отсоединить кабель',dLoad:'Загружаем…',musicOff:'Выключить музыку'};let LANG='ru';
 document.querySelectorAll('[data-i18n]').forEach(el=>{RU[el.dataset.i18n]??=el.innerHTML});
 document.querySelectorAll('[data-i18n-ph]').forEach(el=>{RU[el.dataset.i18nPh]??=el.placeholder});
+/* content edited in the admin page (uploads/content.js, written by admin/; absent on GitHub Pages) */
+const VDC=window.VD_CONTENT||{};
+if(VDC.texts){Object.assign(RU,VDC.texts.ru||{});Object.assign(EN,VDC.texts.en||{})}
 const t=k=>(LANG==='en'?EN:RU)[k]??RU[k]??k;window.vdT=t;
 const L=(ru,en)=>({ru,en}),tr=o=>o[LANG]||o.ru;
 function setLang(l){
@@ -330,7 +334,7 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',(
 /* ================= data ================= */
 const W='assets/works/';
 // Tasks/results are placeholders — replace with the real project descriptions.
-const WORKS=[
+let WORKS=[
  {t:L('Меч','The sword'),c:'cgi',img:W+'sword/1.jpg',loop:W+'sword/loop.mp4',pos:'center 30%',task:L('Показать оружие как артефакт: металл, гравировка, драгоценные вставки.','Present the weapon as an artifact: metal, engraving, gem inlays.'),res:L('Ролик с пролётами камеры и серия кадров крупным планом.','A film with camera fly-throughs and a series of close-ups.'),fmt:L('Видео 16:9 + кадры 4:5','16:9 film + 4:5 stills'),media:['v:'+W+'sword/film.mp4',W+'sword/1.jpg',W+'sword/2.jpg']},
  {t:L('Парфюм на камне','Fragrance on stone'),c:'product',img:W+'perfume/1.jpg',loop:W+'perfume/loop.mp4',task:L('Рекламный визуал флакона: стекло, вода и камень.','An advertising visual of the bottle: glass, water and stone.'),res:L('Ролик для соцсетей и ключевой кадр.','A social film and a key visual.'),fmt:L('Видео 4:5 + кадр','4:5 film + still'),media:['v:'+W+'perfume/film.mp4',W+'perfume/1.jpg']},
  {t:L('Конструктор VASILICH','VASILICH building set'),c:'cgi',img:W+'lego/1.jpg',loop:W+'lego/loop.mp4',task:L('Продуктовая анимация набора: сборка по деталям.','Product animation of the set: building it piece by piece.'),res:L('Ролик со звуком и кадры упаковки.','A film with sound and packaging stills.'),fmt:L('Видео 4:5 со звуком','4:5 film with sound'),media:['v:'+W+'lego/film.mp4',W+'lego/1.jpg',W+'lego/2.jpg']},
@@ -339,7 +343,7 @@ const WORKS=[
  {t:L('Оформление Twitch-канала','Twitch channel design'),c:'cgi',img:W+'twitch/1.jpg',loop:W+'twitch/loop.mp4',task:L('Единый стиль канала: экраны трансляции, шапка, аватар и панели.','One style for the channel: stream screens, banner, avatar and panels.'),res:L('Анимированные экраны и комплект панелей.','Animated screens and a set of panels.'),fmt:L('Видео 16:9 + графика','16:9 video + graphics'),media:['v:'+W+'twitch/film.mp4','v:'+W+'twitch/film2.mp4',W+'twitch/1.jpg',W+'twitch/2.jpg',{grid:[W+'twitch/3.jpg',W+'twitch/4.jpg',W+'twitch/5.jpg',W+'twitch/6.jpg',W+'twitch/7.jpg']}]}
 ];
 const CL={cgi:'CGI',product:'Product',animation:'Animation',interactive:'Interactive'};
-const STEPS=[
+let STEPS=[
  [L('Обсуждение задачи','Briefing'),L('Созваниваемся или переписываемся: цель, аудитория, где будет жить результат, сроки и бюджет.','A call or a chat: the goal, the audience, where the result will live, timing and budget.'),L('Понимание задачи','A clear task')],
  [L('Разработка концепции','Concept'),L('Предлагаем идею кадра или ролика: настроение, точку зрения, ключевые сцены.','We propose the idea of the shot or film: mood, point of view, key scenes.'),L('Концепция','Concept')],
  [L('Референсы и ТЗ','References and brief'),L('Собираем мудборд, фиксируем ракурсы, материалы и форматы. По этому ТЗ сверяем результат.','We build a moodboard and fix angles, materials and formats. The result is checked against this brief.'),L('Утверждённое ТЗ','Approved brief')],
@@ -348,6 +352,20 @@ const STEPS=[
  [L('Анимация или интерактив','Animation or interactive'),L('Анимируем камеру и объекты или готовим модель для браузера.','We animate the camera and objects or prepare the model for the browser.'),L('Ролик или веб-модель','Film or web model')],
  [L('Доработка и передача','Polish and delivery'),L('Вносим правки, готовим файлы под все площадки и передаём исходники.','We apply revisions, prepare files for every platform and hand over the sources.'),L('Готовые файлы','Final files')]
 ];
+if(Array.isArray(VDC.works))WORKS=VDC.works.filter(w=>!w.hidden);
+if(Array.isArray(VDC.steps)&&VDC.steps.length)STEPS=VDC.steps.map(s=>[s.t,s.d,s.o]);
+Object.entries(VDC.media||{}).forEach(([k,url])=>document.querySelectorAll(`[data-media="${k}"]`).forEach(el=>{if(el.tagName==='VIDEO'){el.removeAttribute('poster');el.src=url}else el.src=url}));
+(()=>{const C=VDC.contacts||{};if(!Object.keys(C).length)return;
+  const set=(k,href,text)=>document.querySelectorAll(`[data-c="${k}"]`).forEach(a=>{const li=a.closest('li');
+    if(!href){(li||a).hidden=true;return}(li||a).hidden=false;a.href=href;
+    if(a.hasAttribute('data-c-label'))return;const sp=a.querySelector('span');if(sp)sp.textContent=text;else a.textContent=text});
+  if('tg' in C){const u=String(C.tg||'').replace(/^@|https?:\/\/t\.me\//g,'');set('tg',u&&'https://t.me/'+u,u&&'@'+u)}
+  if('behance' in C){const u=String(C.behance||'').replace(/^https?:\/\/(www\.)?behance\.net\//,'');set('behance',u&&'https://www.behance.net/'+u,u)}
+  if('mail' in C)set('mail',C.mail&&'mailto:'+C.mail,C.mail);
+  if('phone' in C)set('phone',C.phone&&'tel:'+C.phone.replace(/[^\d+]/g,''),C.phone);
+  if('instagram' in C)set('instagram',C.instagram,'');
+  if('youtube' in C)set('youtube',C.youtube,'');
+})();
 const A='assets/';
 
 /* ================= header / burger ================= */

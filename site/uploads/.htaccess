@@ -1,0 +1,10 @@
+# Uploaded media from the admin page: never run scripts here; always revalidate content.js
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh|shtml|htaccess)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes -ExecCGI
+<IfModule mod_headers.c>
+  <Files "content.js">
+    Header set Cache-Control "no-cache"
+  </Files>
+</IfModule>

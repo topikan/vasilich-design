@@ -1,12 +1,13 @@
 <?php
 // Admin page: requests from the site + Telegram settings. Password protected.
 require __DIR__ . '/../lib/vd.php';
+define('VD_ADMIN', 1);
 session_set_cookie_params(['httponly' => true, 'secure' => !empty($_SERVER['HTTPS']), 'samesite' => 'Strict', 'path' => dirname($_SERVER['SCRIPT_NAME']) . '/']);
 session_name('vdadmin');
 session_start();
 header('Cache-Control: no-store');
 header('X-Robots-Tag: noindex, nofollow');
-header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; frame-ancestors 'none'");
 
 $c = vd_config();
 if (!$c['password_hash'] && !$c['setup_code']) { $c['setup_code'] = strtoupper(bin2hex(random_bytes(4))); vd_config_save($c); }
@@ -66,6 +67,9 @@ if (empty($_SESSION['auth'])) {
 }
 
 // ---------- actions ----------
+require __DIR__ . '/content.php';
+if (preg_match('/^(work_|works_|texts_|media_|contacts_)/', $act)) vd_content_action($act);
+vd_publish_if_missing();
 $leadPath = fn($id) => vd_data_dir() . '/leads/' . preg_replace('/[^0-9a-f-]/', '', (string)$id) . '.json';
 switch ($act) {
     case 'status':
@@ -137,7 +141,7 @@ switch ($act) {
 // ---------- pages ----------
 if (!$c['relay_secret']) { $c['relay_secret'] = bin2hex(random_bytes(16)); vd_config_save($c); }
 vd_retry_pending(2);
-$tab = ($_GET['tab'] ?? '') === 'settings' ? 'settings' : 'leads';
+$tab = in_array($_GET['tab'] ?? '', ['settings', 'works', 'texts', 'site'], true) ? $_GET['tab'] : 'leads';
 $leads = vd_leads();
 $filter = in_array($_GET['s'] ?? '', ['new', 'work', 'done'], true) ? $_GET['s'] : '';
 $ST = ['new' => 'Новая', 'work' => 'В работе', 'done' => 'Закрыта'];
@@ -145,11 +149,11 @@ page('Заявки', function () use ($tab, $leads, $filter, $ST, $c, $csrf, $fl
     $count = fn($s) => count(array_filter($leads, fn($l) => $l['status'] === $s)); ?>
   <header class="top">
     <b>VASILICH <span>DESIGN</span></b>
-    <nav><a href="./" class="<?= $tab === 'leads' ? 'on' : '' ?>">Заявки<?php if ($n = $count('new')) echo " <i>$n</i>"; ?></a><a href="?tab=settings" class="<?= $tab === 'settings' ? 'on' : '' ?>">Настройки</a></nav>
+    <nav><a href="./" class="<?= $tab === 'leads' ? 'on' : '' ?>">Заявки<?php if ($n = $count('new')) echo " <i>$n</i>"; ?></a><a href="?tab=works" class="<?= $tab === 'works' ? 'on' : '' ?>">Портфолио</a><a href="?tab=texts" class="<?= $tab === 'texts' ? 'on' : '' ?>">Тексты</a><a href="?tab=site" class="<?= $tab === 'site' ? 'on' : '' ?>">Контакты и медиа</a><a href="?tab=settings" class="<?= $tab === 'settings' ? 'on' : '' ?>">Настройки</a><a href="../" target="_blank" rel="noopener">Сайт ↗</a></nav>
     <form method="post"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><button name="act" value="logout" class="ghost">Выйти</button></form>
   </header>
   <?php if ($flash) echo '<p class="flash">' . vd_h($flash) . '</p>'; ?>
-  <?php if ($tab === 'leads'): ?>
+  <?php if (in_array($tab, ['works', 'texts', 'site'], true)): vd_content_render($tab); elseif ($tab === 'leads'): ?>
     <div class="chips">
       <a href="./" class="<?= !$filter ? 'on' : '' ?>">Все <?= count($leads) ?></a>
       <?php foreach ($ST as $k => $v) echo '<a href="?s=' . $k . '" class="' . ($filter === $k ? 'on' : '') . '">' . $v . ' ' . $count($k) . '</a>'; ?>
@@ -163,7 +167,7 @@ page('Заявки', function () use ($tab, $leads, $filter, $ST, $c, $csrf, $fl
           <span class="num">№<?= vd_h($l['num']) ?></span>
           <time><?= vd_h(date('d.m.Y H:i', $l['time'])) ?></time>
           <form method="post" class="inline"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><input type="hidden" name="act" value="status"><input type="hidden" name="id" value="<?= vd_h($l['id']) ?>">
-            <select name="status" onchange="this.form.submit()"><?php foreach ($ST as $k => $v) echo '<option value="' . $k . '"' . ($l['status'] === $k ? ' selected' : '') . '>' . $v . '</option>'; ?></select>
+            <select name="status" data-autosubmit><?php foreach ($ST as $k => $v) echo '<option value="' . $k . '"' . ($l['status'] === $k ? ' selected' : '') . '>' . $v . '</option>'; ?></select>
             <noscript><button>OK</button></noscript></form>
         </div>
         <dl>
@@ -176,7 +180,7 @@ page('Заявки', function () use ($tab, $leads, $filter, $ST, $c, $csrf, $fl
           <small class="muted">Telegram: <?= vd_h($l['tg'] ?: 'отправляется…') ?></small>
           <form method="post" class="inline"><input type="hidden" name="csrf" value="<?= vd_h($csrf) ?>"><input type="hidden" name="id" value="<?= vd_h($l['id']) ?>">
             <button name="act" value="resend" class="ghost">Отправить в Telegram ещё раз</button>
-            <button name="act" value="delete" class="ghost danger" onclick="return confirm('Удалить заявку №<?= vd_h($l['num']) ?> вместе с файлами? Восстановить её будет нельзя.')">Удалить</button></form>
+            <button name="act" value="delete" class="ghost danger" data-confirm="Удалить заявку №<?= vd_h($l['num']) ?> вместе с файлами? Восстановить её будет нельзя.">Удалить</button></form>
         </div>
       </article>
     <?php endforeach; ?>
@@ -231,7 +235,7 @@ function page(string $title, callable $body) { ?><!DOCTYPE html>
 <title><?= vd_h($title) ?> · VASILICH DESIGN</title><link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>
 :root{--bg:#121110;--card:#1b1917;--line:#2c2926;--text:#eee7dc;--muted:#9d958a;--amber:#e2873a;--red:#e05a4f}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px;max-width:900px;margin:0 auto}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px;max-width:1040px;margin:0 auto}
 a{color:var(--amber)}h1{font-size:1.4rem;margin:0 0 8px}h2{font-size:1.05rem;margin:0 0 10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
 .narrow{max-width:380px;margin:12vh auto}label{display:block;margin:12px 0 0;font-size:.85rem;color:var(--muted)}
@@ -250,5 +254,19 @@ button.ghost{background:none;border:1px solid var(--line);color:var(--text);font
 dl{display:grid;grid-template-columns:90px 1fr;gap:6px 12px;margin:0}dt{color:var(--muted);font-size:.85rem}dd{margin:0;word-break:break-word}.contact{font-weight:600}
 .lead__foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
 .chats{list-style:none;padding:0}.chats li{padding:6px 0;border-bottom:1px solid var(--line)}.tglink{word-break:break-all}
-@media(max-width:560px){body{padding:12px}dl{grid-template-columns:1fr}.lead__foot .inline button{margin:6px 6px 0 0}}
-</style></head><body><?php $body(); ?></body></html><?php }
+h1 .small{font-size:.8rem;font-weight:400}.row.between{justify-content:space-between;align-items:center;margin-bottom:12px}.row.between p{margin:0}
+.top{flex-wrap:wrap}.top nav{flex-wrap:wrap}
+.work{display:flex;gap:16px;align-items:center}.work.is-hidden{opacity:.55}.work__info{flex:1;display:flex;flex-direction:column;gap:4px}
+.work__acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}.work__acts .inline button{margin:0}
+.btnlink{display:inline-block;padding:6px 12px;border-radius:10px;background:var(--amber);color:#1b120a;text-decoration:none;font-weight:600;font-size:.85rem}
+.cover{width:96px;height:120px;object-fit:cover;border-radius:10px;background:#0f0e0d;flex:none;display:grid;place-items:center;font-size:.75rem;color:var(--muted)}
+.thumb{width:64px;height:48px;object-fit:cover;border-radius:6px;background:#0f0e0d;flex:none}
+.tx{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.tx textarea{margin-top:0;resize:vertical}.tx label textarea,.tx label input,.tx label select{margin-top:4px}
+.tx.is-changed textarea{border-color:rgba(226,135,58,.55)}
+.slot{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}.slot form{margin-top:6px}.slot input[type=file]{flex:1 1 200px}
+.gallery{list-style:none;padding:0;margin:10px 0}.gallery li{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}.gallery li button{margin:0;padding:4px 10px}
+.fname{flex:1;font-size:.85rem;word-break:break-all}.del{display:inline-flex;gap:4px;align-items:center;margin:0;font-size:.8rem;color:var(--muted)}.del input{width:auto;margin:0}
+fieldset.step{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:6px 12px 12px}legend{padding:0 6px;font-weight:600}legend .del{margin-left:10px;font-weight:400}
+h2{margin-top:18px}.card h2:first-child{margin-top:0}form.reset{margin-top:24px}
+@media(max-width:560px){body{padding:12px}.tx{grid-template-columns:1fr}.work{align-items:flex-start}.cover{width:72px;height:90px}dl{grid-template-columns:1fr}.lead__foot .inline button{margin:6px 6px 0 0}}
+</style><script src="admin.js" defer></script></head><body><?php $body(); ?></body></html><?php }
